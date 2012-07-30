@@ -1,0 +1,17 @@
+
+Kesäkuu
+-alustava suunnitelma
+-koodaamisen aloitus:
+verkko koostuu piste-olioista, pisteen käsittelyyn tarvittavia työkaluja
+pisteet tekevät kaiken hankalaksi, aloitettu monta luokkaa niiden käsittelyä varten
+
+Kesäkuu
+-luovuttu Piste-luokasta, n-pisteisen verkon pisteet ovat kokonaislukuja 1...n
+-verkot edelleen suunnattuja
+
+8. heinäkuuta
+-vaihdettiin verkon nimeksi suhteikko
+-paranneltu ja täydennetty Lukusuhteikkorelaation testejä
+-päivitetty Lukusuhteikkorelaatio läpäisemään uudet ja parannellut testit
+-päivitetty Lukusuhteikko
+-aloitettu Suhteikkokirjastoa toteuttamalla verkkoehdon tarkistus
