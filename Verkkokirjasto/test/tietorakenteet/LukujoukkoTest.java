@@ -14,7 +14,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Lukujoukon testiluokka. Metodit on nimetty kuvaavasti siten ettei erillistä
+ * kommentointia tarvittaisi.
  * @author silja
  */
 public class LukujoukkoTest {

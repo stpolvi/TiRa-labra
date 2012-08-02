@@ -13,7 +13,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Lukusuhteikko-luokan testiluokka. Metodit on nimetty niin ettei
+ * erillistä kommentointia tarvita.
  * @author silja
  */
 public class LukusuhteikkoTest {

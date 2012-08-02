@@ -16,7 +16,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Suhteikkokirjaston testiluokka
  * @author silja
  */
 public class SuhteikkokirjastoTest {
@@ -40,6 +40,9 @@ public class SuhteikkokirjastoTest {
     public void tearDown() {
     }
 
+    /**
+     * Tyhjän suhteikon tulee täyttää verkkoehto
+     */
     @Test
     public void tyhjaSuhteikkoTayttaaVerkkoehdon() {
         Lukusuhteikko s = new Lukusuhteikko();
@@ -48,6 +51,10 @@ public class SuhteikkokirjastoTest {
         assertTrue(Suhteikkokirjasto.tayttaaVerkkoehdon(s));
     }
 
+    /**
+     * Yksipisteinen suhteikko, jossa on silmukka, ei saa täyttää verkkoehtoa
+     * vaikka onkin symmetrinen.
+     */
     @Test
     public void yksisilmukkainenSymmetrinenEiTaytaVerkkoehtoa() {
         Lukusuhteikkorelaatio r = new Lukusuhteikkorelaatio(1);
@@ -58,6 +65,9 @@ public class SuhteikkokirjastoTest {
         assertFalse(Suhteikkokirjasto.tayttaaVerkkoehdon(s));
     }
 
+    /**
+     * Silmukaton suhteikko, joka ei ole symmetrinen, ei saa täyttää verkkoehtoa.
+     */
     @Test
     public void silmukatonEisymmetrinenEiTaytaVerkkoehtoa() {
         Lukusuhteikkorelaatio r = new Lukusuhteikkorelaatio(2);

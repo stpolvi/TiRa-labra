@@ -6,7 +6,8 @@
 package tietorakenteet;
 
 /**
- *
+ * LUOKKA TOIMII TEHOTTOMASTI JA SIKSI KORVATAAN LUKUJOUKOLLA. EI KOMMENTOITU
+ * KOSKA TULLAAN POISTAMAAN HETI KUN OIKEA JOUKKO VALMIS. Säilytetty kopioimista varten.
  * @author silja
  */
 public class LukujoukkoTehoton {

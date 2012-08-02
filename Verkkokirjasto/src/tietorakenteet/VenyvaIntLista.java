@@ -6,7 +6,7 @@ package tietorakenteet;
  */
 
 /**
- *
+ * Venyvä int-taulukko
  * @author silja
  */
 public class VenyvaIntLista {
@@ -15,9 +15,13 @@ public class VenyvaIntLista {
     private int oletuskasvatussuhde = 2;
     private int[] taulukko;
 
+    /**
+     * Venyvä lista oletuspituisella aloituskapasiteetilla.
+     */
     public VenyvaIntLista() {
         this.taulukko = new int[oletuspituus];
     }
+
 
     private void kasvata() {
         int[] vanha = this.taulukko;
@@ -25,14 +29,24 @@ public class VenyvaIntLista {
         kopioiUuteen(vanha, uusi);
     }
 
+    /**
+     * KESKEN. ei toteutettu vielä
+     * @param loppupiste
+     * @return
+     */
+
     boolean sisaltaa(int loppupiste) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    /**
+     * KESKEN. ei toteutettu vielä
+     */
     void lisaa(int loppupiste) {
 
     }
 
+    
     private int uusiPituus(int[] vanha) {
         return vanha.length * oletuskasvatussuhde;
     }

@@ -14,7 +14,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Lukusuhteikkorelaation testiluokka. Testit on nimetty niin ettei erillistä
+ * kommentointia tarvita.
  * @author silja
  */
 public class LukusuhteikkorelaatioTest {
