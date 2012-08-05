@@ -69,7 +69,7 @@ public class LukusuhteikkorelaatioTest {
     @Test
     public void lisaaYhteysPalauttaaTrueUudessa() {
         for (int i=1; i<=testattavanKoko; i++) {
-            assertTrue(relaatio.lisaaYhteys(i,lisattavaLoppupiste));
+            fail("kesken");
         }
     }
 
@@ -78,7 +78,8 @@ public class LukusuhteikkorelaatioTest {
     @Test
     public void onYhteysKunLisattyYhdelle() {
         assertFalse(relaatio.onYhteys(1,1));
-        assertTrue(relaatio.lisaaYhteys(1,1));
+        //assertTrue(relaatio.lisaaYhteys(1,1));
+        fail("kesken");
         assertTrue(relaatio.onYhteys(1,1));
     }
 
@@ -88,32 +89,33 @@ public class LukusuhteikkorelaatioTest {
             assertFalse(relaatio.onYhteys(i,lisattavaLoppupiste));
         }
         for (int i=1; i<=testattavanKoko; i++) {
-            assertTrue(relaatio.lisaaYhteys(i,lisattavaLoppupiste));
+            fail("kesken");
+            //assertTrue(relaatio.lisaaYhteys(i,lisattavaLoppupiste));
         }
         for (int i=1; i<=testattavanKoko; i++) {
             assertTrue(relaatio.onYhteys(i,lisattavaLoppupiste));
         }
     }
     
-    @Test
-    public void lisaaYhteysEiOnnistuKahtaKertaaSamalleYhdelle() {
-        assertTrue(relaatio.lisaaYhteys(1,testattavanKoko));
-        assertFalse(relaatio.lisaaYhteys(1,testattavanKoko));
-        assertFalse(relaatio.lisaaYhteys(1,testattavanKoko));
-    }
+//    @Test
+//    public void lisaaYhteysEiOnnistuKahtaKertaaSamalleYhdelle() {
+//        assertTrue(relaatio.lisaaYhteys(1,testattavanKoko));
+//        assertFalse(relaatio.lisaaYhteys(1,testattavanKoko));
+//        assertFalse(relaatio.lisaaYhteys(1,testattavanKoko));
+//    }
 
-    @Test
-    public void lisaaYhteysEiOnnistuKahtaKertaaSamalleKaikille() {
-        for (int i=1; i<=testattavanKoko; i++) {
-            assertTrue(relaatio.lisaaYhteys(i,lisattavaLoppupiste));
-        }
-        for (int i=1; i<=testattavanKoko; i++) {
-            assertFalse(relaatio.lisaaYhteys(i,lisattavaLoppupiste));
-        }
-        for (int i=1; i<=testattavanKoko; i++) {
-            assertFalse(relaatio.lisaaYhteys(i,lisattavaLoppupiste));
-        }
-    }
+//    @Test
+//    public void lisaaYhteysEiOnnistuKahtaKertaaSamalleKaikille() {
+//        for (int i=1; i<=testattavanKoko; i++) {
+//            assertTrue(relaatio.lisaaYhteys(i,lisattavaLoppupiste));
+//        }
+//        for (int i=1; i<=testattavanKoko; i++) {
+//            assertFalse(relaatio.lisaaYhteys(i,lisattavaLoppupiste));
+//        }
+//        for (int i=1; i<=testattavanKoko; i++) {
+//            assertFalse(relaatio.lisaaYhteys(i,lisattavaLoppupiste));
+//        }
+//    }
 
     @Test
     public void lisaaminenLisaaSeuraajajoukkoonKaikille() {
@@ -121,11 +123,12 @@ public class LukusuhteikkorelaatioTest {
             assertFalse(relaatio.onYhteys(i,lisattavaLoppupiste));
         }
         for (int i=1; i<=testattavanKoko; i++) {
-            assertTrue(relaatio.lisaaYhteys(i,lisattavaLoppupiste));
+            //assertTrue(relaatio.lisaaYhteys(i,lisattavaLoppupiste));
         }
         for (int i=1; i<=testattavanKoko; i++) {
-            assertTrue(relaatio.getSeuraajat(i).onAlkio(lisattavaLoppupiste));
+            //assertTrue(relaatio.getSeuraajat(i).onAlkio(lisattavaLoppupiste));
         }
+        fail("kesken");
     }
     
 

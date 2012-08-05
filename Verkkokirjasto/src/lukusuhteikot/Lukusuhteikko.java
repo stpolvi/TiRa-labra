@@ -6,6 +6,7 @@
 package lukusuhteikot;
 
 import suhteikot.Suhteikko;
+import tietorakenteet.IntSailio;
 
 /**
  * Lukusuhteikko-olio kuvaa suhteikkoa (eli ns. suunnattua verkkoa),
@@ -17,7 +18,7 @@ import suhteikot.Suhteikko;
 public class Lukusuhteikko extends Suhteikko {
 
     private final int PISTEIDENLKM;
-    private Lukusuhteikkorelaatio relaatio;
+    private RelaatioVenyvallaTaulukolla relaatio;
 
     /**
      * Parametriton konstruktori luo tyhjän suhteikon:
@@ -30,17 +31,16 @@ public class Lukusuhteikko extends Suhteikko {
 
     /**
      * Luo suhteikon annetun relaation perusteella. Pistemäärä päätellään relaatiosta.
-     *
      * @param relaatio suhteikon pisteiden välinen relaatio
      */
 
-    public Lukusuhteikko(Lukusuhteikkorelaatio relaatio) {
+    public Lukusuhteikko(RelaatioVenyvallaTaulukolla relaatio) {
         this.PISTEIDENLKM = relaatio.JOUKONKOKO;
         this.relaatio = relaatio;
     }
 
     /**
-     * Yliluokan (Suhteikko) abstraktin metodin toteutus:
+     * Yliluokan Suhteikko abstraktin metodin toteutus:
      * onko alkupisteestä yhteys loppupisteeseen.
      *
      * @param alkupiste piste josta yhteys mahdollisesti on
@@ -54,15 +54,26 @@ public class Lukusuhteikko extends Suhteikko {
         return relaatio.onYhteys(alkupiste,loppupiste);
     }
 
+
     /**
-     * Suhteikon pisteiden lukumäärä
-     *
+     * Yliluokan Suhteikko metodin toteutus. Suhteikon pisteiden lukumäärä.
      * @return pisteiden määrä
      */
 
     @Override
     public int pisteidenLkm() {
         return this.PISTEIDENLKM;
+    }
+
+    /**
+     * Yliluokan Suhteikko metodin toteutus. Annetun pisteen seuraajat int-säiliössä
+     *
+     * @param alkupiste piste jonka seuraajat halutaan
+     * @return seuraajat jossakin int-säiliössä
+     */
+    @Override
+    public IntSailio getSeuraajat(int alkupiste) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     

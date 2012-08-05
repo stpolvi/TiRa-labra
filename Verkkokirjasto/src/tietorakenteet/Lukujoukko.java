@@ -41,11 +41,14 @@ public class Lukujoukko {
      * @return onnistuiko lisäys: false jos lisättävä oli jo joukossa
      */
     public boolean lisaa(int alkio) {
-        int etsiPaikka;
-
-        
-
-        return false;
+        int i = this.koko-INDEKSIKORJAUS;
+        while (joukko[i] > alkio) {
+            i--;
+        }
+        if (joukko[i] == alkio) return false;
+        joukko[i+1] = alkio;
+        this.koko++;
+        return true;
     }
 
     /**

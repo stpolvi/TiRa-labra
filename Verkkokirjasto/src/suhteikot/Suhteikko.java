@@ -5,6 +5,8 @@
 
 package suhteikot;
 
+import tietorakenteet.IntSailio;
+
 /**
  * Abstrakti suhteikko, jota voidaan tutkia suhteikkokirjaston algoritmeilla.
  * @author silja
@@ -24,5 +26,13 @@ public abstract class Suhteikko {
      */
 
     public abstract boolean onYhteys(int alkupiste, int loppupiste);
+    
+    /**
+     * Annetun pisteen seuraajat int-säiliössä.
+     * @param alkupiste piste jonka seuraajat halutaan
+     * @return seuraajat jossakin int-säiliössä
+     */
+
+    public abstract IntSailio getSeuraajat(int alkupiste);
     
 }

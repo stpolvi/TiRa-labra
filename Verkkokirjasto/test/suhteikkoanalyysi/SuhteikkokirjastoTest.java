@@ -5,7 +5,7 @@
 
 package suhteikkoanalyysi;
 
-import suhteikkoanalyysi.Suhteikkokirjasto;
+import suhteikkoanalyysi.Suhteikkoanalyysikirjasto;
 import lukusuhteikot.Lukusuhteikko;
 import lukusuhteikot.Lukusuhteikkorelaatio;
 import org.junit.After;
@@ -46,9 +46,9 @@ public class SuhteikkokirjastoTest {
     @Test
     public void tyhjaSuhteikkoTayttaaVerkkoehdon() {
         Lukusuhteikko s = new Lukusuhteikko();
-        assertTrue(Suhteikkokirjasto.silmukaton(s));
-        assertTrue(Suhteikkokirjasto.symmetrinen(s));
-        assertTrue(Suhteikkokirjasto.tayttaaVerkkoehdon(s));
+        assertTrue(Suhteikkoanalyysikirjasto.silmukaton(s));
+        assertTrue(Suhteikkoanalyysikirjasto.symmetrinen(s));
+        assertTrue(Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
     }
 
     /**
@@ -60,9 +60,9 @@ public class SuhteikkokirjastoTest {
         Lukusuhteikkorelaatio r = new Lukusuhteikkorelaatio(1);
         r.lisaaYhteys(1, 1);
         Lukusuhteikko s = new Lukusuhteikko(r);
-        assertFalse(Suhteikkokirjasto.silmukaton(s));
-        assertTrue(Suhteikkokirjasto.symmetrinen(s));
-        assertFalse(Suhteikkokirjasto.tayttaaVerkkoehdon(s));
+        assertFalse(Suhteikkoanalyysikirjasto.silmukaton(s));
+        assertTrue(Suhteikkoanalyysikirjasto.symmetrinen(s));
+        assertFalse(Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
     }
 
     /**
@@ -73,9 +73,9 @@ public class SuhteikkokirjastoTest {
         Lukusuhteikkorelaatio r = new Lukusuhteikkorelaatio(2);
         r.lisaaYhteys(1, 2);
         Lukusuhteikko s = new Lukusuhteikko(r);
-        assertTrue(Suhteikkokirjasto.silmukaton(s));
-        assertFalse(Suhteikkokirjasto.symmetrinen(s));
-        assertFalse(Suhteikkokirjasto.tayttaaVerkkoehdon(s));
+        assertTrue(Suhteikkoanalyysikirjasto.silmukaton(s));
+        assertFalse(Suhteikkoanalyysikirjasto.symmetrinen(s));
+        assertFalse(Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
     }
 
 }
