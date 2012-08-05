@@ -30,8 +30,9 @@ public class Lukusuhteikko extends Suhteikko {
     }
 
     /**
-     * Luo suhteikon annetun relaation perusteella. Pistemäärä päätellään relaatiosta.
-     * @param relaatio suhteikon pisteiden välinen relaatio
+     * Luo suhteikon annetun relaation perusteella.
+     * Pistemäärä päätellään relaatiosta.
+     * @param relaatio tulevan suhteikon pisteiden välinen relaatio
      */
 
     public Lukusuhteikko(RelaatioVenyvallaTaulukolla relaatio) {
@@ -56,7 +57,8 @@ public class Lukusuhteikko extends Suhteikko {
 
 
     /**
-     * Yliluokan Suhteikko metodin toteutus. Suhteikon pisteiden lukumäärä.
+     * Yliluokan Suhteikko metodin toteutus.
+     * Suhteikon pisteiden lukumäärä.
      * @return pisteiden määrä
      */
 
@@ -66,14 +68,15 @@ public class Lukusuhteikko extends Suhteikko {
     }
 
     /**
-     * Yliluokan Suhteikko metodin toteutus. Annetun pisteen seuraajat int-säiliössä
+     * Yliluokan Suhteikko metodin toteutus.
+     * Annetun pisteen seuraajat int-säiliössä
      *
      * @param alkupiste piste jonka seuraajat halutaan
      * @return seuraajat jossakin int-säiliössä
      */
     @Override
     public IntSailio getSeuraajat(int alkupiste) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.relaatio.getSeuraajat(alkupiste);
     }
 
     

@@ -5,7 +5,7 @@
 
 package lukusuhteikot;
 
-import lukusuhteikot.Lukusuhteikkorelaatio;
+import lukusuhteikot.RelaatioVenyvallaTaulukolla;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -22,7 +22,7 @@ public class LukusuhteikkorelaatioTest {
 
     private int lisattavaLoppupiste = 1;
     private int testattavanKoko = 19;
-    Lukusuhteikkorelaatio relaatio;
+    RelaatioVenyvallaTaulukolla relaatio;
 
     public LukusuhteikkorelaatioTest() {
     }
@@ -37,7 +37,7 @@ public class LukusuhteikkorelaatioTest {
 
     @Before
     public void setUp() {
-        relaatio = new Lukusuhteikkorelaatio(testattavanKoko);
+        relaatio = new RelaatioVenyvallaTaulukolla(testattavanKoko);
     }
 
     @After
@@ -46,7 +46,7 @@ public class LukusuhteikkorelaatioTest {
 
     @Test
     public void tyhjaRelaatioLuotavissa() {
-        assertNotNull(new Lukusuhteikkorelaatio(0));
+        assertNotNull(new RelaatioVenyvallaTaulukolla(0));
     }
 
     @Test

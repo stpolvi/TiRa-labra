@@ -34,13 +34,12 @@ public class LukusuhteikkoTest {
 
     @Before
     public void setUp() {
-        Lukusuhteikkorelaatio r = uusiRelaatioTaydellinenN(5);
-
+        RelaatioVenyvallaTaulukolla r = uusiRelaatioTaydellinenN(9);
         suhteikko = new Lukusuhteikko(r);
     }
 
-    private Lukusuhteikkorelaatio uusiRelaatioTaydellinenN(int n) {
-        Lukusuhteikkorelaatio r = new Lukusuhteikkorelaatio(n);
+    private RelaatioVenyvallaTaulukolla uusiRelaatioTaydellinenN(int n) {
+        RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(n);
         for (int i=1; i<=n; i++) {
             for (int j=1; j<=n; j++) {
                 r.lisaaYhteys(i, j);
