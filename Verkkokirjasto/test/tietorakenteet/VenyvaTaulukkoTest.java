@@ -6,10 +6,7 @@
 package tietorakenteet;
 
 import java.util.Random;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,25 +18,14 @@ public class VenyvaTaulukkoTest {
 
     VenyvaTaulukko taulukko;
 
-    public VenyvaTaulukkoTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
     @Before
     public void setUp() {
         taulukko = new VenyvaTaulukko();
     }
 
-    @After
-    public void tearDown() {
-    }
+    /*
+     * Apumetodit ---------------
+     */
 
     /**
      * Apumetodi lisää taulukkoon luvut 1,...,n
@@ -85,6 +71,10 @@ public class VenyvaTaulukkoTest {
                     " mutta niitä oli " + taulukko.alkioita(),
                     taulukko.alkioita() == oikeaAlkioidenLkm);
     }
+
+    /*
+     * TESTIT --------------------------------
+     */
 
     @Test
     public void Uudessa0Alkiota() {

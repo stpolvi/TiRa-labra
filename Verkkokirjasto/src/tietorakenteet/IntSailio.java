@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package tietorakenteet;
 
@@ -17,21 +13,21 @@ public interface IntSailio {
      * @return alkioiden määrä
      */
 
-    public abstract int alkioita();
+    public int alkioita();
 
     /**
      * Säiliössä olevat luvut int-taulukossa.
      * Taulukon pituus on sama kuin alkioiden lukumäärä.
      * @return alkiot taulukoituna
      */
-    public abstract int[] toIntArray();
+    public int[] toIntArray();
 
     /**
      * Lisää säiliöön alkion.
      * @param alkio lisättävä
      */
 
-    public abstract void lisaa(int alkio);
+    public void lisaa(int alkio);
 
     /**
      * Onko anettu alkio säiliössä
@@ -39,11 +35,11 @@ public interface IntSailio {
      * @return löytyikö säiliöstä etsittävä alkio
      */
 
-    public abstract boolean etsi(int etsittava);
+    public boolean etsi(int etsittava);
 
     /**
      * Järjestää säiliön sisällön siten, että toIntArray-metodin 
      * palauttama taulukko on järjestyksessä.
      */
-    public abstract void sort();
+    public void sort();
 }

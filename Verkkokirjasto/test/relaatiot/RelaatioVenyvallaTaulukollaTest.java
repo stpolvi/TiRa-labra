@@ -1,10 +1,7 @@
 
 package relaatiot;
 
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -19,26 +16,15 @@ public class RelaatioVenyvallaTaulukollaTest {
     private int testattavanKoko = 19;
     RelaatioVenyvallaTaulukolla relaatio;
 
-    public RelaatioVenyvallaTaulukollaTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
     @Before
     public void setUp() {
         relaatio = new RelaatioVenyvallaTaulukolla(testattavanKoko);
     }
 
-    @After
-    public void tearDown() {
-    }
-
+    /*
+     * TESTIT ------------------------------------------------------
+     */
+    
     @Test
     public void tyhjaRelaatioLuotavissa() {
         assertNotNull(new RelaatioVenyvallaTaulukolla(0));

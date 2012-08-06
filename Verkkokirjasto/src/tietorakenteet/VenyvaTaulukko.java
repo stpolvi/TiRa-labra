@@ -71,6 +71,33 @@ public class VenyvaTaulukko implements IntSailio {
     public boolean etsi(int etsittava) {
         return binhae(etsittava) >= 0;
     }
+    
+    /**
+     * Binäärihaku venyvästä taulukosta. Huomaa ettei metodi toimi
+     * järjestämättömässä venyvässä taulukossa.
+     * @param etsittava haettava
+     * @return indeksi josta etsittävä löytyi, tai -1 mikäli sitä ei löytynyt
+     */
+
+    public int binhae(int etsittava) {
+        int vasen = 0;
+        int oikea = alkioita()-INDEKSIKORJAUS;
+        int keski;
+
+        while (vasen <= oikea) {
+            keski = Tyokalut.keskiarvo(vasen, oikea);
+
+            if (taulukko[keski] == etsittava)
+                return keski;
+            else if (taulukko[keski] > etsittava)
+                oikea = keski-1;
+            else
+                vasen = keski+1;
+        }
+
+        return -1;
+    }
+
 
     /**
      * Etsii alkiota peräkkäishaulla.
@@ -96,34 +123,7 @@ public class VenyvaTaulukko implements IntSailio {
         return -1;
     }
 
-    /**
-     * Binäärihaku venyvästä taulukosta. Huomaa ettei metodi toimi
-     * järjestämättömässä venyvässä taulukossa.
-     * @param etsittava haettava
-     * @return indeksi josta etsittävä löytyi, tai -1 mikäli sitä ei löytynyt
-     */
-
-    public int binhae(int etsittava) {
-        return Arrays.binarySearch(this.taulukko, etsittava);
-//        if (alkioita() == 0) return -1;
-//
-//        int vasen = 0;
-//        int oikea = alkioita()-INDEKSIKORJAUS;
-//
-//        int keski;
-//
-//        while (oikea > vasen) {
-//            keski = Tyokalut.keskiarvo(vasen, oikea);
-//
-//            if (taulukko[keski] < etsittava) vasen = keski;
-//            else if (taulukko[keski] > etsittava) oikea = keski;
-//            else return keski;
-//        }
-//
-//        return -1;
-
-    }
-
+    
     /**
      * IntSailio-rajapinnan metodin toteutus.
      * @return taulukossa olevien lukujen määrä

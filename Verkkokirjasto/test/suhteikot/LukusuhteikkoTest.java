@@ -1,16 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package suhteikot;
 
-import relaatiot.RelaatioVenyvallaTaulukolla;
-import suhteikot.Lukusuhteikko;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import relaatiot.RelaatioVenyvallaTaulukolla;
 import static org.junit.Assert.*;
@@ -24,22 +15,15 @@ public class LukusuhteikkoTest {
 
     Lukusuhteikko suhteikko;
 
-    public LukusuhteikkoTest() {
-    }
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
     @Before
     public void setUp() {
         RelaatioVenyvallaTaulukolla r = uusiRelaatioTaydellinenN(9);
         suhteikko = new Lukusuhteikko(r);
     }
+
+    /*
+     * Apumetodit -----------------------------------------
+     */
 
     private RelaatioVenyvallaTaulukolla uusiRelaatioTaydellinenN(int n) {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(n);
@@ -51,10 +35,9 @@ public class LukusuhteikkoTest {
         return r;
     }
 
-
-    @After
-    public void tearDown() {
-    }
+    /*
+     * Testit ---------------------------------------------------
+     */
 
     @Test
     public void testOnYhteysTaydellisella() {
