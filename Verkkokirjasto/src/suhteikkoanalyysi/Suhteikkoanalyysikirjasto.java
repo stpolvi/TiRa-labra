@@ -6,6 +6,7 @@
 package suhteikkoanalyysi;
 
 import suhteikot.Suhteikko;
+import tietorakenteet.IntSailio;
 
 /**
  * Kirjasto, joka tarjoaa suhteikkojen rakenteen tutkimiseen sopivia algoritmeja
@@ -63,7 +64,9 @@ public class Suhteikkoanalyysikirjasto {
      */
 
     public static int lahtoaste(Suhteikko s, int piste) {
-        return s.getSeuraajat(piste).alkioita();
+        IntSailio seuraajat = s.getSeuraajat(piste);
+        if (seuraajat == null) return 0;
+        return seuraajat.alkioita();
     }
 
     /**
