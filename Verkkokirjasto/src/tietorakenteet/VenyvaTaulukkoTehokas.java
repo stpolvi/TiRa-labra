@@ -1,64 +1,91 @@
+
 package tietorakenteet;
 
 import java.util.Arrays;
 
 /**
- * Venyvä int-taulukko, jonka pituus on aina alkioiden lukumäärä.
+ * Venyvä int-taulukko, jonka pituus voi olla suurempi kuin alkioiden lukumäärä.
  * Kapseloi javan perustaulukkorakenteen int[], jota pidentää
- * lisättäessä yhdellä ja lyhentää poistettaessa yhdellä.
- * Tietorakenne on suunniteltu hitaasti rakennettavaksi,
- * mutta tehokkaammin tutkittavaksi.
+ * lisättäessä kaksinkertaiseksi.
+ * Tietorakenne on suunniteltu hieman nopeammin rakennettavaksi kuin
+ * VenyvaTaulukko. Kapseloitu taulukko voidaan katkaista oikean pituiseksi metodilla.
  *
- * Lisääminen O(n), poisto O(n)
+ * Lisääminen keskimäärin ?????, poisto O(1)
  * järjestäminen toteutetaan quicksortilla
  * etsiminen: -jos järjestyksessä, binäärihaulla O(log n)
  * -muutoin peräkkäishaulla O(n)
  * @author silja
  */
-public class VenyvaTaulukko implements IntSailio {
+public class VenyvaTaulukkoTehokas implements IntSailio {
 
     private int[] taulukko;
     private final int INDEKSIKORJAUS = 1;
-
+    private int alkioita;
 
     /**
-     * Taulukko, jonka aloituskapasiteetti nolla. Kasvaa lisättäessa.
+     * Kerroin, jolla täyteen tulleen taulukon koko kasvaa lisättäessä.
+     * Oletuksena 2, jolloin taulukon koko kaksinkertaistuu.
      */
 
-    public VenyvaTaulukko() {
-        this.taulukko = new int[0];
+    public final int KASVATUSSUHDE;
+
+    /**
+     * Taulukko, jonka aloituskapasiteetti viisi. Kasvaa lisättäessa kertoimella 2.
+     */
+
+    public VenyvaTaulukkoTehokas() {
+        this(5, 2);
+    }
+
+    /**
+     * Taulukko, jonka aloituskapasiteetti ja kasvatussuhde annetaan.
+     * Kasvatussuhteeksi on annettava vähintään kaksi, muutoin olion luonti
+     * epäonnistuu ja kaataa ohjelman.
+     * @param kapasiteetti kuinka monta alkiota mahtuu ennen ensimmäistä kasvatusta
+     * @param kasvatussuhde kerroin jolla taulukko kasvaa
+     */
+    
+    public VenyvaTaulukkoTehokas(int kapasiteetti, int kasvatussuhde) {
+        tarkistaKasvatussuhteenKelpaavuus(kasvatussuhde);
+        KASVATUSSUHDE = kasvatussuhde;
+        this.taulukko = new int[kapasiteetti];
+        this.alkioita = 0;
     }
 
     /**
      * Int-säiliön metodin toteutus.
      * Lisää alkion taulukkoon, mikäli se ei jo ollut siellä.
      * Tarkistaa peräkkäishaulla oliko alkio jo taulukossa: O(n)
-     * Kasvattaa taulukkoa: O(n)
-     * Yhteensä: O(n)
+     * Kasvattaa taulukkoa kaksinkertaiseksi jos tarvis: vähemmän kuin O(n)
+     * Yhteensä: noin O(n) ??
      * @param lisattava lisättävä alkio
      */
 
     public void lisaa(int lisattava) {
         if (etsiPerakkaishaulla(lisattava)) return;
-        muutaTaulukonPituutta(1);
-        this.taulukko[viimeisenIndeksi()] = lisattava;
+        kasvataTaulukkoaJosTaynna();
+        this.taulukko[viimeisenAlkionIndeksi() + 1] = lisattava;
+        alkioita++;
     }
-    
+
     /**
-     * Poistaa alkion taulukosta.
-     * Etsii poistettavan indeksin peräkkäishaulla: O(n)
-     * Lyhentää taulukkoa: O(n)
-     * Yhteensä: O(n)
+     * TODO katkaiseTaulukko
+     */
+
+    public void katkaiseTaulukko() {}
+
+    /**
+     * Poistaa alkion taulukosta. Taulukon koko ei muutu.
+     * O(1)
      * @param poistettava alkio joka poistetaan
      */
 
-    public void poistaLyhentaen(int poistettava) {
+    public void poista(int poistettava) {
         int poistettavanIndeksi = perakkaishae(poistettava);
         if (poistettavanIndeksi < 0) return;
         
-        int tilalleTulevanIndeksi = viimeisenIndeksi();
-        siirraAlkio(tilalleTulevanIndeksi, poistettavanIndeksi);
-        muutaTaulukonPituutta(-1);
+        siirraAlkio(viimeisenAlkionIndeksi(), poistettavanIndeksi);
+        this.alkioita--;
     }
 
     /**
@@ -68,6 +95,7 @@ public class VenyvaTaulukko implements IntSailio {
      * @param etsittava alkio jota etsitään
      * @return true jos alkio löytyi, false muuten
      */
+
     
     public boolean etsi(int etsittava) {
         return binhae(etsittava) >= 0;
@@ -99,6 +127,7 @@ public class VenyvaTaulukko implements IntSailio {
         return -1;
     }
 
+
     /**
      * Etsii alkiota peräkkäishaulla.
      * Tämä haku ei vaadi että taulukko olisi järjestyksessä.
@@ -117,19 +146,20 @@ public class VenyvaTaulukko implements IntSailio {
      */
 
     public int perakkaishae(int haettava) {
-        for (int i=0; i<alkioita(); i++) {
+        for (int i=0; i<alkioita; i++) {
             if (this.taulukko[i] == haettava) return i;
         }
         return -1;
     }
 
+    
     /**
      * IntSailio-rajapinnan metodin toteutus.
      * @return taulukossa olevien lukujen määrä
      */
 
     public int alkioita() {
-        return this.taulukko.length;
+        return this.alkioita;
     }
     
     /**
@@ -138,7 +168,9 @@ public class VenyvaTaulukko implements IntSailio {
      */
 
     public void sort() {
-        Arrays.sort(this.taulukko);
+        int[] uusi = taulukkoKatkaistuna();
+        Arrays.sort(uusi);
+        this.taulukko = uusi;
     }
 
     /**
@@ -147,18 +179,12 @@ public class VenyvaTaulukko implements IntSailio {
      */
 
     public int[] toIntArray() {
-        return this.taulukko;
+        return taulukkoKatkaistuna();
     }
 
     /*
      * PRIVAATTIMETODIT ALLA ---------------------------------
      */
-
-    private void muutaTaulukonPituutta(int pituudenMuutos) {
-        int[] uusi = new int[alkioita() + pituudenMuutos];
-        kopioiUuteen(this.taulukko, uusi);
-        this.taulukko = uusi;
-    }
 
     private void kopioiUuteen(int[] vanha, int[] uusi) {
         int lyhemmanPituus = Tyokalut.minimi(vanha.length, uusi.length);
@@ -171,8 +197,43 @@ public class VenyvaTaulukko implements IntSailio {
         taulukko[uusiPaikka] = taulukko[siirrettavanIndeksi];
     }
 
-    private int viimeisenIndeksi() {
-        return alkioita()-INDEKSIKORJAUS;
+    private int viimeisenAlkionIndeksi() {
+        return alkioita-INDEKSIKORJAUS;
+    }
+
+    private boolean taulukkoTaynna() {
+        return alkioita == taulukonKapasiteetti();
+    }
+
+    private int taulukonKapasiteetti() {
+        return this.taulukko.length;
+    }
+
+    private void kasvataTaulukkoaJosTaynna() {
+        if (taulukkoTaynna()) {
+            int[] uusi = new int[uudenPituus()];
+            kopioiUuteen(this.taulukko, uusi);
+            this.taulukko = uusi;
+        }
+    }
+
+    private int uudenPituus() {
+        if (taulukonKapasiteetti() == 0) return KASVATUSSUHDE;
+        return KASVATUSSUHDE*taulukonKapasiteetti();
+    }
+
+    private void tarkistaKasvatussuhteenKelpaavuus(int kasvatussuhde) {
+        if (kasvatussuhde < 2)
+            throw new IllegalArgumentException("Kasvatussuhde ei voi olla " +
+                    kasvatussuhde + ", sen on oltava 2 tai suurempi.");
+    }
+
+    private int[] taulukkoKatkaistuna() {
+        if (taulukkoTaynna())
+            return this.taulukko;
+        int[] palautettava = new int[alkioita];
+        kopioiUuteen(taulukko, palautettava);
+        return palautettava;
     }
 
 }
