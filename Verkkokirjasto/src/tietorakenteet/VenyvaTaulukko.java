@@ -30,14 +30,33 @@ public class VenyvaTaulukko implements IntSailio {
     /**
      * Int-säiliön metodin toteutus.
      * Lisää alkion taulukkoon, mikäli se ei jo ollut siellä.
+     * Tarkistaa peräkkäishaulla oliko alkio jo taulukossa: O(n)
+     * Kasvattaa taulukkoa: O(n)
+     * Yhteensä: O(n)
      * @param lisattava lisättävä alkio
      */
 
     public void lisaa(int lisattava) {
-        if (etsi(lisattava)) return;
+        if (etsiPerakkaishaulla(lisattava)) return;
+        muutaTaulukonPituutta(1);
+        this.taulukko[viimeisenIndeksi()] = lisattava;
+    }
 
-        kasvataTaulukkoaYhdella();
-        this.taulukko[alkioita()-1] = lisattava;
+    /**
+     * Poistaa alkion taulukosta.
+     * Etsii poistettavan indeksin peräkkäishaulla: O(n)
+     * Lyhentää taulukkoa: O(n)
+     * Yhteensä: O(n)
+     * @param poistettava alkio joka poistetaan
+     */
+
+    public void poista(int poistettava) {
+        int poistettavanIndeksi = perakkaishae(poistettava);
+        if (poistettavanIndeksi < 0) return;
+        
+        int tilalleTulevanIndeksi = viimeisenIndeksi();
+        siirraAlkio(tilalleTulevanIndeksi, poistettavanIndeksi);
+        muutaTaulukonPituutta(-1);
     }
 
     /**
@@ -61,10 +80,20 @@ public class VenyvaTaulukko implements IntSailio {
      */
 
     public boolean etsiPerakkaishaulla(int etsittava) {
+        return perakkaishae(etsittava) >= 0;
+    }
+
+    /**
+     * Peräkkäishaku. Ei vaadi että taulukko olisi järjestyksessä.
+     * @param haettava alkio jota haetaan
+     * @return haettavan indeksi jos löytyi, muutoin -1
+     */
+
+    public int perakkaishae(int haettava) {
         for (int i=0; i<alkioita(); i++) {
-            if (this.taulukko[i] == etsittava) return true;
+            if (this.taulukko[i] == haettava) return i;
         }
-        return false;
+        return -1;
     }
 
     /**
@@ -80,9 +109,6 @@ public class VenyvaTaulukko implements IntSailio {
 //
 //        int vasen = 0;
 //        int oikea = alkioita()-INDEKSIKORJAUS;
-//
-//        if (taulukko[vasen] == etsittava) return vasen;
-//        if (taulukko[oikea] == etsittava) return oikea;
 //
 //        int keski;
 //
@@ -129,18 +155,26 @@ public class VenyvaTaulukko implements IntSailio {
      * PRIVAATTIMETODIT ALLA ---------------------------------
      */
 
-    private void kasvataTaulukkoaYhdella() {
-        int[] uusi = new int[alkioita() + 1];
+    private void muutaTaulukonPituutta(int pituudenMuutos) {
+        int[] uusi = new int[alkioita() + pituudenMuutos];
         kopioiUuteen(this.taulukko, uusi);
         this.taulukko = uusi;
     }
 
     private void kopioiUuteen(int[] vanha, int[] uusi) {
-        if (vanha.length > uusi.length) return;
-
-        for (int i=0; i<vanha.length; i++) {
+        int lyhemmanPituus = Tyokalut.minimi(vanha.length, uusi.length);
+        for (int i=0; i<lyhemmanPituus; i++) {
             uusi[i] = vanha[i];
         }
     }
+
+    private void siirraAlkio(int siirrettavanIndeksi, int uusiPaikka) {
+        taulukko[uusiPaikka] = taulukko[siirrettavanIndeksi];
+    }
+
+    private int viimeisenIndeksi() {
+        return alkioita()-INDEKSIKORJAUS;
+    }
+
 
 }

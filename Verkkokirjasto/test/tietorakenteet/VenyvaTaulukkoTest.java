@@ -5,6 +5,7 @@
 
 package tietorakenteet;
 
+import java.util.Random;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -42,6 +43,7 @@ public class VenyvaTaulukkoTest {
 
     /**
      * Apumetodi lisää taulukkoon luvut 1,...,n
+     * @param n lisättävien määrä
      */
 
     void lisaaTaulukkoonNLukua(int n) {
@@ -49,6 +51,62 @@ public class VenyvaTaulukkoTest {
             taulukko.lisaa(i);
         }
     }
+
+    /**
+     * Apumetodi poistaa taulukosta luvut 1,...,n
+     * @param n poistettavien lukumäärä
+     */
+
+    void poistaTaulukostaNLukua(int n) {
+        for (int i=1; i<=n; i++) {
+            taulukko.poista(i);
+        }
+    }
+
+    /**
+     * Apumetodi lisää taulukkoon n satunnaista int-lukua.
+     * @param n lisättävien määrä
+     */
+
+    void lisaaTaulukkoonNSatunnaistaLukua(int n) {
+        for (int i=1; i<=n; i++) {
+            Random r = new Random();
+            taulukko.lisaa(r.nextInt());
+        }
+    }
+
+    /**
+     * Apumetodi vertaa taulukon alkioiden määrää annettuun lukuun.
+     * @param oikeaAlkioidenLkm kuinka monta alkioita pitäisi olla
+     */
+
+    void alkioitaPitaisiOlla(int oikeaAlkioidenLkm) {
+        assertTrue("Alkioita pitäisi olla " + oikeaAlkioidenLkm +
+                    " mutta niitä oli " + taulukko.alkioita(),
+                    taulukko.alkioita() == oikeaAlkioidenLkm);
+    }
+
+    @Test
+    public void Uudessa0Alkiota() {
+        alkioitaPitaisiOlla(0);
+    }
+
+    @Test
+    public void AlkioidenLkmKasvaaKunLisataan() {
+        alkioitaPitaisiOlla(0);
+
+        int laskuri = 0;
+        for (int i=8; i>-19; i--) {
+            taulukko.lisaa(i);
+            laskuri++;
+            alkioitaPitaisiOlla(laskuri);
+        }
+    }
+
+    /**
+     * Etsi-metodi hyödyntää suoraan binhakua, minkä takia etsi-metodin 
+     * testit kattavat myös binhaun testauksen.
+     */
 
     @Test
     public void lisaaYksiKerranJaEtsi() {
@@ -66,11 +124,11 @@ public class VenyvaTaulukkoTest {
     }
 
     @Test
-    public void lisaa10LukuaKerranJaEtsi() {
+    public void lisaa10PerakkaistaLukuaKerranJaEtsi() {
         lisaaTaulukkoonNLukua(10);
         taulukko.sort();
         for (int i=1; i<=10; i++) {
-            assertTrue(taulukko.etsi(i));
+            assertTrue("Luku " + i + " puuttui.", taulukko.etsi(i));
         }
     }
 
@@ -88,36 +146,54 @@ public class VenyvaTaulukkoTest {
     }
 
     @Test
-    public void lisaa10LukuaKerranJaPerakkaishae() {
+    public void lisaa10PerakkaistaLukuaKerranJaPerakkaishae() {
         lisaaTaulukkoonNLukua(10);
         for (int i=1; i<=10; i++) {
-            assertTrue(taulukko.etsiPerakkaishaulla(i));
+            assertTrue("Luku " + i + " puuttui.", taulukko.etsiPerakkaishaulla(i));
         }
     }
 
     @Test
-    public void testEtsi() {
-        fail("The test case is a prototype.");
+    public void poistaminenTyhjastaEiKaadu() {
+        poistaTaulukostaNLukua(14);
     }
 
     @Test
-    public void testEtsiPerakkaishaulla() {
-        fail("The test case is a prototype.");
+    public void lisaaJaPoistaYksiSamaAlkioJolloinAlkioita0() {
+        taulukko.lisaa(4);
+        alkioitaPitaisiOlla(1);
+
+        taulukko.poista(4);
+        alkioitaPitaisiOlla(0);
     }
 
     @Test
-    public void testBinhae() {
-        fail("The test case is a prototype.");
+    public void lisaaJaPoista10SamaaAlkiotaJolloinAlkioita0() {
+        lisaaTaulukkoonNLukua(10);
+        alkioitaPitaisiOlla(10);
+
+        poistaTaulukostaNLukua(10);
+        alkioitaPitaisiOlla(0);
     }
 
     @Test
-    public void testAlkioita() {
-        fail("The test case is a prototype.");
-    }
+    public void lisaaminenJaPoistaminenMuuttavatAlkioidenMaaraaOikein() {
+        int laskuri = 0;
 
-    @Test
-    public void testToIntArray() {
-        fail("The test case is a prototype.");
+        lisaaTaulukkoonNLukua(15);
+        laskuri = laskuri + 15;
+        alkioitaPitaisiOlla(laskuri);
+
+        poistaTaulukostaNLukua(4);
+        laskuri = laskuri - 4;
+        alkioitaPitaisiOlla(laskuri);
+
+        lisaaTaulukkoonNLukua(6);
+        laskuri = laskuri + 4;
+        alkioitaPitaisiOlla(laskuri);
+
+        taulukko.poista(900);
+        alkioitaPitaisiOlla(laskuri);
     }
 
 }

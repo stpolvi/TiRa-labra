@@ -6,15 +6,15 @@
 package suhteikkoanalyysi;
 
 
-import lukusuhteikot.Lukusuhteikko;
-import lukusuhteikot.RelaatioVenyvallaTaulukolla;
+import suhteikot.Lukusuhteikko;
+import relaatiot.RelaatioVenyvallaTaulukolla;
 import suhteikot.Suhteikko;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import suhteikot.Relaatio;
+import relaatiot.Relaatio;
 import static org.junit.Assert.*;
 
 /**
