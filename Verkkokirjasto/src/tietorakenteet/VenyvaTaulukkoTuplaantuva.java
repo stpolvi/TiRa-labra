@@ -22,12 +22,6 @@ public class VenyvaTaulukkoTuplaantuva implements IntSailio {
     }
 
 
-    private void kasvata() {
-        int[] vanha = this.taulukko;
-        int[] uusi = new int[uusiPituus(vanha)];
-        kopioiUuteen(vanha, uusi);
-    }
-
     /**
      * KESKEN. ei toteutettu vielä
      * @param loppupiste
@@ -38,6 +32,7 @@ public class VenyvaTaulukkoTuplaantuva implements IntSailio {
         return binhae(etsittava) >= 0;
     }
 
+    public void sort() {}
     /**
      * KESKEN. ei toteutettu vielä
      */
@@ -98,6 +93,12 @@ public class VenyvaTaulukkoTuplaantuva implements IntSailio {
 
     public int[] toIntArray() {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private void kasvata() {
+        int[] vanha = this.taulukko;
+        int[] uusi = new int[uusiPituus(vanha)];
+        kopioiUuteen(vanha, uusi);
     }
 
 }

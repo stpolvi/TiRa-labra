@@ -20,8 +20,8 @@ public interface IntSailio {
     public abstract int alkioita();
 
     /**
-     * Säiliössä olevat luvut int-taulukossa. Taulukon pituus
-     * on sama kuin alkioiden lukumäärä.
+     * Säiliössä olevat luvut int-taulukossa.
+     * Taulukon pituus on sama kuin alkioiden lukumäärä.
      * @return alkiot taulukoituna
      */
     public abstract int[] toIntArray();
@@ -41,4 +41,9 @@ public interface IntSailio {
 
     public abstract boolean etsi(int etsittava);
 
+    /**
+     * Järjestää säiliön sisällön siten, että toIntArray-metodin 
+     * palauttama taulukko on järjestyksessä.
+     */
+    public abstract void sort();
 }

@@ -23,6 +23,8 @@ import static org.junit.Assert.*;
  */
 public class SuhteikkokirjastoTest {
 
+    Suhteikko s;
+
     public SuhteikkokirjastoTest() {
     }
 
@@ -42,12 +44,54 @@ public class SuhteikkokirjastoTest {
     public void tearDown() {
     }
 
+    /*
+     * Apumetodit --------------------------------------------------------
+     */
+
+    /**
+     * Apumetodi luo tyhjän suhteikon.
+     * @return tyhjä suhteikko
+     */
+    Lukusuhteikko uusiTyhjaSuhteikko() {
+        return new Lukusuhteikko();
+    }
+
+    /**
+     * Apumetodi luo uuden kaksipisteisen suhteikon,
+     * jossa yhteys pisteestä 1 pisteeseen 2.
+     * @return uusi suhteikko
+     */
+
+    Lukusuhteikko pisteita2Yhteys1_2() {
+        RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(2);
+        r.lisaaYhteys(1, 2);
+        return new Lukusuhteikko(r);
+    }
+
+    /**
+     * Apumetodi luo yksipisteisen suhteikon jossa yhteys
+     * pisteestä 1 itseensä.
+     * @return uusi suhteikko
+     */
+
+    Lukusuhteikko pisteita1Yhteys1_1() {
+        RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(1);
+        r.lisaaYhteys(1, 1);
+        return new Lukusuhteikko(r);
+    }
+
+
+
+    /*
+     * Testit --------------------------------------------------------
+     */
+
     /**
      * Tyhjän suhteikon tulee täyttää verkkoehto
      */
     @Test
     public void tyhjaSuhteikkoTayttaaVerkkoehdon() {
-        Suhteikko s = new Lukusuhteikko();
+        s = uusiTyhjaSuhteikko();
         assertTrue(Suhteikkoanalyysikirjasto.silmukaton(s));
         assertTrue(Suhteikkoanalyysikirjasto.symmetrinen(s));
         assertTrue(Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
@@ -61,7 +105,7 @@ public class SuhteikkokirjastoTest {
     public void yksisilmukkainenSymmetrinenEiTaytaVerkkoehtoa() {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(1);
         r.lisaaYhteys(1, 1);
-        Lukusuhteikko s = new Lukusuhteikko(r);
+        s = new Lukusuhteikko(r);
         assertFalse(Suhteikkoanalyysikirjasto.silmukaton(s));
         assertTrue(Suhteikkoanalyysikirjasto.symmetrinen(s));
         assertFalse(Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
@@ -72,12 +116,11 @@ public class SuhteikkokirjastoTest {
      */
     @Test
     public void silmukatonEisymmetrinenEiTaytaVerkkoehtoa() {
-        RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(2);
-        r.lisaaYhteys(1, 2);
-        Lukusuhteikko s = new Lukusuhteikko(r);
+        s = pisteita2Yhteys1_2();
         assertTrue(Suhteikkoanalyysikirjasto.silmukaton(s));
         assertFalse(Suhteikkoanalyysikirjasto.symmetrinen(s));
         assertFalse(Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
     }
+
 
 }

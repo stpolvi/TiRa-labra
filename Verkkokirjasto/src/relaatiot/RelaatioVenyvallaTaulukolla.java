@@ -2,7 +2,7 @@
 package relaatiot;
 
 import tietorakenteet.IntSailio;
-import tietorakenteet.VenyvaTaulukkoTuplaantuva;
+import tietorakenteet.VenyvaTaulukko;
 
 /**
  * Kuvaa suhteikon pisteiden välistä relaatiota.
@@ -23,7 +23,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     public RelaatioVenyvallaTaulukolla(int joukonKoko) {
         this.JOUKONKOKO = joukonKoko;
-        yhteydet = new VenyvaTaulukkoTuplaantuva[joukonKoko];
+        yhteydet = new VenyvaTaulukko[joukonKoko];
     }
 
     /**
@@ -36,7 +36,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
         IntSailio seuraajat = getSeuraajat(alkupiste);
 
         if (seuraajat == null) {
-            seuraajat = new VenyvaTaulukkoTuplaantuva();
+            seuraajat = new VenyvaTaulukko();
             setSeuraajat(alkupiste, seuraajat);
         }
 
@@ -48,6 +48,12 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      * @param piste piste jonka seuraajat halutaan
      * @return seuraajat taulukossa
      */
+
+    public void sort() {
+        for (int i=0; i<JOUKONKOKO; i++) {
+            this.yhteydet[i].sort();
+        }
+    }
 
     public IntSailio getSeuraajat(int piste) {
         return yhteydet[piste - INDEKSIKORJAUS];

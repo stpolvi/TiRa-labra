@@ -56,15 +56,29 @@ public class Suhteikkoanalyysikirjasto {
     }
 
     /**
-     * TODO Pisteiden asteet
+     * Lähtöaste on pisteestä lähtevien yhteyksien lukumäärä.
+     * @param s suhteikko
+     * @param piste suhteikon piste
+     * @return pisteen lähtöaste suhteikossa
      */
 
     public static int lahtoaste(Suhteikko s, int piste) {
-        return -1;
+        return s.getSeuraajat(piste).alkioita();
     }
 
-    public static int tuloaste(Suhteikko s, int psite) {
-        return -1;
+    /**
+     * Tuloaste on pisteeseen saapuvien yhteyksien lukumäärä.
+     * @param s suhteikko
+     * @param piste suhteikon piste
+     * @return pisteen tuloaste suhteikossa
+     */
+
+    public static int tuloaste(Suhteikko s, int piste) {
+        int vastaus = 0;
+        for (int i=1; i<=s.pisteidenLkm(); i++) {
+            if (s.onYhteys(i, piste)) vastaus++;
+        }
+        return vastaus;
     }
 
     /**

@@ -38,4 +38,13 @@ public abstract class Relaatio {
 
     public abstract boolean onYhteys(int alkupiste, int loppupiste);
 
+    /**
+     * Järjestää relaatiossa olevat seuraajasäiliöt.
+     * Tämä operaatio on aina tehtävä ennen kuin relaation avulla luodaan suhteikko.
+     * Mahdollistaa suhteikon tutkimisen nopeasti,
+     * esimerkiksi binäärihakua käyttävät seuraajasäiliöiden etsimismetodit.
+     */
+
+    public abstract void sort();
+
 }
