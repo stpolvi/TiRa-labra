@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="silja-PC" name="suhteikot.LukusuhteikkoTest" tests="1" time="0.124" timestamp="2012-08-06T12:43:07">
+<testsuite errors="0" failures="0" hostname="silja-PC" name="suhteikot.LukusuhteikkoTest" tests="3" time="0.141" timestamp="2012-08-06T13:09:44">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -262,7 +262,9 @@
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.arch.data.model" value="32" />
   </properties>
-  <testcase classname="suhteikot.LukusuhteikkoTest" name="testOnYhteysTaydellisella" time="0.015" />
+  <testcase classname="suhteikot.LukusuhteikkoTest" name="parametritonKonstruktoriLuoOlion" time="0.016" />
+  <testcase classname="suhteikot.LukusuhteikkoTest" name="parametrillinenKonstruktoriLuoOlion" time="0.0" />
+  <testcase classname="suhteikot.LukusuhteikkoTest" name="onKaikkiYhteydetTaydellisella" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

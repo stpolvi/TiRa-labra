@@ -45,7 +45,7 @@ public class VenyvaTaulukkoTest {
 
     void poistaTaulukostaNLukua(int n) {
         for (int i=1; i<=n; i++) {
-            taulukko.poista(i);
+            taulukko.poistaLyhentaen(i);
         }
     }
 
@@ -153,7 +153,7 @@ public class VenyvaTaulukkoTest {
         taulukko.lisaa(4);
         alkioitaPitaisiOlla(1);
 
-        taulukko.poista(4);
+        taulukko.poistaLyhentaen(4);
         alkioitaPitaisiOlla(0);
     }
 
@@ -182,7 +182,7 @@ public class VenyvaTaulukkoTest {
         laskuri = laskuri + 4;
         alkioitaPitaisiOlla(laskuri);
 
-        taulukko.poista(900);
+        taulukko.poistaLyhentaen(900);
         alkioitaPitaisiOlla(laskuri);
     }
 

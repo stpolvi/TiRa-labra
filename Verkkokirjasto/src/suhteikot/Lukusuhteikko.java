@@ -2,7 +2,6 @@
 package suhteikot;
 
 import relaatiot.RelaatioVenyvallaTaulukolla;
-import suhteikot.Suhteikko;
 import tietorakenteet.IntSailio;
 
 /**

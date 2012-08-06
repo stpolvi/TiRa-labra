@@ -19,12 +19,14 @@ public class VenyvaTaulukko implements IntSailio {
 
     private int[] taulukko;
     private final int INDEKSIKORJAUS = 1;
+    private int alkioita;
 
     /**
-     * Venyvä lista oletuspituisella aloituskapasiteetilla.
+     * Taulukko, jonka aloituskapasiteetti nolla. Kasvaa lisättäessa.
      */
     public VenyvaTaulukko() {
         this.taulukko = new int[0];
+        this.alkioita = 0;
     }
 
     /**
@@ -43,6 +45,18 @@ public class VenyvaTaulukko implements IntSailio {
     }
 
     /**
+     * TODO lisaaTuplaten. muista aloitus nollasta. huomaa etsi-metodissa.
+     */
+
+    public void lisaaTuplaten() {}
+
+    /**
+     * TODO katkaiseTaulukko
+     */
+
+    public void katkaiseTaulukko() {}
+
+    /**
      * Poistaa alkion taulukosta.
      * Etsii poistettavan indeksin peräkkäishaulla: O(n)
      * Lyhentää taulukkoa: O(n)
@@ -50,7 +64,7 @@ public class VenyvaTaulukko implements IntSailio {
      * @param poistettava alkio joka poistetaan
      */
 
-    public void poista(int poistettava) {
+    public void poistaLyhentaen(int poistettava) {
         int poistettavanIndeksi = perakkaishae(poistettava);
         if (poistettavanIndeksi < 0) return;
         
@@ -143,7 +157,7 @@ public class VenyvaTaulukko implements IntSailio {
     }
 
     /**
-     * IntSailio-rajapinnan metodin toteutus.
+     * IntSailio-rajapinnan metodin toteutus. MUUTETTAVA
      * @return alkiot taulukoituna
      */
 
