@@ -69,7 +69,7 @@ public class VenyvaTaulukkoTehokas implements IntSailio {
     }
 
     /**
-     * TODO katkaiseTaulukko
+     * TODO katkaiseTaulukko, joka katkaisee taulukon alkiomäärän pituiseksi.
      */
 
     public void katkaiseTaulukko() {}

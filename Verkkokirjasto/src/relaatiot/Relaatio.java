@@ -10,6 +10,22 @@ import tietorakenteet.IntSailio;
 public abstract class Relaatio {
 
     /**
+     * Sen joukon koko, jonka relaatio this on.
+     */
+
+    public final int JOUKONKOKO;
+
+    /**
+     * Konstruktorissa on annettava lähtö- eli samalla maalijoukon koko.
+     * @param joukonKoko sen joukon alkioiden lukumäärä,
+     * jonka relaatio luodaan
+     */
+
+    public Relaatio(int joukonKoko) {
+        this.JOUKONKOKO = joukonKoko;
+    }
+
+    /**
      * Lisää yhteyden pisteiden välille.
      * @param alkupiste piste josta lisättävä yhteys
      * @param loppupiste piste johon lisättävä yhteys
@@ -35,12 +51,12 @@ public abstract class Relaatio {
     public abstract boolean onYhteys(int alkupiste, int loppupiste);
 
     /**
-     * Järjestää relaatiossa olevat seuraajasäiliöt.
-     * Tämä operaatio on aina tehtävä ennen kuin relaation avulla luodaan suhteikko.
-     * Mahdollistaa suhteikon tutkimisen nopeasti,
-     * esimerkiksi binäärihakua käyttävät seuraajasäiliöiden etsimismetodit.
+     * Metodin kutsun jälkeen seuraajasäiliöt ovat järjestyksessä,
+     * jotta esimerkiksi binäärihaku niissä mahdollistuu.
+     * Metodin suorittaminen voi viedä aikaa,
+     * mutta säästää aikaa myöhemmin relaatiota tutkittaessa.
      */
 
-    public abstract void sort();
+    public abstract void teeValmiiksi();
 
 }

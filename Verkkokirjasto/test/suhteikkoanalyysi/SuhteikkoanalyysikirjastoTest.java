@@ -89,4 +89,23 @@ public class SuhteikkoanalyysikirjastoTest {
         assertTrue(Suhteikkoanalyysikirjasto.tuloaste(s, 2) == 1);
     }
 
+    @Test
+    public void tyhjaVerkkoOnSaannollinen() {
+        s = suhteikot.LukusuhteikkoTest.uusiTyhjaSuhteikko();
+        assertTrue(Suhteikkoanalyysikirjasto.saannollinenVerkko(s));
+    }
+
+    @Test
+    public void taydellinenVerkkoOnSaannollinen() {
+        s = suhteikot.LukusuhteikkoTest.taydellinen5PisteinenVerkko();
+        assertTrue(Suhteikkoanalyysikirjasto.saannollinenVerkko(s));
+    }
+
+    @Test
+    public void josEiVerkkoNiinEiSaannollinenVaikkaLahtoasteetSamat() {
+        s = suhteikot.LukusuhteikkoTest.pisteita1Yhteys1_1();
+        assertFalse(Suhteikkoanalyysikirjasto.saannollinenVerkko(s));
+    }
+
+    
 }

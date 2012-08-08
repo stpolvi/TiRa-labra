@@ -2,7 +2,7 @@
 package relaatiot;
 
 import tietorakenteet.IntSailio;
-import tietorakenteet.VenyvaTaulukko;
+import tietorakenteet.VenyvaTaulukkoTehokas;
 
 /**
  * Kuvaa suhteikon pisteiden välistä relaatiota.
@@ -11,19 +11,18 @@ import tietorakenteet.VenyvaTaulukko;
  */
 public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
-    public final int JOUKONKOKO;
     private final int INDEKSIKORJAUS = 1;
 
-    private IntSailio[] yhteydet;
+    private VenyvaTaulukkoTehokas[] yhteydet;
 
     /**
      * Relaatio annetun kokoisessa joukossa.
-     * @param joukonKoko lähtö- ja maalijoukon alkioiden lukumäärä
+     * @param joukonKoko lähtö- ja samalla maalijoukon alkioiden lukumäärä
      */
 
     public RelaatioVenyvallaTaulukolla(int joukonKoko) {
-        this.JOUKONKOKO = joukonKoko;
-        yhteydet = new VenyvaTaulukko[joukonKoko];
+        super(joukonKoko);
+        yhteydet = new VenyvaTaulukkoTehokas[this.JOUKONKOKO];
     }
 
     /**
@@ -33,14 +32,30 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      */
     
     public void lisaaYhteys(int alkupiste, int loppupiste) {
-        IntSailio seuraajat = getSeuraajat(alkupiste);
+        VenyvaTaulukkoTehokas seuraajat
+                = (VenyvaTaulukkoTehokas) getSeuraajat(alkupiste);
 
         if (seuraajat == null) {
-            seuraajat = new VenyvaTaulukko();
+            seuraajat = new VenyvaTaulukkoTehokas();
             setSeuraajat(alkupiste, seuraajat);
         }
 
         seuraajat.lisaa(loppupiste);
+    }
+
+    /**
+     * Valmistaa relaation tulevaa käyttöä varten
+     * järjestämällä seuraajataulukot.
+     * Tämän jälkeen binäärihakua hyödyntävä etsi-metodi toimii niissä oikein.
+     * Huomaa, että onYhteys-metodi toimii vain valmiissa relaatiossa.
+     */
+    
+    public void teeValmiiksi() {
+        VenyvaTaulukkoTehokas seuraajat;
+        for (int i=0; i<JOUKONKOKO; i++) {
+            seuraajat = this.yhteydet[i];
+            if (seuraajat != null) seuraajat.sort();
+        }
     }
 
     /**
@@ -49,18 +64,13 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      * @return seuraajat taulukossa
      */
 
-    public void sort() {
-        for (int i=0; i<JOUKONKOKO; i++) {
-            this.yhteydet[i].sort();
-        }
-    }
-
     public IntSailio getSeuraajat(int piste) {
         return yhteydet[piste - INDEKSIKORJAUS];
     }
 
     /**
      * Onko alkupisteestä loppupisteeseen yhteys.
+     * Huomaa, että teeValmiiksi-metodia on kutsuttava ennen tämän metodin käyttöä.
      * @param alkupiste piste josta yhteys on
      * @param loppupiste piste johon yhteys on
      * @return oliko pisteiden välillä tähän suuntaan yhteys
@@ -88,7 +98,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      * @param seuraajat seuraajat int-säiliössä
      */
 
-    private void setSeuraajat(int alkupiste, IntSailio seuraajat) {
+    private void setSeuraajat(int alkupiste, VenyvaTaulukkoTehokas seuraajat) {
         yhteydet[alkupiste - INDEKSIKORJAUS] = seuraajat;
     }
 

@@ -5,11 +5,14 @@ import suhteikot.Suhteikko;
 import tietorakenteet.IntSailio;
 
 /**
- * Kirjasto, joka tarjoaa suhteikkojen rakenteen tutkimiseen sopivia algoritmeja
+ * Kirjasto, joka tarjoaa suhteikkojen rakenteen tutkimiseen sopivia algoritmeja.
+ * TODO: kaikkien metodien javadocciin O-vaativuusanalyysi
  * @author silja
  */
 public class Suhteikkoanalyysikirjasto {
 
+    private Suhteikkoanalyysikirjasto() {}
+    
     /**
      * Täyttääkö suhteikko verkkoehdon: onko se silmukaton ja symmetrinen
      * @param suhteikko analysoitava suhteikko
@@ -28,7 +31,7 @@ public class Suhteikkoanalyysikirjasto {
      */
 
     public static boolean silmukaton(Suhteikko suhteikko) {
-        for (int i=1; i<=suhteikko.pisteidenLkm(); i++) {
+        for (int i=1; i<=suhteikko.PISTEITA; i++) {
             if (suhteikko.onYhteys(i, i))
                 return false;
         }
@@ -36,15 +39,17 @@ public class Suhteikkoanalyysikirjasto {
     }
 
     /**
+     * MUUTETAAN TEHOKKAAMMAKSI
      * Onko suhteikko symmetrinen:
      * suhteikon kahden pisteen välillä on joko yhteys molempiin suuntiin
      * tai sitten ei lainkaan yhteyttä.
      * @param suhteikko analysoitava suhteikko
      * @return oliko symmetrinen
      */
+    
     public static boolean symmetrinen(Suhteikko suhteikko) {
-        for (int i=1; i<=suhteikko.pisteidenLkm(); i++) {
-            for (int j=1; j<=suhteikko.pisteidenLkm(); j++) {
+        for (int i=1; i<=suhteikko.PISTEITA; i++) {
+            for (int j=1; j<=suhteikko.PISTEITA; j++) {
                 if (!ekvivalentit(suhteikko.onYhteys(i, j), suhteikko.onYhteys(j, i)))
                     return false;
             }
@@ -74,18 +79,25 @@ public class Suhteikkoanalyysikirjasto {
 
     public static int tuloaste(Suhteikko s, int piste) {
         int vastaus = 0;
-        for (int i=1; i<=s.pisteidenLkm(); i++) {
+        for (int i=1; i<=s.PISTEITA; i++) {
             if (s.onYhteys(i, piste)) vastaus++;
         }
         return vastaus;
     }
 
     /**
-     * TODO säännöllisyys
+     * Onko suhteikko säännöllinen verkko:
+     * täyttääkö se verkkoehdon ja onko lisäksi kaikkien pisteiden aste
+     * (eli lähtöaste) sama.
+     * @param s analysoitava suhteikko
      */
 
-    public static boolean saannollinen(Suhteikko s) {
-        return false;
+    public static boolean saannollinenVerkko(Suhteikko s) {
+        if (!tayttaaVerkkoehdon(s)) return false;
+        if (s.PISTEITA == 0) return true;
+
+        if (!kaikkiAsteetSamatEpatyhjassa(s)) return false;
+        return true;
     }
 
     /**
@@ -95,6 +107,10 @@ public class Suhteikkoanalyysikirjasto {
     public static boolean taydellinen(Suhteikko s) {
         return false;
     }
+
+    /*
+     * Privaattimetodit ---------------------------------------------
+     */
 
     /**
      * Ovatko kaksi totuusmuuttujaa ekvivalentit:
@@ -109,5 +125,20 @@ public class Suhteikkoanalyysikirjasto {
     private static boolean ekvivalentit(boolean a, boolean b) {
         return (a&&b) || ((!a)&&(!b));
     }
-    
+
+    /**
+     * Ovatko kaikkien pisteiden asteet samat.
+     * Toimii samoin kuin saannollinenVerkko, mutta
+     * mikäli metodille annetaan tyhjä verkko, virhe kaataa ohjelman.
+     * @param s
+     * @return
+     */
+
+    private static boolean kaikkiAsteetSamatEpatyhjassa(Suhteikko s) {
+        int ekanAste = lahtoaste(s, 1);
+        for (int i=2; i<=s.PISTEITA; i++) {
+            if (lahtoaste(s, i) != ekanAste) return false;
+        }
+        return true;
+    }
 }

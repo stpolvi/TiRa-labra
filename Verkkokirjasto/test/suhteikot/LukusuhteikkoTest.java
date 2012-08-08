@@ -3,6 +3,7 @@ package suhteikot;
 
 import org.junit.Test;
 import relaatiot.RelaatioVenyvallaTaulukolla;
+import tietorakenteet.IntSailio;
 import static org.junit.Assert.*;
 
 /**
@@ -91,6 +92,11 @@ public class LukusuhteikkoTest {
         return new Lukusuhteikko(r);
     }
 
+    /**
+     * Apumetodi luo täydellisen 5-pisteisen verkon.
+     * @return
+     */
+
     public static Lukusuhteikko taydellinen5PisteinenVerkko() {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(5);
 
@@ -119,15 +125,58 @@ public class LukusuhteikkoTest {
     }
 
     @Test
-    public void onKaikkiYhteydetTaydellisella() {
-        s = uusiSuhteikkoTaydellinenN(11);
-        for (int i=1; i<s.pisteidenLkm(); i++) {
-            for (int j=1; j<s.pisteidenLkm(); j++) {
-                assertTrue(s.onYhteys(i, j));
+    public void parametritonkonstruktoriAsettaaPisteidenLkmOikein() {
+        s = uusiTyhjaSuhteikko();
+        assertTrue("pisteitä piti olla 0, mutta oli " + s.PISTEITA,
+                s.PISTEITA == 0);
+    }
+
+    @Test
+    public void parametrillinenKonstruktoriAsettaaPisteidenLkmOikein() {
+        s = pisteita1Yhteys1_1();
+        assertTrue("pisteitä piti olla 1, mutta oli " + s.PISTEITA,
+                s.PISTEITA == 1);
+
+        s = pisteita2Yhteys1_2();
+        assertTrue("pisteitä piti olla 2, mutta oli " + s.PISTEITA,
+                s.PISTEITA == 2);
+
+        s = taydellinen4PisteinenJossaSilmukka();
+        assertTrue("pisteitä piti olla 4, mutta oli " + s.PISTEITA,
+                s.PISTEITA == 4);
+
+        s = taydellinen5PisteinenVerkko();
+        assertTrue("pisteitä piti olla 5, mutta oli " + s.PISTEITA,
+                s.PISTEITA == 5);
+    }
+
+    @Test
+    public void onKaikkiYhteydetTaydellisellaVerkolla() {
+        s = taydellinen5PisteinenVerkko();
+        boolean yhteys;
+        for (int i=1; i<s.PISTEITA; i++) {
+            for (int j=1; j<s.PISTEITA; j++) {
+                yhteys = s.onYhteys(i, j);
+                if (i==j) assertFalse(yhteys);
+                else assertTrue(yhteys);
             }
         }
     }
 
+    @Test
+    public void seuraajatTaydellisessaVerkossaOikein() {
+        s = taydellinen5PisteinenVerkko();
+        IntSailio ints;
+        boolean etsi;
+        for (int i=1; i<=5; i++) {
+            ints = s.getSeuraajat(i);
+            for (int j=1; j<=5; j++) {
+                etsi = ints.etsi(j);
+                if (i==j) assertFalse(etsi);
+                else assertTrue(etsi);
+            }
+        }
+    }
 
 
 }

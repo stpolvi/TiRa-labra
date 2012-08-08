@@ -2,6 +2,7 @@
 package tietorakenteet;
 
 /**
+ * EDELLEEN TEHOTON/kesken, MUOKATTAVA
  * Kuvaa kokonaislukujoukkoa. Joukosta voi poistaa, sinne voi lisätä,
  * ja kysyä onko jokin luku joukon alkio. Luku joko on alkio tai ei,
  * mutta se ei voi esiintyä joukossa useampaa kertaa.

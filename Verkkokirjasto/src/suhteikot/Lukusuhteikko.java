@@ -1,28 +1,25 @@
 
 package suhteikot;
 
-import relaatiot.RelaatioVenyvallaTaulukolla;
+import relaatiot.Relaatio;
 import tietorakenteet.IntSailio;
 
 /**
  * Lukusuhteikko-olio kuvaa suhteikkoa (eli ns. suunnattua verkkoa),
  * joka pisteet ovat kokonaislukuja. Jos suhteikossa on n pistettä,
  * sen pisteet ovat 1,2,3,...,n. Suhteikko koostuu pisteistä ja niiden välisestä
- * relaatiosta, joka on Lukusuhteikkorelaatio-olio.
+ * Relaatiosta.
  * @author silja
  */
 public class Lukusuhteikko extends Suhteikko {
-
-    private final int PISTEIDENLKM;
-    private RelaatioVenyvallaTaulukolla relaatio;
 
     /**
      * Parametriton konstruktori luo tyhjän suhteikon:
      * pisteitä ei ole, ja niiden välinen relaatio on null.
      */
+
     public Lukusuhteikko() {
-        this.PISTEIDENLKM = 0;
-        this.relaatio = null;
+        super();
     }
 
     /**
@@ -31,9 +28,9 @@ public class Lukusuhteikko extends Suhteikko {
      * @param relaatio tulevan suhteikon pisteiden välinen relaatio
      */
 
-    public Lukusuhteikko(RelaatioVenyvallaTaulukolla relaatio) {
-        this.PISTEIDENLKM = relaatio.JOUKONKOKO;
-        this.relaatio = relaatio;
+    public Lukusuhteikko(Relaatio relaatio) {
+        super(relaatio);
+        relaatio.teeValmiiksi();
     }
 
     /**
@@ -50,19 +47,7 @@ public class Lukusuhteikko extends Suhteikko {
         if (this.relaatio == null) return false;
         return relaatio.onYhteys(alkupiste,loppupiste);
     }
-
-
-    /**
-     * Yliluokan Suhteikko metodin toteutus.
-     * Suhteikon pisteiden lukumäärä.
-     * @return pisteiden määrä
-     */
-
-    @Override
-    public int pisteidenLkm() {
-        return this.PISTEIDENLKM;
-    }
-
+    
     /**
      * Yliluokan Suhteikko metodin toteutus.
      * Annetun pisteen seuraajat int-säiliössä
