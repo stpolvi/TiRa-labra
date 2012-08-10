@@ -50,7 +50,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      * Huomaa, että onYhteys-metodi toimii vain valmiissa relaatiossa.
      */
     
-    public void teeValmiiksi() {
+    public void jarjestaRakenteet() {
         VenyvaTaulukkoTehokas seuraajat;
         for (int i=0; i<JOUKONKOKO; i++) {
             seuraajat = this.yhteydet[i];
@@ -70,7 +70,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     /**
      * Onko alkupisteestä loppupisteeseen yhteys.
-     * Huomaa, että teeValmiiksi-metodia on kutsuttava ennen tämän metodin käyttöä.
+     * Huomaa, että jarjestaRakenteet-metodia on kutsuttava ennen tämän metodin käyttöä.
      * @param alkupiste piste josta yhteys on
      * @param loppupiste piste johon yhteys on
      * @return oliko pisteiden välillä tähän suuntaan yhteys

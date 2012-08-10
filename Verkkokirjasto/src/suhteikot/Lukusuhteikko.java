@@ -30,7 +30,6 @@ public class Lukusuhteikko extends Suhteikko {
 
     public Lukusuhteikko(Relaatio relaatio) {
         super(relaatio);
-        relaatio.teeValmiiksi();
     }
 
     /**
@@ -56,8 +55,21 @@ public class Lukusuhteikko extends Suhteikko {
      * @return seuraajat jossakin int-säiliössä
      */
     @Override
-    public IntSailio getSeuraajat(int alkupiste) {
-        return this.relaatio.getSeuraajat(alkupiste);
+    public IntSailio getSeuraajat(int piste) {
+        return this.relaatio.getSeuraajat(piste);
+    }
+
+    /**
+     * Yliluokan Suhteikko metodin toteutus.
+     * Kuinka monta seuraajaa pisteellä on.
+     * @param piste analysoitava piste
+     * @return seuraajien lukumäärä
+     */
+
+    public int seuraajienLkm(int piste) {
+        IntSailio seuraajat = getSeuraajat(piste);
+        if (seuraajat == null) return 0;
+        return seuraajat.alkioita();
     }
 
     

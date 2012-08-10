@@ -41,6 +41,19 @@ public class LukusuhteikkoTest {
     }
 
     /**
+     * Apumetodi luo uuden n-pisteisen suhteikon,
+     * jossa ei yhteyksiä.
+     * @param n luotavan suhteikon pisteiden määrä
+     * @return uusi suhteikko
+     */
+
+    public static Lukusuhteikko pisteitaNEiYhteyksia(int n) {
+        RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(n);
+        return new Lukusuhteikko(r);
+    }
+
+
+    /**
      * Apumetodi luo yksipisteisen suhteikon jossa yhteys
      * pisteestä 1 itseensä.
      * @return uusi suhteikko
@@ -83,6 +96,7 @@ public class LukusuhteikkoTest {
     
     public static Lukusuhteikko uusiSuhteikkoTaydellinenN(int n) {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(n);
+        
         for (int i=1; i<=n; i++) {
             for (int j=1; j<=n; j++) {
                 r.lisaaYhteys(i, j);
@@ -108,6 +122,8 @@ public class LukusuhteikkoTest {
 
         return new Lukusuhteikko(r);
     }
+
+
 
 
     /*

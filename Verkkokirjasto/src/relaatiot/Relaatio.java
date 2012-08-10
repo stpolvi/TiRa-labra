@@ -57,6 +57,6 @@ public abstract class Relaatio {
      * mutta säästää aikaa myöhemmin relaatiota tutkittaessa.
      */
 
-    public abstract void teeValmiiksi();
+    public abstract void jarjestaRakenteet();
 
 }

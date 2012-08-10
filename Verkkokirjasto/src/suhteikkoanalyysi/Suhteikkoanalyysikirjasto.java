@@ -7,6 +7,7 @@ import tietorakenteet.IntSailio;
 /**
  * Kirjasto, joka tarjoaa suhteikkojen rakenteen tutkimiseen sopivia algoritmeja.
  * TODO: kaikkien metodien javadocciin O-vaativuusanalyysi
+ * TODO: code coverage -plugari
  * @author silja
  */
 public class Suhteikkoanalyysikirjasto {
@@ -101,11 +102,55 @@ public class Suhteikkoanalyysikirjasto {
     }
 
     /**
-     * TODO täydellisyys
+     * Onko suhteikko täydellinen:
+     * onko jokaisen kahden eri pisteen välillä yhteys ainakin toiseen suuntaan.
+     * Pisteestä ei tarvitse olla itseensä yhteyttä.
+     * @param s analysoitava suhteikko
+     * @return oliko täydellinen
      */
 
     public static boolean taydellinen(Suhteikko s) {
-        return false;
+        for (int i=1; i<=s.PISTEITA; i++) {
+            for (int j=i+1; j<=s.PISTEITA; j++) {
+                if (!s.onYhteys(i, j) && !s.onYhteys(j, i)) return false;
+            }
+        }
+        return true;
+    }
+    
+    /**
+     * Onko annettu suhteikko täydellinen verkko:
+     * onko jokaisesta pisteestä yhteys kaikkiin muihin pisteisiin.
+     * @param s analysoitava suhteikko
+     * @return oliko täydellinen verkko
+     */
+
+    public static boolean taydellinenVerkko(Suhteikko s) {
+        if (!tayttaaVerkkoehdon(s)) return false;
+
+        for (int i=1; i<=s.PISTEITA; i++) {
+            for (int j=i+1; j<=s.PISTEITA; j++) {
+                if (!s.onYhteys(i, j)) return false;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * Sama kuin TaydellinenVerkko mutta toteutus eri.
+     * @param s analysoitava suhteikko
+     * @return oliko täydellinen verkko
+     */
+    
+    public static boolean taydellinenVerkkoSeuraajienAvulla(Suhteikko s) {
+        if (!tayttaaVerkkoehdon(s)) return false;
+
+        for (int i=1; i<=s.PISTEITA; i++) {
+            if (s.seuraajienLkm(i) != s.PISTEITA -1) return false;
+        }
+
+        return true;
     }
 
     /*

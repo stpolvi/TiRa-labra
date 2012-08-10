@@ -3,9 +3,9 @@
  * and open the template in the editor.
  */
 
-package tietorakenteet;
+package tyokalut;
 
-import org.junit.Before;
+import tyokalut.Tyokalut;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

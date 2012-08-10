@@ -1,5 +1,5 @@
 
-package tietorakenteet;
+package tyokalut;
 
 /**
  * Yleishyödyllisiä työkaluja kaikkeen.

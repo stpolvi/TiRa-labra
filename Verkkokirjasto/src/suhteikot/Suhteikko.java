@@ -38,6 +38,7 @@ public abstract class Suhteikko {
 
     public Suhteikko(Relaatio relaatio) {
         this.PISTEITA = relaatio.JOUKONKOKO;
+        relaatio.jarjestaRakenteet();
         this.relaatio = relaatio;
     }
 
@@ -56,6 +57,13 @@ public abstract class Suhteikko {
      * @return seuraajat jossakin int-säiliössä
      */
 
-    public abstract IntSailio getSeuraajat(int alkupiste);
-    
+    public abstract IntSailio getSeuraajat(int piste);
+
+    /**
+     * Kuinka monta seuraajaa pisteellä on.
+     * @param piste piste jonka seuraajien määrä halutaan
+     * @return seuraajien lukumäärä
+     */
+
+    public abstract int seuraajienLkm(int piste);
 }
