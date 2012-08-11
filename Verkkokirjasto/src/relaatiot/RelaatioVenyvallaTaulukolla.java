@@ -12,7 +12,6 @@ import tietorakenteet.VenyvaTaulukkoTehokas;
 public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     private final int INDEKSIKORJAUS = 1;
-
     private VenyvaTaulukkoTehokas[] yhteydet;
 
     /**
@@ -78,11 +77,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     public boolean onYhteys(int alkupiste, int loppupiste) {
         IntSailio seuraajat = getSeuraajat(alkupiste);
-
-        if (seuraajat == null) {
-            return false;
-        }
-
+        if (seuraajat == null) return false;
         return seuraajat.etsi(loppupiste);
     }
 

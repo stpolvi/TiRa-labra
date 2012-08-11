@@ -33,7 +33,7 @@ public abstract class Suhteikko {
 
     /**
      * Konstruktori, jolle annetaan relaatio.
-     * @param relaatio suhteikon pisteiden välinen relaatio
+     * @param relaatio luotavan suhteikon pisteiden välinen relaatio
      */
 
     public Suhteikko(Relaatio relaatio) {

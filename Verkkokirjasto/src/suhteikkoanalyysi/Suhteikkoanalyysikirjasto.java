@@ -15,23 +15,22 @@ public class Suhteikkoanalyysikirjasto {
     private Suhteikkoanalyysikirjasto() {}
     
     /**
-     * Täyttääkö suhteikko verkkoehdon: onko se silmukaton ja symmetrinen
+     * Täyttääkö suhteikko verkkoehdon: onko se onSilmukaton ja symmetrinen
      * @param suhteikko analysoitava suhteikko
      * @return täyttääkö verkkoehdon
      */
 
     public static boolean tayttaaVerkkoehdon(Suhteikko suhteikko) {
-        return silmukaton(suhteikko) && symmetrinen(suhteikko);
+        return onSilmukaton(suhteikko) && symmetrinen(suhteikko);
     }
     /**
      * Onko suhteikko silmukaton:
      * mistään pisteestä ei ole itseensä yhteyttä.
-     *
      * @param suhteikko analysoitava suhteikko
      * @return oliko silmukaton
      */
 
-    public static boolean silmukaton(Suhteikko suhteikko) {
+    public static boolean onSilmukaton(Suhteikko suhteikko) {
         for (int i=1; i<=suhteikko.PISTEITA; i++) {
             if (suhteikko.onYhteys(i, i))
                 return false;

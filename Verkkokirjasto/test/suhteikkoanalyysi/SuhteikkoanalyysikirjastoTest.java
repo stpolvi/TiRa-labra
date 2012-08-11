@@ -27,7 +27,7 @@ public class SuhteikkoanalyysikirjastoTest {
     @Test
     public void tyhjaSuhteikkoTayttaaVerkkoehdon() {
         s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertTrue("Ei ollut silmukaton.", Suhteikkoanalyysikirjasto.silmukaton(s));
+        assertTrue("Ei ollut silmukaton.", Suhteikkoanalyysikirjasto.onSilmukaton(s));
         assertTrue("Ei ollut symmetrinen.", Suhteikkoanalyysikirjasto.symmetrinen(s));
         assertTrue(Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
     }
@@ -35,7 +35,7 @@ public class SuhteikkoanalyysikirjastoTest {
     @Test
     public void taydellinenVerkkoTayttaaVerkkoehdon() {
         s = suhteikot.TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue("Ei ollut silmukaton.", Suhteikkoanalyysikirjasto.silmukaton(s));
+        assertTrue("Ei ollut silmukaton.", Suhteikkoanalyysikirjasto.onSilmukaton(s));
         assertTrue("Ei ollut symmetrinen.", Suhteikkoanalyysikirjasto.symmetrinen(s));
         assertTrue(Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
     }
@@ -46,7 +46,7 @@ public class SuhteikkoanalyysikirjastoTest {
         r.lisaaYhteys(1, 1);
         s = new TavallinenSuhteikko(r);
         assertFalse("Piti olla silmukka.",
-                Suhteikkoanalyysikirjasto.silmukaton(s));
+                Suhteikkoanalyysikirjasto.onSilmukaton(s));
         assertTrue("Piti olla symmetrinen.",
                 Suhteikkoanalyysikirjasto.symmetrinen(s));
         assertFalse("Ei pidä täyttää verkkoehtoa.",
@@ -57,7 +57,7 @@ public class SuhteikkoanalyysikirjastoTest {
     public void silmukatonEisymmetrinenEiTaytaVerkkoehtoa() {
         s = suhteikot.TavallinenSuhteikkoTest.pisteita2Yhteys1_2();
         assertTrue("Piti olla silmukaton.",
-                Suhteikkoanalyysikirjasto.silmukaton(s));
+                Suhteikkoanalyysikirjasto.onSilmukaton(s));
         assertFalse("Ei pidä olla symmetrinen.",
                 Suhteikkoanalyysikirjasto.symmetrinen(s));
         assertFalse("Ei pidä täyttää verkkoehtoa.",

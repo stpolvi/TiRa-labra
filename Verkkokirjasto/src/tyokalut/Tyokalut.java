@@ -13,6 +13,7 @@ public class Tyokalut {
      * @param b toinen luku
      * @return keskiarvo joka on katkaistu kokonaisluvuksi pyöristämättä
      */
+
     public static int keskiarvo(int a, int b) {
         double vastaus = 0.5 * (a+b);
         return (int) vastaus;

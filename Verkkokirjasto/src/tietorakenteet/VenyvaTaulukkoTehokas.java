@@ -111,7 +111,7 @@ public class VenyvaTaulukkoTehokas implements IntSailio {
 
     public int binhae(int etsittava) {
         int vasen = 0;
-        int oikea = alkioita()-INDEKSIKORJAUS;
+        int oikea = alkioita() - INDEKSIKORJAUS;
         int keski;
 
         while (vasen <= oikea) {
