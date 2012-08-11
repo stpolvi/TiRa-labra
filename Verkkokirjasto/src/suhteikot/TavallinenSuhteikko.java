@@ -5,20 +5,20 @@ import relaatiot.Relaatio;
 import tietorakenteet.IntSailio;
 
 /**
- * Lukusuhteikko-olio kuvaa suhteikkoa (eli ns. suunnattua verkkoa),
+ * TavallinenSuhteikko-olio kuvaa suhteikkoa (eli ns. suunnattua verkkoa),
  * joka pisteet ovat kokonaislukuja. Jos suhteikossa on n pistettä,
  * sen pisteet ovat 1,2,3,...,n. Suhteikko koostuu pisteistä ja niiden välisestä
  * Relaatiosta.
  * @author silja
  */
-public class Lukusuhteikko extends Suhteikko {
+public class TavallinenSuhteikko extends Suhteikko {
 
     /**
      * Parametriton konstruktori luo tyhjän suhteikon:
      * pisteitä ei ole, ja niiden välinen relaatio on null.
      */
 
-    public Lukusuhteikko() {
+    public TavallinenSuhteikko() {
         super();
     }
 
@@ -28,7 +28,7 @@ public class Lukusuhteikko extends Suhteikko {
      * @param relaatio tulevan suhteikon pisteiden välinen relaatio
      */
 
-    public Lukusuhteikko(Relaatio relaatio) {
+    public TavallinenSuhteikko(Relaatio relaatio) {
         super(relaatio);
     }
 

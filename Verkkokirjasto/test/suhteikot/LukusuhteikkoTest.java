@@ -7,13 +7,13 @@ import tietorakenteet.IntSailio;
 import static org.junit.Assert.*;
 
 /**
- * Lukusuhteikko-luokan testiluokka. Metodit on nimetty niin ettei
+ * TavallinenSuhteikko-luokan testiluokka. Metodit on nimetty niin ettei
  * erillistä kommentointia tarvita.
  * @author silja
  */
 public class LukusuhteikkoTest {
 
-    Lukusuhteikko s;
+    TavallinenSuhteikko s;
 
     /*
      * Apumetodit -----------------------------------------
@@ -24,8 +24,8 @@ public class LukusuhteikkoTest {
      * @return tyhjä suhteikko
      */
 
-    public static Lukusuhteikko uusiTyhjaSuhteikko() {
-        return new Lukusuhteikko();
+    public static TavallinenSuhteikko uusiTyhjaSuhteikko() {
+        return new TavallinenSuhteikko();
     }
 
     /**
@@ -34,10 +34,10 @@ public class LukusuhteikkoTest {
      * @return uusi suhteikko
      */
 
-    public static Lukusuhteikko pisteita2Yhteys1_2() {
+    public static TavallinenSuhteikko pisteita2Yhteys1_2() {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(2);
         r.lisaaYhteys(1, 2);
-        return new Lukusuhteikko(r);
+        return new TavallinenSuhteikko(r);
     }
 
     /**
@@ -47,9 +47,9 @@ public class LukusuhteikkoTest {
      * @return uusi suhteikko
      */
 
-    public static Lukusuhteikko pisteitaNEiYhteyksia(int n) {
+    public static TavallinenSuhteikko pisteitaNEiYhteyksia(int n) {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(n);
-        return new Lukusuhteikko(r);
+        return new TavallinenSuhteikko(r);
     }
 
 
@@ -59,10 +59,10 @@ public class LukusuhteikkoTest {
      * @return uusi suhteikko
      */
 
-    public static Lukusuhteikko pisteita1Yhteys1_1() {
+    public static TavallinenSuhteikko pisteita1Yhteys1_1() {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(1);
         r.lisaaYhteys(1, 1);
-        return new Lukusuhteikko(r);
+        return new TavallinenSuhteikko(r);
     }
 
     /**
@@ -71,7 +71,7 @@ public class LukusuhteikkoTest {
      * vähintään yhteen suuntaan.
      * @return uusi suhteikko
      */
-    public static Lukusuhteikko taydellinen4PisteinenJossaSilmukka() {
+    public static TavallinenSuhteikko taydellinen4PisteinenJossaSilmukka() {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(4);
         r.lisaaYhteys(1, 2);
         r.lisaaYhteys(1, 3);
@@ -84,7 +84,7 @@ public class LukusuhteikkoTest {
 
         r.lisaaYhteys(4, 3);
 
-        return new Lukusuhteikko(r);
+        return new TavallinenSuhteikko(r);
     }
 
     /**
@@ -94,7 +94,7 @@ public class LukusuhteikkoTest {
      * @return uusi suhteikko
      */
     
-    public static Lukusuhteikko uusiSuhteikkoTaydellinenN(int n) {
+    public static TavallinenSuhteikko uusiSuhteikkoTaydellinenN(int n) {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(n);
         
         for (int i=1; i<=n; i++) {
@@ -103,7 +103,7 @@ public class LukusuhteikkoTest {
             }
         }
 
-        return new Lukusuhteikko(r);
+        return new TavallinenSuhteikko(r);
     }
 
     /**
@@ -111,7 +111,7 @@ public class LukusuhteikkoTest {
      * @return
      */
 
-    public static Lukusuhteikko taydellinen5PisteinenVerkko() {
+    public static TavallinenSuhteikko taydellinen5PisteinenVerkko() {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(5);
 
         for (int i=1; i<=5; i++) {
@@ -120,7 +120,7 @@ public class LukusuhteikkoTest {
             }
         }
 
-        return new Lukusuhteikko(r);
+        return new TavallinenSuhteikko(r);
     }
 
 
@@ -132,7 +132,7 @@ public class LukusuhteikkoTest {
 
     @Test
     public void parametritonKonstruktoriLuoOlion() {
-        assertNotNull(new Lukusuhteikko());
+        assertNotNull(new TavallinenSuhteikko());
     }
 
     @Test

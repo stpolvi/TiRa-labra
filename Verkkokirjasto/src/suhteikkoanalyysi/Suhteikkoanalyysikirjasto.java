@@ -51,7 +51,7 @@ public class Suhteikkoanalyysikirjasto {
     public static boolean symmetrinen(Suhteikko suhteikko) {
         for (int i=1; i<=suhteikko.PISTEITA; i++) {
             for (int j=1; j<=suhteikko.PISTEITA; j++) {
-                if (!ekvivalentit(suhteikko.onYhteys(i, j), suhteikko.onYhteys(j, i)))
+                if (!tyokalut.Tyokalut.ekvivalentit(suhteikko.onYhteys(i, j), suhteikko.onYhteys(j, i)))
                     return false;
             }
         }
@@ -152,24 +152,124 @@ public class Suhteikkoanalyysikirjasto {
 
         return true;
     }
+    
+    /**
+     * TODO kulut:
+     * 
+     * Onko suhteikossa kulku pisteestä toiseen:
+     * onko alkupisteestä reitti, mahdollisesti muiden pisteiden kautta,
+     * yhteyksiä pitkin loppupisteeseen.
+     * @param s analysoitava suhteikko
+     * @param alkupiste piste josta lähdetään
+     * @param loppupiste piste johon yritetään kulkea
+     * @return onko kulkua olemassa
+     */
+
+    public static boolean onKulku(Suhteikko s, int alkupiste, int loppupiste) {
+        throw new Error("kesken");
+    }
+    
+    /**
+     * TODO renkaat:
+     * Huom. kulun täytyy kulkea vähintään kolmen pisteen kautta.
+     * @param s
+     * @return
+     */
+
+    public static boolean sisaltaaRenkaan(Suhteikko s) {
+        int alkupiste;
+
+        for (int i=1; i<=s.PISTEITA; i++) {
+
+        }
+
+        throw new Error("kesken");
+    }
+
+    /**
+     * TODO juuret:
+     * @param s
+     * @return
+     */
+
+    public static boolean loytyyJuuri(Suhteikko s) {
+        throw new Error("kesken");
+    }
+
+    /**
+     * TODO juuret:
+     * @param s
+     * @return
+     */
+
+    public static int jokinJuuri(Suhteikko s) {
+        throw new Error("kesken");
+    }
+
+    /**
+     * TODO juuret:
+     * @param s
+     * @return
+     */
+
+    public static IntSailio juurtenJoukko(Suhteikko s) {
+        throw new Error("kesken");
+    }
+
+    /**
+     * Täyttääkö suhteikko puuehdon:
+     * onko se verkko, jossa ei ole renkaita, mutta jolla on juuri.
+     * @param s analysoitava suhteikko
+     * @return oliko puu
+     */
+
+    public static boolean tayttaaPuuehdon(Suhteikko s) {
+        if (!tayttaaVerkkoehdon(s)) return false;
+        if (sisaltaaRenkaan(s)) return false;
+        if (!loytyyJuuri(s)) return false;
+        return true;
+    }
+
+    /**
+     * TODO yhtenäisyys:
+     */
+
+    public static boolean yhtenainen(Suhteikko s) {
+        throw new Error("kesken");
+    }
+
+    /**
+     * TODO yhtenäisyys:
+     */
+
+    public static boolean yhtenainenVerkko(Suhteikko s) {
+        throw new Error("kesken");
+    }
+
+    /**
+     * Onko suhteikko vahvasti yhtenäinen verkko:
+     * verkolle yhtenäisyys ja vahva yhtenäisyys ovat yhtäpitäviä.
+     * @param s analysoitava suhteikko
+     * @return oliko (vahvasti) yhtenainen verkko
+     */
+
+    public static boolean vahvastiYhtenainenVerkko(Suhteikko s) {
+        if (!tayttaaVerkkoehdon(s)) return false;
+        if (!yhtenainen(s)) return false;
+        return true;
+    }
+
+    /**
+     * TODO vahva yhtenäisyys:
+     */
+
+    public static boolean vahvastiYhtenainen(Suhteikko s) {
+        throw new Error("kesken");
+    }
 
     /*
      * Privaattimetodit ---------------------------------------------
      */
-
-    /**
-     * Ovatko kaksi totuusmuuttujaa ekvivalentit:
-     * joko molemmat true tai molemmat false.
-     * --Tämä siirrettäneen yleisempään metodikirjastoon.--
-     *
-     * @param a ensimmäinen totuusarvo
-     * @param b toinen totuusarvo
-     * @return olivatko ekvivalentit
-     */
-
-    private static boolean ekvivalentit(boolean a, boolean b) {
-        return (a&&b) || ((!a)&&(!b));
-    }
 
     /**
      * Ovatko kaikkien pisteiden asteet samat.

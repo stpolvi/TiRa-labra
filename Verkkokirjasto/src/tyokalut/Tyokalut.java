@@ -30,4 +30,17 @@ public class Tyokalut {
         return b;
     }
 
+    /**
+     * Ovatko kaksi totuusmuuttujaa ekvivalentit:
+     * joko molemmat true tai molemmat false.
+     * @param a ensimmäinen totuusarvo
+     * @param b toinen totuusarvo
+     * @return olivatko ekvivalentit
+     */
+
+    public static boolean ekvivalentit(boolean a, boolean b) {
+        return (a&&b) || ((!a)&&(!b));
+    }
+
+
 }

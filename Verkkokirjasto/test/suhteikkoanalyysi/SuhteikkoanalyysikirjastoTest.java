@@ -1,7 +1,7 @@
 
 package suhteikkoanalyysi;
 
-import suhteikot.Lukusuhteikko;
+import suhteikot.TavallinenSuhteikko;
 import relaatiot.RelaatioVenyvallaTaulukolla;
 import suhteikot.Suhteikko;
 import org.junit.Test;
@@ -44,7 +44,7 @@ public class SuhteikkoanalyysikirjastoTest {
     public void yksisilmukkainenSymmetrinenEiTaytaVerkkoehtoa() {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(1);
         r.lisaaYhteys(1, 1);
-        s = new Lukusuhteikko(r);
+        s = new TavallinenSuhteikko(r);
         assertFalse("Piti olla silmukka.",
                 Suhteikkoanalyysikirjasto.silmukaton(s));
         assertTrue("Piti olla symmetrinen.",
@@ -228,6 +228,68 @@ public class SuhteikkoanalyysikirjastoTest {
 
         s = suhteikot.LukusuhteikkoTest.pisteitaNEiYhteyksia(9);
         assertFalse(Suhteikkoanalyysikirjasto.taydellinenVerkkoSeuraajienAvulla(s));
+    }
+
+    /*
+     * LöytyyJuuri-testit:
+     */
+    
+    @Test
+    public void yksipisteisellaOnJuuri() {
+        s = suhteikot.LukusuhteikkoTest.pisteitaNEiYhteyksia(1);
+        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuri(s));
+    }
+
+    @Test
+    public void kaksipisteisellaJossaYhteys1_2OnJuuri() {
+        s = suhteikot.LukusuhteikkoTest.pisteita2Yhteys1_2();
+        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuri(s));
+    }
+
+    @Test
+    public void tyhjallaEiJuuria() {
+        s = suhteikot.LukusuhteikkoTest.uusiTyhjaSuhteikko();
+        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuri(s));
+    }
+
+    @Test
+    public void useampipisteisellaJossaEiYhteyksiaEiJuuria() {
+        s = suhteikot.LukusuhteikkoTest.pisteitaNEiYhteyksia(2);
+        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuri(s));
+
+        s = suhteikot.LukusuhteikkoTest.pisteitaNEiYhteyksia(9);
+        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuri(s));
+    }
+
+    /*
+     * JokinJuuri-testit:
+     */
+
+    @Test
+    public void kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1() {
+        s = suhteikot.LukusuhteikkoTest.pisteita2Yhteys1_2();
+        assertTrue(Suhteikkoanalyysikirjasto.jokinJuuri(s) == 1);
+        assertFalse(Suhteikkoanalyysikirjasto.jokinJuuri(s) == 2);
+    }
+
+    /*
+     * TODO Renkaiden olemassaolo:
+     */
+
+    @Test
+    public void tyhjassaEiRenkaita() {
+        s = suhteikot.LukusuhteikkoTest.uusiTyhjaSuhteikko();
+
+    }
+
+    /*
+     * TODO yhtenäisyys:
+     */
+
+    @Test
+    public void yksipisteinenOnYhtenainen() {
+        s = suhteikot.LukusuhteikkoTest.pisteita1Yhteys1_1();
+        fail("kesken");
     }
     
 }
