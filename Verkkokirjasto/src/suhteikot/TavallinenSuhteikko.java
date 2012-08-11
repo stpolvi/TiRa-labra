@@ -15,7 +15,7 @@ public class TavallinenSuhteikko extends Suhteikko {
 
     /**
      * Parametriton konstruktori luo tyhjän suhteikon:
-     * pisteitä ei ole, ja niiden välinen relaatio on null.
+     * pisteitä ei ole, ja relaatio on null.
      */
 
     public TavallinenSuhteikko() {

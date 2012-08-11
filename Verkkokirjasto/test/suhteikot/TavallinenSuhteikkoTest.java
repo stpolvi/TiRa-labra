@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
  * erillistä kommentointia tarvita.
  * @author silja
  */
-public class LukusuhteikkoTest {
+public class TavallinenSuhteikkoTest {
 
     TavallinenSuhteikko s;
 
