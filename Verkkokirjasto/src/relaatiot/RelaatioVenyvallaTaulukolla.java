@@ -2,7 +2,7 @@
 package relaatiot;
 
 import tietorakenteet.IntSailio;
-import tietorakenteet.VenyvaTaulukkoTehokas;
+import tietorakenteet.VenyvaTaulukko;
 
 /**
  * Kuvaa suhteikon pisteiden välistä relaatiota.
@@ -12,7 +12,7 @@ import tietorakenteet.VenyvaTaulukkoTehokas;
 public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     private final int INDEKSIKORJAUS = 1;
-    private VenyvaTaulukkoTehokas[] yhteydet;
+    private VenyvaTaulukko[] yhteydet;
 
     /**
      * Relaatio annetun kokoisessa joukossa.
@@ -21,7 +21,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     public RelaatioVenyvallaTaulukolla(int joukonKoko) {
         super(joukonKoko);
-        yhteydet = new VenyvaTaulukkoTehokas[this.JOUKONKOKO];
+        yhteydet = new VenyvaTaulukko[this.JOUKONKOKO];
     }
 
     /**
@@ -31,11 +31,11 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      */
     
     public void lisaaYhteys(int alkupiste, int loppupiste) {
-        VenyvaTaulukkoTehokas seuraajat
-                = (VenyvaTaulukkoTehokas) getSeuraajat(alkupiste);
+        VenyvaTaulukko seuraajat
+                = (VenyvaTaulukko) getSeuraajat(alkupiste);
 
         if (seuraajat == null) {
-            seuraajat = new VenyvaTaulukkoTehokas();
+            seuraajat = new VenyvaTaulukko();
             setSeuraajat(alkupiste, seuraajat);
         }
 
@@ -50,10 +50,10 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      */
     
     public void jarjestaRakenteet() {
-        VenyvaTaulukkoTehokas seuraajat;
+        VenyvaTaulukko seuraajat;
         for (int i=0; i<JOUKONKOKO; i++) {
             seuraajat = this.yhteydet[i];
-            if (seuraajat != null) seuraajat.sort();
+            if (seuraajat != null) seuraajat.jarjesta();
         }
     }
 
@@ -93,7 +93,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      * @param seuraajat seuraajat int-säiliössä
      */
 
-    private void setSeuraajat(int alkupiste, VenyvaTaulukkoTehokas seuraajat) {
+    private void setSeuraajat(int alkupiste, VenyvaTaulukko seuraajat) {
         yhteydet[alkupiste - INDEKSIKORJAUS] = seuraajat;
     }
 

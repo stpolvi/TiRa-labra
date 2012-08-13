@@ -1,7 +1,9 @@
 
 package suhteikkoanalyysi;
 
+import java.awt.Color;
 import suhteikot.Suhteikko;
+import suhteikot.VaritettavaSuhteikko;
 import tietorakenteet.IntSailio;
 
 /**
@@ -164,8 +166,14 @@ public class Suhteikkoanalyysikirjasto {
      * @return onko kulkua olemassa
      */
 
-    public static boolean onKulku(Suhteikko s, int alkupiste, int loppupiste) {
-        throw new Error("kesken");
+    public static boolean onKulkuLeveyshaulla(Suhteikko s, int alkupiste, int loppupiste) {
+        VaritettavaSuhteikko v;
+        try {
+            v = (VaritettavaSuhteikko) s;
+            return onKulkuLeveyshaullaVaritettavalle(v, alkupiste, loppupiste);
+        } catch (ClassCastException e) {
+            return onKulkuVarittomalle(s, alkupiste, loppupiste);
+        }
     }
     
     /**
@@ -186,33 +194,35 @@ public class Suhteikkoanalyysikirjasto {
     }
 
     /**
-     * TODO juuret:
-     * @param s
-     * @return
+     * Onko suhteikossa juuria. Käyttää pieninJuuriBruteForce-metodia.
+     * @param s analysoitava suhteikko
+     * @return oliko suhteikolla juurta
      */
 
-    public static boolean loytyyJuuri(Suhteikko s) {
-        throw new Error("kesken");
+    public static boolean loytyyJuuriBruteForce(Suhteikko s) {
+        return pieninJuuriBruteForce(s) > 0;
     }
 
     /**
-     * TODO juuret:
-     * @param s
-     * @return
+     * Palauttaa suhteikon sen juuren nimen, jonka nimi on pienin luku.
+     * Jos juuria ei ole, palauttaa -1.
+     * Juuri on piste, josta on kulku suhteikon jokaiseen muuhun pisteeseen.
+     * @param s analysoitava suhteikko
+     * @return pienin juuri
      */
 
-    public static int jokinJuuri(Suhteikko s) {
-        throw new Error("kesken");
+    public static int pieninJuuriBruteForce(Suhteikko s) {
+        for (int i=1; i<=s.PISTEITA; i++) {
+            if (onJuuri(s, i)) return i;
+        }
+        return -1;
     }
 
-    /**
-     * TODO juuret:
-     * @param s
-     * @return
-     */
-
-    public static IntSailio juurtenJoukko(Suhteikko s) {
-        throw new Error("kesken");
+    public static boolean onJuuri(Suhteikko s, int piste) {
+        for (int i=1; i<=s.PISTEITA; i++) {
+            if (!onKulkuLeveyshaulla(s, piste, i)) return false;
+        }
+        return true;
     }
 
     /**
@@ -225,36 +235,42 @@ public class Suhteikkoanalyysikirjasto {
     public static boolean tayttaaPuuehdon(Suhteikko s) {
         if (!tayttaaVerkkoehdon(s)) return false;
         if (sisaltaaRenkaan(s)) return false;
-        if (!loytyyJuuri(s)) return false;
+        if (!loytyyJuuriBruteForce(s)) return false;
         return true;
     }
 
     /**
-     * TODO yhtenäisyys:
+     * Onko suhteikko yhtenäinen verkko: se on verkko, ja
+     * jokaisesta pisteestä löytyy reitti kaikkiin muihin pisteisiin,
+     * mahdollisesti muiden pisteiden kautta.
+     * Toisin sanoen, ovatko kaikki pisteet yhteydessä toisiinsa niin ettei
+     * pisteitä tai pistejoukkoja ole eristyksissä.
+     * Tämä metodi selvittää yhtenäisyyden tutkimalla,
+     * onko kaikista pisteistä kulku pisteeseen 1.
+     * @param s analysoitava suhteikko
+     * @return oliko yhtenäinen
      */
 
-    public static boolean yhtenainen(Suhteikko s) {
-        throw new Error("kesken");
-    }
+    public static boolean onYhtenainenVerkkoKulkujenAvulla(Suhteikko s) {
+        if (!tayttaaVerkkoehdon(s))
+            return false;
 
-    /**
-     * TODO yhtenäisyys:
-     */
+        if (s.PISTEITA == 0 || s.PISTEITA == 1)
+            return true;
 
-    public static boolean yhtenainenVerkko(Suhteikko s) {
-        throw new Error("kesken");
+        return kaikistaPisteistaOnKulkuPisteeseen(s, 1);
     }
 
     /**
      * Onko suhteikko vahvasti yhtenäinen verkko:
      * verkolle yhtenäisyys ja vahva yhtenäisyys ovat yhtäpitäviä.
      * @param s analysoitava suhteikko
-     * @return oliko (vahvasti) yhtenainen verkko
+     * @return oliko (vahvasti) onYhtenainenVerkkoKulkujenAvulla verkko
      */
 
     public static boolean vahvastiYhtenainenVerkko(Suhteikko s) {
         if (!tayttaaVerkkoehdon(s)) return false;
-        if (!yhtenainen(s)) return false;
+        if (!onYhtenainenVerkkoKulkujenAvulla(s)) return false;
         return true;
     }
 
@@ -285,4 +301,32 @@ public class Suhteikkoanalyysikirjasto {
         }
         return true;
     }
+
+    private static boolean kaikistaPisteistaOnKulkuPisteeseen(Suhteikko s, int piste) {
+        for (int i=1; i<=s.PISTEITA; i++) {
+            if (!onKulkuLeveyshaulla(s, piste, i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static boolean onKulkuVarittomalle(Suhteikko s, int alkupiste, int loppupiste) {
+        throw new Error("toteuttamatta");
+    }
+
+    private static boolean onKulkuLeveyshaullaVaritettavalle(VaritettavaSuhteikko v, int alkupiste, int loppupiste) {
+        v.varita(alkupiste, Color.GRAY);
+        int[] seuraajalista = v.getSeuraajat(alkupiste).toIntArray();
+
+        for (int seuraaja: seuraajalista) {
+            if (v.getVari(seuraaja).equals(Color.GRAY))
+                continue;
+            if (seuraaja == loppupiste) return true;
+            v.varita(seuraaja, Color.GRAY);
+        }
+
+        throw new Error("toteuttamatta");
+    }
+
 }

@@ -12,11 +12,11 @@ import static org.junit.Assert.*;
  */
 public class VenyvaTaulukkoTest {
 
-    VenyvaTaulukko taulukko;
+    VenyvaTaulukkoHidas taulukko;
 
     @Before
     public void setUp() {
-        taulukko = new VenyvaTaulukko();
+        taulukko = new VenyvaTaulukkoHidas();
     }
 
     /*
@@ -97,7 +97,7 @@ public class VenyvaTaulukkoTest {
     @Test
     public void lisaaYksiKerranJaEtsi() {
         taulukko.lisaa(5);
-        taulukko.sort();
+        taulukko.jarjesta();
         assertTrue(taulukko.etsi(5));
     }
 
@@ -105,14 +105,14 @@ public class VenyvaTaulukkoTest {
     public void lisaaYksiKahdestiJaEtsi() {
         taulukko.lisaa(19);
         taulukko.lisaa(19);
-        taulukko.sort();
+        taulukko.jarjesta();
         assertTrue(taulukko.etsi(19));
     }
 
     @Test
     public void lisaa10PerakkaistaLukuaKerranJaEtsi() {
         lisaaTaulukkoonNLukua(10);
-        taulukko.sort();
+        taulukko.jarjesta();
         for (int i=1; i<=10; i++) {
             assertTrue("Luku " + i + " puuttui.", taulukko.etsi(i));
         }

@@ -16,13 +16,6 @@ public interface IntSailio {
     public int alkioita();
 
     /**
-     * Säiliössä olevat luvut int-taulukossa.
-     * Taulukon pituus on sama kuin alkioiden lukumäärä.
-     * @return alkiot taulukoituna
-     */
-    public int[] toIntArray();
-
-    /**
      * Lisää säiliöön alkion.
      * @param alkio lisättävä
      */
@@ -41,5 +34,13 @@ public interface IntSailio {
      * Järjestää säiliön sisällön siten, että toIntArray-metodin 
      * palauttama taulukko on järjestyksessä.
      */
-    public void sort();
+
+    public void jarjesta();
+    
+    /**
+     * Säiliön alkiot int-taulukossa, jonka koko on alkioiden lukumäärä.
+     * @return alkiot taulukossa
+     */
+
+    public int[] toIntArray();
 }

@@ -75,8 +75,8 @@ public class VaritettavaSuhteikko extends TavallinenSuhteikko {
      */
 
     public void varitaKaikki(Color vari) {
-        for (int i=0; i<varit.length; i++) {
-            varit[i] = vari;
+        for (int i=1; i<=PISTEITA; i++) {
+            varita(i, vari);
         }
     }
 
