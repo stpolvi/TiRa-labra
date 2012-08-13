@@ -93,6 +93,7 @@ public class VenyvaTaulukko implements IntSailio {
 
     
     public boolean etsi(int etsittava) {
+//        this.jarjesta();
         return binhae(etsittava) >= 0;
     }
     

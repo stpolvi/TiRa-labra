@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="silja-PC" name="tietorakenteet.JonoTest" tests="5" time="0.202" timestamp="2012-08-13T15:00:46">
+<testsuite errors="0" failures="0" hostname="silja-PC" name="tietorakenteet.JonoTest" tests="5" time="0.187" timestamp="2012-08-13T15:29:40">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -263,7 +263,7 @@
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.arch.data.model" value="32" />
   </properties>
-  <testcase classname="tietorakenteet.JonoTest" name="konstruktoriLuoOlion" time="0.0" />
+  <testcase classname="tietorakenteet.JonoTest" name="konstruktoriLuoOlion" time="0.016" />
   <testcase classname="tietorakenteet.JonoTest" name="lisaaminenKasvattaaAlkioidenMaaraaOikein" time="0.0" />
   <testcase classname="tietorakenteet.JonoTest" name="lisaaminenKasvattaaAlkioidenMaaraaOikeinVaikkaKapasiteettiTayttyy" time="0.062" />
   <testcase classname="tietorakenteet.JonoTest" name="ottaminenVahentaaAlkioidenMaaraaOikein" time="0.0" />
