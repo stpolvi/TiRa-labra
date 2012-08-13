@@ -189,13 +189,6 @@ public class VenyvaTaulukko implements IntSailio {
      * PRIVAATTIMETODIT ALLA ---------------------------------
      */
 
-    private void kopioiUuteen(int[] vanha, int[] uusi) {
-        int lyhemmanPituus = Tyokalut.minimi(vanha.length, uusi.length);
-        for (int i=0; i<lyhemmanPituus; i++) {
-            uusi[i] = vanha[i];
-        }
-    }
-
     private void siirraAlkio(int siirrettavanIndeksi, int uusiPaikka) {
         taulukko[uusiPaikka] = taulukko[siirrettavanIndeksi];
     }
@@ -215,7 +208,7 @@ public class VenyvaTaulukko implements IntSailio {
     private void kasvataTaulukkoaJosTaynna() {
         if (taulukkoTaynna()) {
             int[] uusi = new int[uudenPituus()];
-            kopioiUuteen(this.taulukko, uusi);
+            tyokalut.Tyokalut.kopioiIntTaulukkoToiseen(this.taulukko, uusi);
             this.taulukko = uusi;
         }
     }
@@ -235,7 +228,7 @@ public class VenyvaTaulukko implements IntSailio {
         if (taulukkoTaynna())
             return this.taulukko;
         int[] palautettava = new int[alkioita];
-        kopioiUuteen(taulukko, palautettava);
+        tyokalut.Tyokalut.kopioiIntTaulukkoToiseen(taulukko, palautettava);
         return palautettava;
     }
 

@@ -4,7 +4,7 @@ package suhteikkoanalyysi;
 import java.awt.Color;
 import suhteikot.Suhteikko;
 import suhteikot.VaritettavaSuhteikko;
-import tietorakenteet.IntSailio;
+import tietorakenteet.*;
 
 /**
  * Kirjasto, joka tarjoaa suhteikkojen rakenteen tutkimiseen sopivia algoritmeja.
@@ -316,17 +316,26 @@ public class Suhteikkoanalyysikirjasto {
     }
 
     private static boolean onKulkuLeveyshaullaVaritettavalle(VaritettavaSuhteikko v, int alkupiste, int loppupiste) {
-        v.varita(alkupiste, Color.GRAY);
-        int[] seuraajalista = v.getSeuraajat(alkupiste).toIntArray();
+        Jono jono = new Jono();
+        v.alustaVarit();
+        v.varita(alkupiste, Color.BLUE);
+        int vuorossa = alkupiste;
 
-        for (int seuraaja: seuraajalista) {
-            if (v.getVari(seuraaja).equals(Color.GRAY))
-                continue;
-            if (seuraaja == loppupiste) return true;
-            v.varita(seuraaja, Color.GRAY);
+        while (jono.alkioita() > 0) {
+            for (int seuraaja : v.getSeuraajat(vuorossa).toIntArray()) {
+                if (! v.getVari(seuraaja).equals(Color.BLACK)) {
+                    if (seuraaja == loppupiste)
+                        return true;
+
+                    v.varita(seuraaja, Color.BLACK);
+                    jono.lisaa(seuraaja);
+                }
+            }
+            vuorossa = jono.ota();
         }
 
-        throw new Error("toteuttamatta");
+        return false;
+
     }
 
 }

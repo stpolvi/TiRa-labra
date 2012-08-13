@@ -152,15 +152,8 @@ public class VenyvaTaulukkoHidas implements IntSailio {
 
     private void muutaTaulukonPituutta(int pituudenMuutos) {
         int[] uusi = new int[alkioita() + pituudenMuutos];
-        kopioiUuteen(this.taulukko, uusi);
+        tyokalut.Tyokalut.kopioiIntTaulukkoToiseen(this.taulukko, uusi);
         this.taulukko = uusi;
-    }
-
-    private void kopioiUuteen(int[] vanha, int[] uusi) {
-        int lyhemmanPituus = Tyokalut.minimi(vanha.length, uusi.length);
-        for (int i=0; i<lyhemmanPituus; i++) {
-            uusi[i] = vanha[i];
-        }
     }
 
     private void siirraAlkio(int siirrettavanIndeksi, int uusiPaikka) {

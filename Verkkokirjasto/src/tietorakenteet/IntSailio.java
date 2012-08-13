@@ -43,4 +43,5 @@ public interface IntSailio {
      */
 
     public int[] toIntArray();
+    
 }

@@ -42,6 +42,16 @@ public class Tyokalut {
     public static boolean ekvivalentit(boolean a, boolean b) {
         return (a&&b) || ((!a)&&(!b));
     }
+    
+    /**
+     * 
+     * @param kopioitava
+     * @param uusi
+     */
+
+    public static void kopioiIntTaulukkoToiseen(int[] kopioitava, int[] uusi) {
+
+    }
 
 
 }
