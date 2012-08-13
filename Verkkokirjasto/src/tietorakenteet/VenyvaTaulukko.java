@@ -70,12 +70,6 @@ public class VenyvaTaulukko implements IntSailio {
     }
 
     /**
-     * TODO katkaiseTaulukko, joka katkaisee taulukon alkiomäärän pituiseksi.
-     */
-
-    public void katkaiseTaulukko() {}
-
-    /**
      * Poistaa alkion taulukosta. Taulukon koko ei muutu.
      * O(1)
      * @param poistettava alkio joka poistetaan
@@ -110,22 +104,23 @@ public class VenyvaTaulukko implements IntSailio {
      */
 
     public int binhae(int etsittava) {
-        int vasen = 0;
-        int oikea = alkioita() - INDEKSIKORJAUS;
-        int keski;
-
-        while (vasen <= oikea) {
-            keski = Tyokalut.keskiarvo(vasen, oikea);
-
-            if (taulukko[keski] == etsittava)
-                return keski;
-            else if (taulukko[keski] > etsittava)
-                oikea = keski-1;
-            else
-                vasen = keski+1;
-        }
-
-        return -1;
+        return Arrays.binarySearch(this.taulukko, etsittava);
+//        int vasen = 0;
+//        int oikea = alkioita() - INDEKSIKORJAUS;
+//        int keski;
+//
+//        while (vasen <= oikea) {
+//            keski = Tyokalut.keskiarvo(vasen, oikea);
+//
+//            if (taulukko[keski] == etsittava)
+//                return keski;
+//            else if (taulukko[keski] > etsittava)
+//                oikea = keski-1;
+//            else
+//                vasen = keski+1;
+//        }
+//
+//        return -1;
     }
 
 
@@ -228,7 +223,7 @@ public class VenyvaTaulukko implements IntSailio {
         if (taulukkoTaynna())
             return this.taulukko;
         int[] palautettava = new int[alkioita];
-        tyokalut.Tyokalut.kopioiIntTaulukkoToiseen(taulukko, palautettava);
+        tyokalut.Tyokalut.kopioiIntTaulukkoToiseen(this.taulukko, palautettava);
         return palautettava;
     }
 

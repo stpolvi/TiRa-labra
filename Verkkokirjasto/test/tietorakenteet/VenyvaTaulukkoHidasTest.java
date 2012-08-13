@@ -10,15 +10,14 @@ import static org.junit.Assert.*;
  *
  * @author silja
  */
-public class VenyvaTaulukkoTehokasTest {
+public class VenyvaTaulukkoHidasTest {
 
-    VenyvaTaulukko taulukko;
+    VenyvaTaulukkoHidas taulukko;
 
     @Before
     public void setUp() {
-        taulukko = uusiParametriton();
+        taulukko = new VenyvaTaulukkoHidas();
     }
-
 
     /*
      * Apumetodit ---------------
@@ -42,7 +41,7 @@ public class VenyvaTaulukkoTehokasTest {
 
     void poistaTaulukostaNLukua(int n) {
         for (int i=1; i<=n; i++) {
-            taulukko.poista(i);
+            taulukko.poistaLyhentaen(i);
         }
     }
 
@@ -69,30 +68,9 @@ public class VenyvaTaulukkoTehokasTest {
                     taulukko.alkioita() == oikeaAlkioidenLkm);
     }
 
-    VenyvaTaulukko uusiParametriton() {
-        return new VenyvaTaulukko();
-    }
-
-    VenyvaTaulukko uusiParametreilla(int kapasiteetti, int kasvatussuhde) {
-        return new VenyvaTaulukko(kapasiteetti, kasvatussuhde);
-    }
-
     /*
      * TESTIT --------------------------------
      */
-
-    @Test
-    public void parametritonKonstruktoriLuoOlion() {
-        assertNotNull(uusiParametriton());
-    }
-
-    @Test
-    public void kaksiparametrinenKonstruktoriLuoOlionKunKasvatussuhde2TaiYli() {
-        assertNotNull(uusiParametreilla(6, 2));
-        assertNotNull(uusiParametreilla(8, 3));
-        assertNotNull(uusiParametreilla(1, 90));
-        assertNotNull(uusiParametreilla(0, 9));
-    }
 
     @Test
     public void Uudessa0Alkiota() {
@@ -171,7 +149,7 @@ public class VenyvaTaulukkoTehokasTest {
         taulukko.lisaa(4);
         alkioitaPitaisiOlla(1);
 
-        taulukko.poista(4);
+        taulukko.poistaLyhentaen(4);
         alkioitaPitaisiOlla(0);
     }
 
@@ -200,7 +178,7 @@ public class VenyvaTaulukkoTehokasTest {
         laskuri = laskuri + 4;
         alkioitaPitaisiOlla(laskuri);
 
-        taulukko.poista(900);
+        taulukko.poistaLyhentaen(900);
         alkioitaPitaisiOlla(laskuri);
     }
 

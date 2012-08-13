@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="8" failures="1" hostname="silja-PC" name="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" tests="36" time="0.936" timestamp="2012-08-13T10:56:50">
+<testsuite errors="4" failures="14" hostname="silja-PC" name="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" tests="36" time="0.671" timestamp="2012-08-13T14:41:25">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -215,12 +215,12 @@
     <property name="endorsed.classpath.cmd.line.arg" value="-Xbootclasspath/p:&apos;C:\Users\silja\Documents\GitHub\TiRa-labra\Verkkokirjasto\${endorsed.classpath}&apos;" />
     <property name="jar.index" value="false" />
     <property name="libs.spring-framework300.javadoc" value="" />
-    <property name="netbeans.automatic.build" value="true" />
     <property name="libs.MySQLDriver.src" value="" />
     <property name="java.vm.version" value="17.0-b17" />
     <property name="java.class.path" value="C:\Users\silja\Documents\GitHub\TiRa-labra\Verkkokirjasto\build\classes;C:\Program Files (x86)\NetBeans 6.9.1\platform\modules\ext\junit-4.5.jar;C:\Users\silja\Documents\GitHub\TiRa-labra\Verkkokirjasto\build\test\classes;C:\Program Files (x86)\NetBeans 6.9.1\java\ant\lib\ant-launcher.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\ant\lib\ant.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\ant\patches\72080.jar" />
     <property name="annotation.processing.processor.options" value="" />
     <property name="libs.hibernate-persistence.classpath" value="C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\antlr-2.7.6.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\asm.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\asm-attrs.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\cglib-2.1.3.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\commons-collections-2.1.1.jar;C:\Program Files (x86)\NetBeans 6.9.1\ide\modules\ext\commons-logging-1.1.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\dom4j-1.6.1.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\ehcache-1.2.3.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\jdbc2_0-stdext.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\jta.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate3.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-tools.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-annotations.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-commons-annotations.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-entitymanager.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\javassist.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\ejb3-persistence.jar" />
+    <property name="tests.failed" value="true" />
     <property name="os.arch" value="x86" />
     <property name="javac.deprecation" value="false" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
@@ -265,107 +265,124 @@
   </properties>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjaSuhteikkoTayttaaVerkkoehdon" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoTayttaaVerkkoehdon" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksisilmukkainenSymmetrinenEiTaytaVerkkoehtoa" time="0.016" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="silmukatonEisymmetrinenEiTaytaVerkkoehtoa" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellisessa5PisteisessaVerkossaKaikkiAsteet4" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein1PisteisessaJossaSilmukka" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein2PisteisessaJossaYhteys1_2" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksisilmukkainenSymmetrinenEiTaytaVerkkoehtoa" time="0.015">
+    <failure message="Piti olla silmukka." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Piti olla silmukka.
+	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.yksisilmukkainenSymmetrinenEiTaytaVerkkoehtoa(SuhteikkoanalyysikirjastoTest.java:48)
+</failure>
+  </testcase>
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="silmukatonEisymmetrinenEiTaytaVerkkoehtoa" time="0.0">
+    <failure message="Ei pidä olla symmetrinen." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Ei pidä olla symmetrinen.
+	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.silmukatonEisymmetrinenEiTaytaVerkkoehtoa(SuhteikkoanalyysikirjastoTest.java:61)
+</failure>
+  </testcase>
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellisessa5PisteisessaVerkossaKaikkiAsteet4" time="0.0">
+    <failure message="Tuloaste väärin." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Tuloaste väärin.
+	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.taydellisessa5PisteisessaVerkossaKaikkiAsteet4(SuhteikkoanalyysikirjastoTest.java:75)
+</failure>
+  </testcase>
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein1PisteisessaJossaSilmukka" time="0.0">
+    <failure message="Tuloaste väärin." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Tuloaste väärin.
+	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.asteetOikein1PisteisessaJossaSilmukka(SuhteikkoanalyysikirjastoTest.java:87)
+</failure>
+  </testcase>
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein2PisteisessaJossaYhteys1_2" time="0.0">
+    <failure message="Tuloaste väärin pisteellä 2." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Tuloaste väärin pisteellä 2.
+	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.asteetOikein2PisteisessaJossaYhteys1_2(SuhteikkoanalyysikirjastoTest.java:100)
+</failure>
+  </testcase>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjaVerkkoOnSaannollinen" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoOnSaannollinen" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="josEiVerkkoNiinEiSaannollinenVaikkaLahtoasteetSamat" time="0.094" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="josEiVerkkoNiinEiSaannollinenVaikkaLahtoasteetSamat" time="0.0">
+    <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
+	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.josEiVerkkoNiinEiSaannollinenVaikkaLahtoasteetSamat(SuhteikkoanalyysikirjastoTest.java:123)
+</failure>
+  </testcase>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yhteydettomatOvatSaannollisia" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjaOnTaydellinen" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoOnTaydellinen" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenSilmukallinenOnTaydellinen" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteinenEpasymmetrinenTaydellinenOnTaydellinen" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoOnTaydellinen" time="0.0">
+    <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
+	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.taydellinenVerkkoOnTaydellinen(SuhteikkoanalyysikirjastoTest.java:147)
+</failure>
+  </testcase>
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenSilmukallinenOnTaydellinen" time="0.0">
+    <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
+	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.taydellinenSilmukallinenOnTaydellinen(SuhteikkoanalyysikirjastoTest.java:153)
+</failure>
+  </testcase>
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteinenEpasymmetrinenTaydellinenOnTaydellinen" time="0.015">
+    <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
+	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.kaksipisteinenEpasymmetrinenTaydellinenOnTaydellinen(SuhteikkoanalyysikirjastoTest.java:159)
+</failure>
+  </testcase>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yhteydetonUseampipisteinenEiTaydellinen" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjaOnTaydellinenVerkko" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoOnTaydellinenVerkko" time="0.109" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoOnTaydellinenVerkko" time="0.016">
+    <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
+	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.taydellinenVerkkoOnTaydellinenVerkko(SuhteikkoanalyysikirjastoTest.java:184)
+</failure>
+  </testcase>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenSuhteikkoEiTaydellinenVerkkoJosEiVerkko" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yhteydetonUseampipisteinenEiTaydellinenVerkko" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjaOnTaydellinenVerkkoSeuraajienAvulla" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoOnTaydellinenVerkkoSeuraajienAvulla" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenSuhteikkoEiTaydellinenVerkkoSeuraajienAvullaJosEiVerkko" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yhteydetonUseampipisteinenEiTaydellinenVerkkoSeuraajienAvulla" time="0.094" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksipisteisellaOnJuuri" time="0.015">
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yhteydetonUseampipisteinenEiTaydellinenVerkkoSeuraajienAvulla" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksipisteisellaOnJuuri" time="0.109">
     <error message="toteuttamatta" type="java.lang.Error">java.lang.Error: toteuttamatta
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:314)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:172)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:222)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:215)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(Suhteikkoanalyysikirjasto.java:202)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:315)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:175)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:223)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:216)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(Suhteikkoanalyysikirjasto.java:203)
 	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.yksipisteisellaOnJuuri(SuhteikkoanalyysikirjastoTest.java:240)
 </error>
   </testcase>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2OnJuuri" time="0.0">
     <error message="toteuttamatta" type="java.lang.Error">java.lang.Error: toteuttamatta
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:314)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:172)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:222)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:215)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(Suhteikkoanalyysikirjasto.java:202)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:315)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:175)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:223)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:216)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(Suhteikkoanalyysikirjasto.java:203)
 	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.kaksipisteisellaJossaYhteys1_2OnJuuri(SuhteikkoanalyysikirjastoTest.java:246)
 </error>
   </testcase>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjallaEiJuuria" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="useampipisteisellaJossaEiYhteyksiaEiJuuria" time="0.0">
     <error message="toteuttamatta" type="java.lang.Error">java.lang.Error: toteuttamatta
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:314)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:172)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:222)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:215)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(Suhteikkoanalyysikirjasto.java:202)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:315)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:175)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:223)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:216)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(Suhteikkoanalyysikirjasto.java:203)
 	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.useampipisteisellaJossaEiYhteyksiaEiJuuria(SuhteikkoanalyysikirjastoTest.java:258)
 </error>
   </testcase>
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksipisteisellaOnJuuriVaritettavalle" time="0.0">
-    <error message="toteuttamatta" type="java.lang.Error">java.lang.Error: toteuttamatta
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:314)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:172)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:222)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:215)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(Suhteikkoanalyysikirjasto.java:202)
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksipisteisellaOnJuuriVaritettavalle" time="0.031">
+    <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
 	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.yksipisteisellaOnJuuriVaritettavalle(SuhteikkoanalyysikirjastoTest.java:271)
-</error>
+</failure>
   </testcase>
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2OnJuuriVaritettavalle" time="0.109">
-    <error message="toteuttamatta" type="java.lang.Error">java.lang.Error: toteuttamatta
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:314)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:172)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:222)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:215)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(Suhteikkoanalyysikirjasto.java:202)
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2OnJuuriVaritettavalle" time="0.0">
+    <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
 	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.kaksipisteisellaJossaYhteys1_2OnJuuriVaritettavalle(SuhteikkoanalyysikirjastoTest.java:277)
-</error>
+</failure>
   </testcase>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjallaEiJuuriaVaritettavalle" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="useampipisteisellaJossaEiYhteyksiaEiJuuriaVaritettavalle" time="0.0">
-    <error message="toteuttamatta" type="java.lang.Error">java.lang.Error: toteuttamatta
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:314)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:172)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:222)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:215)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(Suhteikkoanalyysikirjasto.java:202)
-	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.useampipisteisellaJossaEiYhteyksiaEiJuuriaVaritettavalle(SuhteikkoanalyysikirjastoTest.java:289)
-</error>
-  </testcase>
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="useampipisteisellaJossaEiYhteyksiaEiJuuriaVaritettavalle" time="0.016" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1" time="0.0">
     <error message="toteuttamatta" type="java.lang.Error">java.lang.Error: toteuttamatta
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:314)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:172)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:222)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:215)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:315)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:175)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:223)
+	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:216)
 	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1(SuhteikkoanalyysikirjastoTest.java:303)
 </error>
   </testcase>
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1Varitettavalle" time="0.093">
-    <error message="toteuttamatta" type="java.lang.Error">java.lang.Error: toteuttamatta
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuVarittomalle(Suhteikkoanalyysikirjasto.java:314)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(Suhteikkoanalyysikirjasto.java:172)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.onJuuri(Suhteikkoanalyysikirjasto.java:222)
-	at suhteikkoanalyysi.Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(Suhteikkoanalyysikirjasto.java:215)
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1Varitettavalle" time="0.109">
+    <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
 	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1Varitettavalle(SuhteikkoanalyysikirjastoTest.java:314)
-</error>
+</failure>
   </testcase>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjassaEiRenkaita" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksipisteinenOnYhtenainen" time="0.0">
