@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="4" hostname="silja-PC" name="relaatiot.RelaatioVenyvallaTaulukollaTest" tests="7" time="0.188" timestamp="2012-08-13T14:41:24">
+<testsuite errors="0" failures="4" hostname="silja-PC" name="relaatiot.RelaatioVenyvallaTaulukollaTest" tests="7" time="0.296" timestamp="2012-08-13T15:00:41">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -262,10 +262,10 @@
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.arch.data.model" value="32" />
   </properties>
-  <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="tyhjaRelaatioLuotavissa" time="0.015" />
+  <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="tyhjaRelaatioLuotavissa" time="0.016" />
   <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="seuraajatNullUudessa" time="0.0" />
   <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="eiYhteyksiaUudessa" time="0.0" />
-  <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="onYhteysKunLisattyYhdelle" time="0.047">
+  <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="onYhteysKunLisattyYhdelle" time="0.062">
     <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
 	at relaatiot.RelaatioVenyvallaTaulukollaTest.onYhteysKunLisattyYhdelle(RelaatioVenyvallaTaulukollaTest.java:53)
 </failure>
@@ -275,12 +275,12 @@
 	at relaatiot.RelaatioVenyvallaTaulukollaTest.onYhteysKunLisattyKaikille(RelaatioVenyvallaTaulukollaTest.java:65)
 </failure>
   </testcase>
-  <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="lisaaminenLisaaSeuraajajoukkoonYhdelle" time="0.0">
+  <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="lisaaminenLisaaSeuraajajoukkoonYhdelle" time="0.109">
     <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
 	at relaatiot.RelaatioVenyvallaTaulukollaTest.lisaaminenLisaaSeuraajajoukkoonYhdelle(RelaatioVenyvallaTaulukollaTest.java:73)
 </failure>
   </testcase>
-  <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="lisaaminenLisaaSeuraajajoukkoonKaikille" time="0.016">
+  <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="lisaaminenLisaaSeuraajajoukkoonKaikille" time="0.0">
     <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
 	at relaatiot.RelaatioVenyvallaTaulukollaTest.lisaaminenLisaaSeuraajajoukkoonKaikille(RelaatioVenyvallaTaulukollaTest.java:85)
 </failure>

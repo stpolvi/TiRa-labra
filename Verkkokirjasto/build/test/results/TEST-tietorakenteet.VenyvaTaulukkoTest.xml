@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="7" hostname="silja-PC" name="tietorakenteet.VenyvaTaulukkoTest" tests="14" time="0.343" timestamp="2012-08-13T14:41:31">
+<testsuite errors="0" failures="0" hostname="silja-PC" name="tietorakenteet.VenyvaTaulukkoTest" tests="14" time="0.515" timestamp="2012-08-13T15:00:47">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -263,51 +263,20 @@
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.arch.data.model" value="32" />
   </properties>
-  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="parametritonKonstruktoriLuoOlion" time="0.015" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="parametritonKonstruktoriLuoOlion" time="0.016" />
   <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="kaksiparametrinenKonstruktoriLuoOlionKunKasvatussuhde2TaiYli" time="0.0" />
-  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="Uudessa0Alkiota" time="0.031" />
-  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="AlkioidenLkmKasvaaKunLisataan" time="0.0">
-    <failure message="Alkioita pitäisi olla 9 mutta niitä oli 8" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Alkioita pitäisi olla 9 mutta niitä oli 8
-	at tietorakenteet.VenyvaTaulukkoTest.alkioitaPitaisiOlla(VenyvaTaulukkoTest.java:67)
-	at tietorakenteet.VenyvaTaulukkoTest.AlkioidenLkmKasvaaKunLisataan(VenyvaTaulukkoTest.java:110)
-</failure>
-  </testcase>
-  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaaYksiKerranJaEtsi" time="0.016">
-    <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
-	at tietorakenteet.VenyvaTaulukkoTest.lisaaYksiKerranJaEtsi(VenyvaTaulukkoTest.java:123)
-</failure>
-  </testcase>
-  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaaYksiKahdestiJaEtsi" time="0.0">
-    <failure type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: 
-	at tietorakenteet.VenyvaTaulukkoTest.lisaaYksiKahdestiJaEtsi(VenyvaTaulukkoTest.java:131)
-</failure>
-  </testcase>
-  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaa10PerakkaistaLukuaKerranJaEtsi" time="0.0">
-    <failure message="Luku 1 puuttui." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Luku 1 puuttui.
-	at tietorakenteet.VenyvaTaulukkoTest.lisaa10PerakkaistaLukuaKerranJaEtsi(VenyvaTaulukkoTest.java:139)
-</failure>
-  </testcase>
+  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="Uudessa0Alkiota" time="0.047" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="AlkioidenLkmKasvaaKunLisataan" time="0.0" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaaYksiKerranJaEtsi" time="0.0" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaaYksiKahdestiJaEtsi" time="0.0" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaa10PerakkaistaLukuaKerranJaEtsi" time="0.0" />
   <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaaYksiKerranJaPerakkaishae" time="0.0" />
   <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaaYksiKahdestiJaPerakkaishae" time="0.0" />
-  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaa10PerakkaistaLukuaKerranJaPerakkaishae" time="0.0">
-    <failure message="Luku 1 puuttui." type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Luku 1 puuttui.
-	at tietorakenteet.VenyvaTaulukkoTest.lisaa10PerakkaistaLukuaKerranJaPerakkaishae(VenyvaTaulukkoTest.java:160)
-</failure>
-  </testcase>
-  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="poistaminenTyhjastaEiKaadu" time="0.0" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaa10PerakkaistaLukuaKerranJaPerakkaishae" time="0.0" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="poistaminenTyhjastaEiKaadu" time="0.109" />
   <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaaJaPoistaYksiSamaAlkioJolloinAlkioita0" time="0.0" />
-  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaaJaPoista10SamaaAlkiotaJolloinAlkioita0" time="0.093">
-    <failure message="Alkioita pitäisi olla 0 mutta niitä oli 5" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Alkioita pitäisi olla 0 mutta niitä oli 5
-	at tietorakenteet.VenyvaTaulukkoTest.alkioitaPitaisiOlla(VenyvaTaulukkoTest.java:67)
-	at tietorakenteet.VenyvaTaulukkoTest.lisaaJaPoista10SamaaAlkiotaJolloinAlkioita0(VenyvaTaulukkoTest.java:184)
-</failure>
-  </testcase>
-  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaaminenJaPoistaminenMuuttavatAlkioidenMaaraaOikein" time="0.0">
-    <failure message="Alkioita pitäisi olla 11 mutta niitä oli 15" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: Alkioita pitäisi olla 11 mutta niitä oli 15
-	at tietorakenteet.VenyvaTaulukkoTest.alkioitaPitaisiOlla(VenyvaTaulukkoTest.java:67)
-	at tietorakenteet.VenyvaTaulukkoTest.lisaaminenJaPoistaminenMuuttavatAlkioidenMaaraaOikein(VenyvaTaulukkoTest.java:197)
-</failure>
-  </testcase>
+  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaaJaPoista10SamaaAlkiotaJolloinAlkioita0" time="0.0" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoTest" name="lisaaminenJaPoistaminenMuuttavatAlkioidenMaaraaOikein" time="0.109" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

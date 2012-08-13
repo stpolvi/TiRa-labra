@@ -50,7 +50,11 @@ public class Tyokalut {
      */
 
     public static void kopioiIntTaulukkoToiseen(int[] kopioitava, int[] uusi) {
+        int lyhemmanPituus = minimi(kopioitava.length, uusi.length);
 
+        for (int i=0; i<lyhemmanPituus; i++) {
+            uusi[i] = kopioitava[i];
+        }
     }
 
 

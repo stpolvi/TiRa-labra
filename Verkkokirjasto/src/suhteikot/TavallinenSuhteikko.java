@@ -30,6 +30,7 @@ public class TavallinenSuhteikko extends Suhteikko {
 
     public TavallinenSuhteikko(Relaatio relaatio) {
         super(relaatio);
+//        relaatio.jarjestaRakenteet();
     }
 
     /**
