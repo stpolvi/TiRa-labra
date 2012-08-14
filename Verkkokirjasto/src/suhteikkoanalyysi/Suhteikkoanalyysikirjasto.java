@@ -154,11 +154,13 @@ public class Suhteikkoanalyysikirjasto {
         return true;
     }
 
-      /**
-     * TODO renkaat:
+    /**
+     * TODO: renkaat
+     * Rengas verkossa on vähintään kahden muun pisteen kautta kulkeva
+     * kulku jostakin pisteestä itseensä.
      * Huom. kulun täytyy kulkea vähintään kolmen pisteen kautta.
-     * @param s
-     * @return
+     * @param s analysoitava suhteikko
+     * @return onko suhteikossa rengas
      */
 
     public static boolean sisaltaaRenkaan(Suhteikko s) {
@@ -179,7 +181,6 @@ public class Suhteikkoanalyysikirjasto {
 
     public static boolean onKulkuLeveyshaulla(Suhteikko s, int alkupiste, int loppupiste) {
         if (alkupiste == loppupiste) return true;
-
         VaritettavaSuhteikko v;
         try {
             v = (VaritettavaSuhteikko) s;
