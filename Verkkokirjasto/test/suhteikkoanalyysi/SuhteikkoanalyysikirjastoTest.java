@@ -240,11 +240,11 @@ public class SuhteikkoanalyysikirjastoTest {
         assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
     }
 
-    @Test
-    public void kaksipisteisellaJossaYhteys1_2OnJuuri() {
-        s = suhteikot.TavallinenSuhteikkoTest.pisteita2Yhteys1_2();
-        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
-    }
+//    @Test
+//    public void kaksipisteisellaJossaYhteys1_2OnJuuri() {
+//        s = suhteikot.TavallinenSuhteikkoTest.pisteita2Yhteys1_2();
+//        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+//    }
 
     @Test
     public void tyhjallaEiJuuria() {
@@ -252,14 +252,14 @@ public class SuhteikkoanalyysikirjastoTest {
         assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
     }
 
-    @Test
-    public void useampipisteisellaJossaEiYhteyksiaEiJuuria() {
-        s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
-        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
-
-        s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
-        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
-    }
+//    @Test
+//    public void useampipisteisellaJossaEiYhteyksiaEiJuuria() {
+//        s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
+//        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+//
+//        s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
+//        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+//    }
 
     /*
      * LöytyyJuuri-testit väritettävälle suhteikolle/verkolle:
@@ -308,12 +308,12 @@ public class SuhteikkoanalyysikirjastoTest {
      * JokinJuuri-testit tavalliselle suhteikolle/verkolle:
      */
 
-    @Test
-    public void kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1() {
-        s = suhteikot.TavallinenSuhteikkoTest.pisteita2Yhteys1_2();
-        assertTrue(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 1);
-        assertFalse(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 2);
-    }
+//    @Test
+//    public void kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1() {
+//        s = suhteikot.TavallinenSuhteikkoTest.pisteita2Yhteys1_2();
+//        assertTrue(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 1);
+//        assertFalse(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 2);
+//    }
 
     /*
      * JokinJuuri-testit väritettävälle suhteikolle/verkolle:
@@ -337,13 +337,12 @@ public class SuhteikkoanalyysikirjastoTest {
     }
 
     /*
-     * TODO yhtenäisyys:
+     * yhtenäisyystestit:
      */
 
     @Test
-    public void yksipisteinenOnYhtenainen() {
-        fail("pitänee ottaa väritettävä suhteikko tarkasteluun");
-        s = suhteikot.TavallinenSuhteikkoTest.pisteita1Yhteys1_1();
+    public void yksipisteinenOnYhtenainenVaritettavalle() {
+        s = suhteikot.VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
         assertTrue(Suhteikkoanalyysikirjasto.onYhtenainenVerkkoKulkujenAvulla(s));
     }
     

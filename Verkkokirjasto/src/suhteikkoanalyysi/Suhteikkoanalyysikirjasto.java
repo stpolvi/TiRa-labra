@@ -162,11 +162,7 @@ public class Suhteikkoanalyysikirjasto {
      */
 
     public static boolean sisaltaaRenkaan(Suhteikko s) {
-        int alkupiste;
-
-        for (int i=1; i<=s.PISTEITA; i++) {
-
-        }
+        
 
         throw new Error("kesken");
     }
@@ -189,10 +185,11 @@ public class Suhteikkoanalyysikirjasto {
             v = (VaritettavaSuhteikko) s;
             return onKulkuLeveyshaullaVaritettavalle(v, alkupiste, loppupiste);
         } catch (ClassCastException e) {
-            return onKulkuVarittomalle(s, alkupiste, loppupiste);
+            throw new Error("Kulun tutkimista ei toteutettu muulle kuin "
+                    + "väritettävälle suhteikolle.");
         }
     }
-
+    
     /**
      * Onko suhteikossa juuria. Käyttää pieninJuuriBruteForce-metodia.
      * @param s analysoitava suhteikko
@@ -319,32 +316,30 @@ public class Suhteikkoanalyysikirjasto {
         return true;
     }
 
-    private static boolean onKulkuVarittomalle(Suhteikko s, int alkupiste, int loppupiste) {
-        throw new Error("toteuttamatta");
-    }
-
     private static boolean onKulkuLeveyshaullaVaritettavalle
             (VaritettavaSuhteikko v, int alkupiste, int loppupiste) {
 
-        v.alustaVarit();
+        v.varitaKaikki(Color.WHITE);
         Jono jono = new Jono();
         jono.lisaa(alkupiste);
-        int vuorossa = alkupiste;
+        int vuorossa;
+        IntSailio vuorossaOlevanSeuraajat;
 
         while (jono.alkioita() > 0) {
-            v.varita(vuorossa, Color.BLACK);
-            if (v.getSeuraajat(vuorossa) != null)
-                for (int seuraaja : v.getSeuraajat(vuorossa).toIntArray()) {
-                    if (v.getVari(seuraaja) != null &&
-                            v.getVari(seuraaja).equals(Color.BLACK)) continue;
-
-                    if (seuraaja == loppupiste) return true;
-
-                    jono.lisaa(seuraaja);
-                }
             vuorossa = jono.ota();
+            v.varita(vuorossa, Color.BLACK);
+            vuorossaOlevanSeuraajat = v.getSeuraajat(vuorossa);
+            if (vuorossaOlevanSeuraajat == null) continue;
+
+            for (int seuraaja : vuorossaOlevanSeuraajat.toIntArray()) {
+                if (v.getVari(seuraaja).equals(Color.BLACK)) continue;
+                if (seuraaja == loppupiste) return true;
+                jono.lisaa(seuraaja);
+            }
         }
         return false;
     }
+
+
 
 }
