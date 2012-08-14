@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="silja-PC" name="suhteikot.TavallinenSuhteikkoTest" tests="6" time="0.188" timestamp="2012-08-13T15:29:38">
+<testsuite errors="0" failures="0" hostname="silja-PC" name="suhteikot.TavallinenSuhteikkoTest" tests="6" time="0.172" timestamp="2012-08-14T16:55:18">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -263,9 +263,9 @@
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.arch.data.model" value="32" />
   </properties>
-  <testcase classname="suhteikot.TavallinenSuhteikkoTest" name="parametritonKonstruktoriLuoOlion" time="0.016" />
-  <testcase classname="suhteikot.TavallinenSuhteikkoTest" name="parametrillinenKonstruktoriLuoOlion" time="0.0" />
-  <testcase classname="suhteikot.TavallinenSuhteikkoTest" name="parametritonkonstruktoriAsettaaPisteidenLkmOikein" time="0.047" />
+  <testcase classname="suhteikot.TavallinenSuhteikkoTest" name="parametritonKonstruktoriLuoOlion" time="0.015" />
+  <testcase classname="suhteikot.TavallinenSuhteikkoTest" name="parametrillinenKonstruktoriLuoOlion" time="0.016" />
+  <testcase classname="suhteikot.TavallinenSuhteikkoTest" name="parametritonkonstruktoriAsettaaPisteidenLkmOikein" time="0.0" />
   <testcase classname="suhteikot.TavallinenSuhteikkoTest" name="parametrillinenKonstruktoriAsettaaPisteidenLkmOikein" time="0.0" />
   <testcase classname="suhteikot.TavallinenSuhteikkoTest" name="onKaikkiYhteydetTaydellisellaVerkolla" time="0.0" />
   <testcase classname="suhteikot.TavallinenSuhteikkoTest" name="seuraajatTaydellisessaVerkossaOikein" time="0.0" />

@@ -7,7 +7,6 @@ package suhteikot;
 
 import relaatiot.RelaatioVenyvallaTaulukolla;
 import java.awt.Color;
-import javax.swing.plaf.ColorUIResource;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

@@ -31,15 +31,15 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      */
     
     public void lisaaYhteys(int alkupiste, int loppupiste) {
-        VenyvaTaulukko seuraajat
+        VenyvaTaulukko vanhatSeuraajat
                 = (VenyvaTaulukko) getSeuraajat(alkupiste);
 
-        if (seuraajat == null) {
-            seuraajat = new VenyvaTaulukko();
-            setSeuraajat(alkupiste, seuraajat);
+        if (vanhatSeuraajat == null) {
+            vanhatSeuraajat = new VenyvaTaulukko();
+            setSeuraajat(alkupiste, vanhatSeuraajat);
         }
 
-        seuraajat.lisaa(loppupiste);
+        vanhatSeuraajat.lisaa(loppupiste);
     }
 
     /**
@@ -77,7 +77,8 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     public boolean onYhteys(int alkupiste, int loppupiste) {
         IntSailio seuraajat = getSeuraajat(alkupiste);
-        if (seuraajat == null) return false;
+        if (seuraajat == null)
+            return false;
         return seuraajat.etsi(loppupiste);
     }
 

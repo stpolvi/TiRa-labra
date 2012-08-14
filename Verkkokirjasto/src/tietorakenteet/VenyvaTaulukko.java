@@ -1,7 +1,6 @@
 
 package tietorakenteet;
 
-import tyokalut.Tyokalut;
 import java.util.Arrays;
 
 /**
@@ -202,11 +201,10 @@ public class VenyvaTaulukko implements IntSailio {
     }
 
     private void kasvataTaulukkoaJosTaynna() {
-        if (taulukkoTaynna()) {
-            int[] uusi = new int[uudenPituus()];
-            tyokalut.Tyokalut.kopioiIntTaulukkoToiseen(this.taulukko, uusi);
-            this.taulukko = uusi;
-        }
+        if (!taulukkoTaynna()) return;
+        int[] uusi = new int[uudenPituus()];
+        tyokalut.Tyokalut.kopioiIntTaulukkoToiseen(this.taulukko, uusi);
+        this.taulukko = uusi;
     }
 
     private int uudenPituus() {

@@ -153,30 +153,8 @@ public class Suhteikkoanalyysikirjasto {
 
         return true;
     }
-    
-    /**
-     * TODO kulut:
-     * 
-     * Onko suhteikossa kulku pisteestä toiseen:
-     * onko alkupisteestä reitti, mahdollisesti muiden pisteiden kautta,
-     * yhteyksiä pitkin loppupisteeseen.
-     * @param s analysoitava suhteikko
-     * @param alkupiste piste josta lähdetään
-     * @param loppupiste piste johon yritetään kulkea
-     * @return onko kulkua olemassa
-     */
 
-    public static boolean onKulkuLeveyshaulla(Suhteikko s, int alkupiste, int loppupiste) {
-        VaritettavaSuhteikko v;
-        try {
-            v = (VaritettavaSuhteikko) s;
-            return onKulkuLeveyshaullaVaritettavalle(v, alkupiste, loppupiste);
-        } catch (ClassCastException e) {
-            return onKulkuVarittomalle(s, alkupiste, loppupiste);
-        }
-    }
-    
-    /**
+      /**
      * TODO renkaat:
      * Huom. kulun täytyy kulkea vähintään kolmen pisteen kautta.
      * @param s
@@ -191,6 +169,28 @@ public class Suhteikkoanalyysikirjasto {
         }
 
         throw new Error("kesken");
+    }
+    
+    /**
+     * Onko suhteikossa kulku pisteestä toiseen:
+     * onko alkupisteestä reitti, mahdollisesti muiden pisteiden kautta,
+     * yhteyksiä pitkin loppupisteeseen.
+     * @param s analysoitava suhteikko
+     * @param alkupiste piste josta lähdetään
+     * @param loppupiste piste johon yritetään kulkea
+     * @return onko kulkua olemassa
+     */
+
+    public static boolean onKulkuLeveyshaulla(Suhteikko s, int alkupiste, int loppupiste) {
+        if (alkupiste == loppupiste) return true;
+
+        VaritettavaSuhteikko v;
+        try {
+            v = (VaritettavaSuhteikko) s;
+            return onKulkuLeveyshaullaVaritettavalle(v, alkupiste, loppupiste);
+        } catch (ClassCastException e) {
+            return onKulkuVarittomalle(s, alkupiste, loppupiste);
+        }
     }
 
     /**
@@ -217,6 +217,14 @@ public class Suhteikkoanalyysikirjasto {
         }
         return -1;
     }
+
+    /**
+     * Onko annettu piste suhteikon juuri:
+     * onko siitä kulku kaikkiin muihin pisteisiin.
+     * @param s analysoitava suhteikko
+     * @param piste onko juuri
+     * @return oliko juuri
+     */
 
     public static boolean onJuuri(Suhteikko s, int piste) {
         for (int i=1; i<=s.PISTEITA; i++) {
@@ -315,27 +323,28 @@ public class Suhteikkoanalyysikirjasto {
         throw new Error("toteuttamatta");
     }
 
-    private static boolean onKulkuLeveyshaullaVaritettavalle(VaritettavaSuhteikko v, int alkupiste, int loppupiste) {
-        Jono jono = new Jono();
+    private static boolean onKulkuLeveyshaullaVaritettavalle
+            (VaritettavaSuhteikko v, int alkupiste, int loppupiste) {
+
         v.alustaVarit();
-        v.varita(alkupiste, Color.BLUE);
+        Jono jono = new Jono();
+        jono.lisaa(alkupiste);
         int vuorossa = alkupiste;
 
         while (jono.alkioita() > 0) {
-            for (int seuraaja : v.getSeuraajat(vuorossa).toIntArray()) {
-                if (! v.getVari(seuraaja).equals(Color.BLACK)) {
-                    if (seuraaja == loppupiste)
-                        return true;
+            v.varita(vuorossa, Color.BLACK);
+            if (v.getSeuraajat(vuorossa) != null)
+                for (int seuraaja : v.getSeuraajat(vuorossa).toIntArray()) {
+                    if (v.getVari(seuraaja) != null &&
+                            v.getVari(seuraaja).equals(Color.BLACK)) continue;
 
-                    v.varita(seuraaja, Color.BLACK);
+                    if (seuraaja == loppupiste) return true;
+
                     jono.lisaa(seuraaja);
                 }
-            }
             vuorossa = jono.ota();
         }
-
         return false;
-
     }
 
 }

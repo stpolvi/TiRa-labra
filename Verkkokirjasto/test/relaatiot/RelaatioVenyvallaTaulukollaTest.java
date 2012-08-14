@@ -21,6 +21,10 @@ public class RelaatioVenyvallaTaulukollaTest {
         relaatio = new RelaatioVenyvallaTaulukolla(testattavanKoko);
     }
 
+    private void jarjestaRelaatio() {
+        relaatio.jarjestaRakenteet();
+    }
+
     /*
      * TESTIT ------------------------------------------------------
      */
@@ -50,6 +54,7 @@ public class RelaatioVenyvallaTaulukollaTest {
     public void onYhteysKunLisattyYhdelle() {
         assertFalse(relaatio.onYhteys(1,1));
         relaatio.lisaaYhteys(1,1);
+        jarjestaRelaatio();
         assertTrue(relaatio.onYhteys(1,1));
     }
 
@@ -61,6 +66,7 @@ public class RelaatioVenyvallaTaulukollaTest {
         for (int i=1; i<=testattavanKoko; i++) {
             relaatio.lisaaYhteys(i,lisattavaLoppupiste);
         }
+        jarjestaRelaatio();
         for (int i=1; i<=testattavanKoko; i++) {
             assertTrue(relaatio.onYhteys(i,lisattavaLoppupiste));
         }
@@ -70,6 +76,7 @@ public class RelaatioVenyvallaTaulukollaTest {
     public void lisaaminenLisaaSeuraajajoukkoonYhdelle() {
         assertFalse(relaatio.onYhteys(1,lisattavaLoppupiste));
         relaatio.lisaaYhteys(1,lisattavaLoppupiste);
+        jarjestaRelaatio();
         assertTrue(relaatio.getSeuraajat(1).etsi(lisattavaLoppupiste));
     }
 
@@ -81,6 +88,7 @@ public class RelaatioVenyvallaTaulukollaTest {
         for (int i=1; i<=testattavanKoko; i++) {
             relaatio.lisaaYhteys(i,lisattavaLoppupiste);
         }
+        jarjestaRelaatio();
         for (int i=1; i<=testattavanKoko; i++) {
             assertTrue(relaatio.getSeuraajat(i).etsi(lisattavaLoppupiste));
         }

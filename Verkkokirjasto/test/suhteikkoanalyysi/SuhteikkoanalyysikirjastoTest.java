@@ -274,6 +274,17 @@ public class SuhteikkoanalyysikirjastoTest {
     @Test
     public void kaksipisteisellaJossaYhteys1_2OnJuuriVaritettavalle() {
         s = suhteikot.VaritettavaSuhteikkoTest.pisteita2Yhteys1_2();
+        assertTrue("Yhteys väliltä 1-2 puuttuu.", s.onYhteys(1, 2));
+
+
+
+        assertTrue("Leveyshaulla ei löytynyt kulkua 1-2.",
+                Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(s, 1, 2));
+        assertTrue("Pisteen 1 piti olla juuri.",
+                Suhteikkoanalyysikirjasto.onJuuri(s, 1));
+        assertTrue("Pienin juuri piti olla 1.",
+                Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 1);
+        
         assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
     }
 

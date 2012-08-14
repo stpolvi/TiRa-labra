@@ -43,6 +43,8 @@ public abstract class Relaatio {
 
     /**
      * Onko pisteiden välillä yhteys.
+     * Huomaa, että tämä metodi ei toimi, mikäli relaation
+     * rakenteita ei ole järjestetty.
      * @param alkupiste piste josta yhteys olisi
      * @param loppupiste piste johon yhteys olisi
      * @return oliko yhteyttä alkupisteestä loppupisteeseen
