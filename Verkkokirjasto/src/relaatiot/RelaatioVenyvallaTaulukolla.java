@@ -59,6 +59,8 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     /**
      * Pisteen seuraajat taulukossa.
+     * Aikavaativuus O(1)
+     * Tilavaativuus O(1)
      * @param piste piste jonka seuraajat halutaan
      * @return seuraajat taulukossa
      */
@@ -70,18 +72,19 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
     /**
      * Onko alkupisteestä loppupisteeseen yhteys.
      * Huomaa, että jarjestaRakenteet-metodia on kutsuttava ennen tämän metodin käyttöä.
+     * Aikavaativuus: O(log pisteidenLkm)
+     * Tilavaativuus: O(1)
      * @param alkupiste piste josta yhteys on
      * @param loppupiste piste johon yhteys on
      * @return oliko pisteiden välillä tähän suuntaan yhteys
      */
 
     public boolean onYhteys(int alkupiste, int loppupiste) {
-        IntSailio seuraajat = getSeuraajat(alkupiste);
-        if (seuraajat == null)
+        IntSailio seuraajat = getSeuraajat(alkupiste);  // O(1)
+        if (seuraajat == null)                          // O(1)
             return false;
-        return seuraajat.etsi(loppupiste);
-    }
-
+        return seuraajat.etsi(loppupiste);   // O(log n) missä n seuraajien lkm
+    }                                        //      -> O(log pisteidenLkm)
 
 
     /*

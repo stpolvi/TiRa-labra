@@ -7,11 +7,10 @@ import java.util.Arrays;
  * Venyvä int-taulukko, jonka pituus voi olla suurempi kuin alkioiden lukumäärä.
  * Kapseloi javan perustaulukkorakenteen int[], jota pidentää
  * lisättäessä kaksinkertaiseksi.
- * Tietorakenne on suunniteltu hieman nopeammin rakennettavaksi kuin
- * VenyvaTaulukko. Kapseloitu taulukko voidaan katkaista oikean pituiseksi metodilla.
+ * Kapseloitu taulukko voidaan katkaista oikean pituiseksi metodilla.
  *
  * Lisääminen keskimäärin ?????, poisto O(1)
- * järjestäminen toteutetaan quicksortilla
+ * järjestäminen toteutetaan O(n log n)
  * etsiminen: -jos järjestyksessä, binäärihaulla O(log n)
  * -muutoin peräkkäishaulla O(n)
  * @author silja
@@ -92,7 +91,6 @@ public class VenyvaTaulukko implements IntSailio {
 
     
     public boolean etsi(int etsittava) {
-//        this.jarjesta();
         return binhae(etsittava) >= 0;
     }
     
@@ -104,23 +102,23 @@ public class VenyvaTaulukko implements IntSailio {
      */
 
     public int binhae(int etsittava) {
-        return Arrays.binarySearch(this.taulukko, etsittava);
-//        int vasen = 0;
-//        int oikea = alkioita() - INDEKSIKORJAUS;
-//        int keski;
-//
-//        while (vasen <= oikea) {
-//            keski = Tyokalut.keskiarvo(vasen, oikea);
-//
-//            if (taulukko[keski] == etsittava)
-//                return keski;
-//            else if (taulukko[keski] > etsittava)
-//                oikea = keski-1;
-//            else
-//                vasen = keski+1;
-//        }
-//
-//        return -1;
+//        return Arrays.binarySearch(this.taulukko, etsittava);
+        int vasen = 0;
+        int oikea = alkioita() - INDEKSIKORJAUS;
+        int keski;
+
+        while (vasen <= oikea) {
+            keski = tyokalut.Tyokalut.keskiarvo(vasen, oikea);
+
+            if (taulukko[keski] == etsittava)
+                return keski;
+            else if (taulukko[keski] > etsittava)
+                oikea = keski-1;
+            else
+                vasen = keski+1;
+        }
+
+        return -1;
     }
 
 

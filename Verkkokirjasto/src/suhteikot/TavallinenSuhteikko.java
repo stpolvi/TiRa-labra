@@ -43,7 +43,8 @@ public class TavallinenSuhteikko extends Suhteikko {
 
     @Override
     public boolean onYhteys(int alkupiste, int loppupiste) {
-        if (this.relaatio == null) return false;
+        if (this.relaatio == null)
+            return false;
         return relaatio.onYhteys(alkupiste,loppupiste);
     }
     

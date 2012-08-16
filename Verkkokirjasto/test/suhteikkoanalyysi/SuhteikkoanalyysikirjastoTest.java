@@ -233,25 +233,25 @@ public class SuhteikkoanalyysikirjastoTest {
     /*
      * LöytyyJuuri-testit tavalliselle suhteikolle/verkolle:
      */
-    
-    @Test
-    public void yksipisteisellaOnJuuri() {
-        s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(1);
-        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
-    }
-
+//
+//    @Test
+//    public void yksipisteisellaOnJuuri() {
+//        s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(1);
+//        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+//    }
+//
 //    @Test
 //    public void kaksipisteisellaJossaYhteys1_2OnJuuri() {
 //        s = suhteikot.TavallinenSuhteikkoTest.pisteita2Yhteys1_2();
 //        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
 //    }
-
-    @Test
-    public void tyhjallaEiJuuria() {
-        s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
-    }
-
+//
+//    @Test
+//    public void tyhjallaEiJuuria() {
+//        s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
+//        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+//    }
+//
 //    @Test
 //    public void useampipisteisellaJossaEiYhteyksiaEiJuuria() {
 //        s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
@@ -276,8 +276,6 @@ public class SuhteikkoanalyysikirjastoTest {
         s = suhteikot.VaritettavaSuhteikkoTest.pisteita2Yhteys1_2();
         assertTrue("Yhteys väliltä 1-2 puuttuu.", s.onYhteys(1, 2));
 
-
-
         assertTrue("Leveyshaulla ei löytynyt kulkua 1-2.",
                 Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(s, 1, 2));
         assertTrue("Pisteen 1 piti olla juuri.",
@@ -301,6 +299,12 @@ public class SuhteikkoanalyysikirjastoTest {
 
         s = suhteikot.VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(9);
         assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+    }
+
+    @Test
+    public void taydellisellaOnJuuri() {
+        s = suhteikot.VaritettavaSuhteikkoTest.uusiSuhteikkoTaydellinenN(6);
+        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
     }
 
 
@@ -329,15 +333,15 @@ public class SuhteikkoanalyysikirjastoTest {
     /*
      * TODO Renkaiden olemassaolo:
      */
-
-    @Test
-    public void tyhjassaEiRenkaita() {
-        s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-
-    }
+//
+//    @Test
+//    public void tyhjassaEiRenkaita() {
+//        s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
+//
+//    }
 
     /*
-     * yhtenäisyystestit:
+     * yhtenäisyystestit: kulkujen avulla
      */
 
     @Test
@@ -345,5 +349,24 @@ public class SuhteikkoanalyysikirjastoTest {
         s = suhteikot.VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
         assertTrue(Suhteikkoanalyysikirjasto.onYhtenainenVerkkoKulkujenAvulla(s));
     }
+
+    @Test
+    public void taydellinenVerkkoYhtenainen() {
+        s = suhteikot.VaritettavaSuhteikkoTest.taydellinen5PisteinenVerkko();
+        assertTrue(Suhteikkoanalyysikirjasto.onYhtenainenVerkkoKulkujenAvulla(s));
+    }
+
+    /*
+     * TODO puuehtotestit:
+     */
+
+    @Test
+    public void tyhjaOnPuu() {
+        fail("kesken");
+    }
+
+    /*
+     *
+     */
     
 }

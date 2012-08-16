@@ -8,8 +8,7 @@ import tietorakenteet.*;
 
 /**
  * Kirjasto, joka tarjoaa suhteikkojen rakenteen tutkimiseen sopivia algoritmeja.
- * TODO: kaikkien metodien javadocciin O-vaativuusanalyysi
- * TODO: code coverage -plugari
+ * O-analyysiä javadocissa metodien kohdalla.
  * @author silja
  */
 public class Suhteikkoanalyysikirjasto {
@@ -18,23 +17,27 @@ public class Suhteikkoanalyysikirjasto {
     
     /**
      * Täyttääkö suhteikko verkkoehdon: onko se onSilmukaton ja symmetrinen
+     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
      * @param suhteikko analysoitava suhteikko
      * @return täyttääkö verkkoehdon
      */
 
     public static boolean tayttaaVerkkoehdon(Suhteikko suhteikko) {
         return onSilmukaton(suhteikko) && symmetrinen(suhteikko);
-    }
+    }   // O(pisteidenLkm log pisteidenLkm) + O(pisteidenLkm^2 log pisteidenLkm)
+
     /**
      * Onko suhteikko silmukaton:
      * mistään pisteestä ei ole itseensä yhteyttä.
+     * Aikavaativuus O(pisteidenLkm log pisteidenLkm)
+     * Tilavaativuus O(1)
      * @param suhteikko analysoitava suhteikko
      * @return oliko silmukaton
      */
 
     public static boolean onSilmukaton(Suhteikko suhteikko) {
-        for (int i=1; i<=suhteikko.PISTEITA; i++) {
-            if (suhteikko.onYhteys(i, i))
+        for (int i=1; i<=suhteikko.PISTEITA; i++) {     // O(pisteidenLkm)
+            if (suhteikko.onYhteys(i, i))               // O(log pisteidenLkm)
                 return false;
         }
         return true;
@@ -42,6 +45,7 @@ public class Suhteikkoanalyysikirjasto {
 
     /**
      * MUUTETAAN TEHOKKAAMMAKSI
+     * Nykyisellään aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
      * Onko suhteikko symmetrinen:
      * suhteikon kahden pisteen välillä on joko yhteys molempiin suuntiin
      * tai sitten ei lainkaan yhteyttä.
@@ -53,7 +57,7 @@ public class Suhteikkoanalyysikirjasto {
         for (int i=1; i<=suhteikko.PISTEITA; i++) {
             for (int j=1; j<=suhteikko.PISTEITA; j++) {
                 if (!tyokalut.Tyokalut.ekvivalentit(suhteikko.onYhteys(i, j), suhteikko.onYhteys(j, i)))
-                    return false;
+                    return false; // O(log pisteidenLkm)
             }
         }
         return true;
@@ -61,19 +65,22 @@ public class Suhteikkoanalyysikirjasto {
 
     /**
      * Lähtöaste on pisteestä lähtevien yhteyksien lukumäärä.
+     * Aikavaativuus O(1)
      * @param s suhteikko
      * @param piste suhteikon piste
      * @return pisteen lähtöaste suhteikossa
      */
 
     public static int lahtoaste(Suhteikko s, int piste) {
-        IntSailio seuraajat = s.getSeuraajat(piste);
+        IntSailio seuraajat = s.getSeuraajat(piste);    // O(1)
         if (seuraajat == null) return 0;
-        return seuraajat.alkioita();
+        return seuraajat.alkioita();                    // O(1)
     }
 
     /**
      * Tuloaste on pisteeseen saapuvien yhteyksien lukumäärä.
+     * Aikavaativuus O(pisteidenlkm log pisteidenLkm)
+     * Tilavaativuus O(1)
      * @param s suhteikko
      * @param piste suhteikon piste
      * @return pisteen tuloaste suhteikossa
@@ -91,14 +98,15 @@ public class Suhteikkoanalyysikirjasto {
      * Onko suhteikko säännöllinen verkko:
      * täyttääkö se verkkoehdon ja onko lisäksi kaikkien pisteiden aste
      * (eli lähtöaste) sama.
+     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
      * @param s analysoitava suhteikko
      */
 
     public static boolean saannollinenVerkko(Suhteikko s) {
-        if (!tayttaaVerkkoehdon(s)) return false;
+        if (!tayttaaVerkkoehdon(s)) return false; // O(pisteidenLkm^2 log pisteidenLkm)
         if (s.PISTEITA == 0) return true;
 
-        if (!kaikkiAsteetSamatEpatyhjassa(s)) return false;
+        if (!kaikkiAsteetSamatEpatyhjassa(s)) return false; // O(pisteidenLkm)
         return true;
     }
 
@@ -106,6 +114,7 @@ public class Suhteikkoanalyysikirjasto {
      * Onko suhteikko täydellinen:
      * onko jokaisen kahden eri pisteen välillä yhteys ainakin toiseen suuntaan.
      * Pisteestä ei tarvitse olla itseensä yhteyttä.
+     * Aikavaativuus: O(pisteidenLkm^2 log pisteidenLkm)
      * @param s analysoitava suhteikko
      * @return oliko täydellinen
      */
@@ -122,16 +131,18 @@ public class Suhteikkoanalyysikirjasto {
     /**
      * Onko annettu suhteikko täydellinen verkko:
      * onko jokaisesta pisteestä yhteys kaikkiin muihin pisteisiin.
+     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
+     * Tilavaativuus O(1)
      * @param s analysoitava suhteikko
      * @return oliko täydellinen verkko
      */
 
     public static boolean taydellinenVerkko(Suhteikko s) {
-        if (!tayttaaVerkkoehdon(s)) return false;
+        if (!tayttaaVerkkoehdon(s)) return false; //O(pisteidenLkm^2 log pisteidenLkm)
 
         for (int i=1; i<=s.PISTEITA; i++) {
             for (int j=i+1; j<=s.PISTEITA; j++) {
-                if (!s.onYhteys(i, j)) return false;
+                if (!s.onYhteys(i, j)) return false; //O(log pisteidenLkm)
             }
         }
 
@@ -140,6 +151,7 @@ public class Suhteikkoanalyysikirjasto {
 
     /**
      * Sama kuin TaydellinenVerkko mutta toteutus eri.
+     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
      * @param s analysoitava suhteikko
      * @return oliko täydellinen verkko
      */
@@ -173,6 +185,7 @@ public class Suhteikkoanalyysikirjasto {
      * Onko suhteikossa kulku pisteestä toiseen:
      * onko alkupisteestä reitti, mahdollisesti muiden pisteiden kautta,
      * yhteyksiä pitkin loppupisteeseen.
+     * Aikavaativuus??
      * @param s analysoitava suhteikko
      * @param alkupiste piste josta lähdetään
      * @param loppupiste piste johon yritetään kulkea
@@ -193,6 +206,7 @@ public class Suhteikkoanalyysikirjasto {
     
     /**
      * Onko suhteikossa juuria. Käyttää pieninJuuriBruteForce-metodia.
+     * Aikavaativuus sama kuin pieninjuuribruteforce
      * @param s analysoitava suhteikko
      * @return oliko suhteikolla juurta
      */
@@ -205,13 +219,14 @@ public class Suhteikkoanalyysikirjasto {
      * Palauttaa suhteikon sen juuren nimen, jonka nimi on pienin luku.
      * Jos juuria ei ole, palauttaa -1.
      * Juuri on piste, josta on kulku suhteikon jokaiseen muuhun pisteeseen.
+     * Aikavaativuus riippuu leveyshaun analyysistä, joka kesken
      * @param s analysoitava suhteikko
      * @return pienin juuri
      */
 
     public static int pieninJuuriBruteForce(Suhteikko s) {
-        for (int i=1; i<=s.PISTEITA; i++) {
-            if (onJuuri(s, i)) return i;
+        for (int i=1; i<=s.PISTEITA; i++) { // O(pisteidenLkm)
+            if (onJuuri(s, i)) return i;    // O-analyysi kesken
         }
         return -1;
     }
@@ -219,6 +234,7 @@ public class Suhteikkoanalyysikirjasto {
     /**
      * Onko annettu piste suhteikon juuri:
      * onko siitä kulku kaikkiin muihin pisteisiin.
+     * Aikavaativuus riippuu leveyshausta, jonka analyysi kesken
      * @param s analysoitava suhteikko
      * @param piste onko juuri
      * @return oliko juuri
@@ -241,7 +257,7 @@ public class Suhteikkoanalyysikirjasto {
     public static boolean tayttaaPuuehdon(Suhteikko s) {
         if (!tayttaaVerkkoehdon(s)) return false;
         if (sisaltaaRenkaan(s)) return false;
-        if (!loytyyJuuriBruteForce(s)) return false;
+        if (!onYhtenainenVerkkoKulkujenAvulla(s)) return false;
         return true;
     }
 
@@ -253,6 +269,7 @@ public class Suhteikkoanalyysikirjasto {
      * pisteitä tai pistejoukkoja ole eristyksissä.
      * Tämä metodi selvittää yhtenäisyyden tutkimalla,
      * onko kaikista pisteistä kulku pisteeseen 1.
+     * Aikavaativuus todella surkea
      * @param s analysoitava suhteikko
      * @return oliko yhtenäinen
      */
@@ -296,6 +313,7 @@ public class Suhteikkoanalyysikirjasto {
      * Ovatko kaikkien pisteiden asteet samat.
      * Toimii samoin kuin saannollinenVerkko, mutta
      * mikäli metodille annetaan tyhjä verkko, virhe kaataa ohjelman.
+     * Aikav. O(pisteidenLkm)
      * @param s
      * @return
      */

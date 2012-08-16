@@ -44,7 +44,10 @@ public class Tyokalut {
     }
     
     /**
-     * 
+     * Kopioi ensimmäisen int-taulukon alkiot toiseen.
+     * Käy läpi lyhyemmän taulukon verran indeksejä, joten kumpi tahansa
+     * saa olla pidempi.
+     * Aikavaativuus O(n)
      * @param kopioitava
      * @param uusi
      */

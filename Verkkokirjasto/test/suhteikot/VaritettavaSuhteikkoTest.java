@@ -68,6 +68,65 @@ public class VaritettavaSuhteikkoTest {
         return new VaritettavaSuhteikko(r, vari);
     }
 
+        /**
+     * Apumetodi luo täydellisen 4-pisteisen suhteikon.
+     * Täydellisessä suhteikossa jokaisen pisteparin välillä on yhteys
+     * vähintään yhteen suuntaan.
+     * @return uusi suhteikko
+     */
+    public static VaritettavaSuhteikko taydellinen4PisteinenJossaSilmukka() {
+        RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(4);
+        r.lisaaYhteys(1, 2);
+        r.lisaaYhteys(1, 3);
+        r.lisaaYhteys(4, 1);
+
+        r.lisaaYhteys(2, 4);
+        r.lisaaYhteys(2, 3);
+        r.lisaaYhteys(3, 2);
+        r.lisaaYhteys(2, 2);
+
+        r.lisaaYhteys(4, 3);
+
+        return new VaritettavaSuhteikko(r);
+    }
+
+    /**
+     * Apumetodi luo täydellisen 5-pisteisen verkon.
+     * Täydellisessä verkossa jokaisen pisteparin välillä on yhteys
+     * molempiin suuntiin, eikä silmukoita ole.
+     * @return uusi suhteikko
+     */
+
+    public static VaritettavaSuhteikko uusiSuhteikkoTaydellinenN(int n) {
+        RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(n);
+
+        for (int i=1; i<=n; i++) {
+            for (int j=1; j<=n; j++) {
+                r.lisaaYhteys(i, j);
+            }
+        }
+
+        return new VaritettavaSuhteikko(r);
+    }
+
+    /**
+     * Apumetodi luo täydellisen 5-pisteisen verkon.
+     * @return
+     */
+
+    public static VaritettavaSuhteikko taydellinen5PisteinenVerkko() {
+        RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(5);
+
+        for (int i=1; i<=5; i++) {
+            for (int j=1; j<=5; j++) {
+                if (i != j) r.lisaaYhteys(i, j);
+            }
+        }
+
+        return new VaritettavaSuhteikko(r);
+    }
+
+
     /*
      * Testit ---------------------------------------------
      */
