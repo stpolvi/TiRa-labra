@@ -3,6 +3,7 @@ package suhteikot;
 
 import relaatiot.Relaatio;
 import tietorakenteet.IntSailio;
+import tietorakenteet.Kaari;
 
 /**
  * TavallinenSuhteikko-olio kuvaa suhteikkoa (eli ns. suunnattua verkkoa),
@@ -72,6 +73,5 @@ public class TavallinenSuhteikko extends Suhteikko {
         if (seuraajat == null) return 0;
         return seuraajat.alkioita();
     }
-
     
 }

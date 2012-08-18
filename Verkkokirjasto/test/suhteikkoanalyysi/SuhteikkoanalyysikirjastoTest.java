@@ -360,10 +360,10 @@ public class SuhteikkoanalyysikirjastoTest {
      * TODO puuehtotestit:
      */
 
-    @Test
-    public void tyhjaOnPuu() {
-        fail("kesken");
-    }
+//    @Test
+//    public void tyhjaOnPuu() {
+//        fail("kesken");
+//    }
 
     /*
      *

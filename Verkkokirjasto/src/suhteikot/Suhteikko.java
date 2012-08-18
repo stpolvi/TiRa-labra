@@ -3,6 +3,7 @@ package suhteikot;
 
 import relaatiot.Relaatio;
 import tietorakenteet.IntSailio;
+import tietorakenteet.Kaari;
 
 /**
  * Abstrakti suhteikko, jota voidaan tutkia suhteikkokirjaston algoritmeilla.
@@ -66,4 +67,6 @@ public abstract class Suhteikko {
      */
 
     public abstract int seuraajienLkm(int piste);
+
+    
 }

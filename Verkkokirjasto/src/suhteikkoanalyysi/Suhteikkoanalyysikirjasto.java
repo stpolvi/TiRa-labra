@@ -63,6 +63,27 @@ public class Suhteikkoanalyysikirjasto {
         return true;
     }
 
+    public static boolean symmetrinenJokaEiToimi(Suhteikko s) {
+        VenyvaTaulukko[] kaannetty = new VenyvaTaulukko[s.PISTEITA];
+        int[] seuraajat;
+        for (int i=1; i<= s.PISTEITA; i++) {
+            seuraajat = s.getSeuraajat(i).toIntArray();
+            if (seuraajat == null) continue;
+            for (int j=1; j<=seuraajat.length; j++) {
+                if (kaannetty[seuraajat[j]] == null)
+                    kaannetty[seuraajat[j]] = new VenyvaTaulukko();
+                kaannetty[seuraajat[j]].lisaa(i);
+            }
+        }
+
+        for (int i=1; i<= s.PISTEITA; i++) {
+            kaannetty[i].jarjesta();
+            if (!kaannetty[i].equals(s.getSeuraajat(i))) return false;
+        }
+
+        return true;
+    }
+
     /**
      * Lähtöaste on pisteestä lähtevien yhteyksien lukumäärä.
      * Aikavaativuus O(1)
