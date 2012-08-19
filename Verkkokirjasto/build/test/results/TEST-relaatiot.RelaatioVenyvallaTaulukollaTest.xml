@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="silja-PC" name="relaatiot.RelaatioVenyvallaTaulukollaTest" tests="7" time="0.219" timestamp="2012-08-18T08:26:33">
+<testsuite errors="0" failures="0" hostname="silja-PC" name="relaatiot.RelaatioVenyvallaTaulukollaTest" tests="7" time="0.156" timestamp="2012-08-19T18:03:12">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -265,7 +265,7 @@
   <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="tyhjaRelaatioLuotavissa" time="0.016" />
   <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="seuraajatNullUudessa" time="0.0" />
   <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="eiYhteyksiaUudessa" time="0.0" />
-  <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="onYhteysKunLisattyYhdelle" time="0.0" />
+  <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="onYhteysKunLisattyYhdelle" time="0.015" />
   <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="onYhteysKunLisattyKaikille" time="0.0" />
   <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="lisaaminenLisaaSeuraajajoukkoonYhdelle" time="0.0" />
   <testcase classname="relaatiot.RelaatioVenyvallaTaulukollaTest" name="lisaaminenLisaaSeuraajajoukkoonKaikille" time="0.0" />

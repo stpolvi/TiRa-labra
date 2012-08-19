@@ -102,36 +102,6 @@ public class SuhteikkoanalyysikirjastoTest {
     }
 
     /*
-     * Säännöllinen-testit:
-     */
-
-    @Test
-    public void tyhjaVerkkoOnSaannollinen() {
-        s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertTrue(Suhteikkoanalyysikirjasto.saannollinenVerkko(s));
-    }
-
-    @Test
-    public void taydellinenVerkkoOnSaannollinen() {
-        s = suhteikot.TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Suhteikkoanalyysikirjasto.saannollinenVerkko(s));
-    }
-
-    @Test
-    public void josEiVerkkoNiinEiSaannollinenVaikkaLahtoasteetSamat() {
-        s = suhteikot.TavallinenSuhteikkoTest.pisteita1Yhteys1_1();
-        assertFalse(Suhteikkoanalyysikirjasto.saannollinenVerkko(s));
-    }
-
-    @Test
-    public void yhteydettomatOvatSaannollisia() {
-        for (int i=1; i<=5; i++) {
-            s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(i);
-            assertTrue(Suhteikkoanalyysikirjasto.saannollinenVerkko(s));
-        }
-    }
-
-    /*
      * Täydellinen-testit:
      */
 
@@ -166,68 +136,6 @@ public class SuhteikkoanalyysikirjastoTest {
 
         s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
         assertFalse(Suhteikkoanalyysikirjasto.taydellinen(s));
-    }
-
-    /*
-     * TäydellinenVerkko-testit:
-     */
-
-    @Test
-    public void tyhjaOnTaydellinenVerkko() {
-        s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertTrue(Suhteikkoanalyysikirjasto.taydellinenVerkko(s));
-    }
-
-    @Test
-    public void taydellinenVerkkoOnTaydellinenVerkko() {
-        s = suhteikot.TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Suhteikkoanalyysikirjasto.taydellinenVerkko(s));
-    }
-
-    @Test
-    public void taydellinenSuhteikkoEiTaydellinenVerkkoJosEiVerkko() {
-        s = suhteikot.TavallinenSuhteikkoTest.taydellinen4PisteinenJossaSilmukka();
-        assertFalse(Suhteikkoanalyysikirjasto.taydellinenVerkko(s));
-    }
-
-    @Test
-    public void yhteydetonUseampipisteinenEiTaydellinenVerkko() {
-        s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
-        assertFalse(Suhteikkoanalyysikirjasto.taydellinenVerkko(s));
-
-        s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
-        assertFalse(Suhteikkoanalyysikirjasto.taydellinenVerkko(s));
-    }
-
-    /*
-     * TaydellinenVerkkoSeuraajienAvulla-testit:
-     */
-
-    @Test
-    public void tyhjaOnTaydellinenVerkkoSeuraajienAvulla() {
-        s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertTrue(Suhteikkoanalyysikirjasto.taydellinenVerkkoSeuraajienAvulla(s));
-    }
-
-    @Test
-    public void taydellinenVerkkoOnTaydellinenVerkkoSeuraajienAvulla() {
-        s = suhteikot.TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Suhteikkoanalyysikirjasto.taydellinenVerkkoSeuraajienAvulla(s));
-    }
-
-    @Test
-    public void taydellinenSuhteikkoEiTaydellinenVerkkoSeuraajienAvullaJosEiVerkko() {
-        s = suhteikot.TavallinenSuhteikkoTest.taydellinen4PisteinenJossaSilmukka();
-        assertFalse(Suhteikkoanalyysikirjasto.taydellinenVerkkoSeuraajienAvulla(s));
-    }
-
-    @Test
-    public void yhteydetonUseampipisteinenEiTaydellinenVerkkoSeuraajienAvulla() {
-        s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
-        assertFalse(Suhteikkoanalyysikirjasto.taydellinenVerkkoSeuraajienAvulla(s));
-
-        s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
-        assertFalse(Suhteikkoanalyysikirjasto.taydellinenVerkkoSeuraajienAvulla(s));
     }
 
     /*

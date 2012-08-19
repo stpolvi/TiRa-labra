@@ -115,21 +115,6 @@ public class Suhteikkoanalyysikirjasto {
         return vastaus;
     }
 
-    /**
-     * Onko suhteikko säännöllinen verkko:
-     * täyttääkö se verkkoehdon ja onko lisäksi kaikkien pisteiden aste
-     * (eli lähtöaste) sama.
-     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
-     * @param s analysoitava suhteikko
-     */
-
-    public static boolean saannollinenVerkko(Suhteikko s) {
-        if (!tayttaaVerkkoehdon(s)) return false; // O(pisteidenLkm^2 log pisteidenLkm)
-        if (s.PISTEITA == 0) return true;
-
-        if (!kaikkiAsteetSamatEpatyhjassa(s)) return false; // O(pisteidenLkm)
-        return true;
-    }
 
     /**
      * Onko suhteikko täydellinen:
@@ -149,44 +134,6 @@ public class Suhteikkoanalyysikirjasto {
         return true;
     }
     
-    /**
-     * Onko annettu suhteikko täydellinen verkko:
-     * onko jokaisesta pisteestä yhteys kaikkiin muihin pisteisiin.
-     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
-     * Tilavaativuus O(1)
-     * @param s analysoitava suhteikko
-     * @return oliko täydellinen verkko
-     */
-
-    public static boolean taydellinenVerkko(Suhteikko s) {
-        if (!tayttaaVerkkoehdon(s)) return false; //O(pisteidenLkm^2 log pisteidenLkm)
-
-        for (int i=1; i<=s.PISTEITA; i++) {
-            for (int j=i+1; j<=s.PISTEITA; j++) {
-                if (!s.onYhteys(i, j)) return false; //O(log pisteidenLkm)
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * Sama kuin TaydellinenVerkko mutta toteutus eri.
-     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
-     * @param s analysoitava suhteikko
-     * @return oliko täydellinen verkko
-     */
-    
-    public static boolean taydellinenVerkkoSeuraajienAvulla(Suhteikko s) {
-        if (!tayttaaVerkkoehdon(s)) return false;
-
-        for (int i=1; i<=s.PISTEITA; i++) {
-            if (s.seuraajienLkm(i) != s.PISTEITA -1) return false;
-        }
-
-        return true;
-    }
-
     /**
      * TODO: renkaat
      * Rengas verkossa on vähintään kahden muun pisteen kautta kulkeva
@@ -330,22 +277,6 @@ public class Suhteikkoanalyysikirjasto {
      * Privaattimetodit ---------------------------------------------
      */
 
-    /**
-     * Ovatko kaikkien pisteiden asteet samat.
-     * Toimii samoin kuin saannollinenVerkko, mutta
-     * mikäli metodille annetaan tyhjä verkko, virhe kaataa ohjelman.
-     * Aikav. O(pisteidenLkm)
-     * @param s
-     * @return
-     */
-
-    private static boolean kaikkiAsteetSamatEpatyhjassa(Suhteikko s) {
-        int ekanAste = lahtoaste(s, 1);
-        for (int i=2; i<=s.PISTEITA; i++) {
-            if (lahtoaste(s, i) != ekanAste) return false;
-        }
-        return true;
-    }
 
     private static boolean kaikistaPisteistaOnKulkuPisteeseen(Suhteikko s, int piste) {
         for (int i=1; i<=s.PISTEITA; i++) {
