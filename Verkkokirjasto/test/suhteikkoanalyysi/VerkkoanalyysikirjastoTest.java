@@ -1,6 +1,7 @@
 
 package suhteikkoanalyysi;
 
+import suhteikot.VaritettavaSuhteikkoTest;
 import suhteikot.TavallinenSuhteikkoTest;
 import suhteikot.Suhteikko;
 import org.junit.Test;
@@ -64,29 +65,63 @@ public class VerkkoanalyysikirjastoTest {
     }
 
     /*
-     * TaydellinenVerkkoSeuraajienAvulla-testit:
+     * TaydellinenSeuraajienAvulla-testit:
      */
 
     @Test
-    public void tyhjaOnTaydellinenVerkkoSeuraajienAvulla() {
+    public void tyhjaOnTaydellinenSeuraajienAvulla() {
         v = TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertTrue(Verkkoanalyysikirjasto.taydellinenVerkkoSeuraajienAvulla(v));
+        assertTrue(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
     }
 
     @Test
-    public void taydellinenVerkkoOnTaydellinenVerkkoSeuraajienAvulla() {
+    public void taydellinenVerkkoOnTaydellinenSeuraajienAvulla() {
         v = TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Verkkoanalyysikirjasto.taydellinenVerkkoSeuraajienAvulla(v));
+        assertTrue(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
     }
 
     @Test
-    public void yhteydetonUseampipisteinenEiTaydellinenVerkkoSeuraajienAvulla() {
+    public void yhteydetonUseampipisteinenEiTaydellinenSeuraajienAvulla() {
         v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
-        assertFalse(Verkkoanalyysikirjasto.taydellinenVerkkoSeuraajienAvulla(v));
+        assertFalse(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
 
         v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
-        assertFalse(Verkkoanalyysikirjasto.taydellinenVerkkoSeuraajienAvulla(v));
+        assertFalse(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
     }
 
+    /*
+     * TODO Renkaiden olemassaolo:
+     */
+//
+//    @Test
+//    public void tyhjassaEiRenkaita() {
+//        s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
+//
+//    }
+
+    /*
+     * yhtenäisyystestit: kulkujen avulla
+     */
+
+    @Test
+    public void yksipisteinenOnYhtenainenVaritettavalle() {
+        v = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
+        assertTrue(Verkkoanalyysikirjasto.onYhtenainenKulkujenAvulla(v));
+    }
+
+    @Test
+    public void taydellinenVerkkoYhtenainen() {
+        v = VaritettavaSuhteikkoTest.taydellinen5PisteinenVerkko();
+        assertTrue(Verkkoanalyysikirjasto.onYhtenainenKulkujenAvulla(v));
+    }
+
+    /*
+     * TODO puuehtotestit:
+     */
+
+//    @Test
+//    public void tyhjaOnPuu() {
+//        fail("kesken");
+//    }
 
 }

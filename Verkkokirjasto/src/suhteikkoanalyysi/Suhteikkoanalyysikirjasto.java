@@ -135,21 +135,6 @@ public class Suhteikkoanalyysikirjasto {
     }
     
     /**
-     * TODO: renkaat
-     * Rengas verkossa on vähintään kahden muun pisteen kautta kulkeva
-     * kulku jostakin pisteestä itseensä.
-     * Huom. kulun täytyy kulkea vähintään kolmen pisteen kautta.
-     * @param s analysoitava suhteikko
-     * @return onko suhteikossa rengas
-     */
-
-    public static boolean sisaltaaRenkaan(Suhteikko s) {
-        
-
-        throw new Error("kesken");
-    }
-    
-    /**
      * Onko suhteikossa kulku pisteestä toiseen:
      * onko alkupisteestä reitti, mahdollisesti muiden pisteiden kautta,
      * yhteyksiä pitkin loppupisteeseen.
@@ -216,56 +201,6 @@ public class Suhteikkoanalyysikirjasto {
     }
 
     /**
-     * Täyttääkö suhteikko puuehdon:
-     * onko se verkko, jossa ei ole renkaita, mutta jolla on juuri.
-     * @param s analysoitava suhteikko
-     * @return oliko puu
-     */
-
-    public static boolean tayttaaPuuehdon(Suhteikko s) {
-        if (!tayttaaVerkkoehdon(s)) return false;
-        if (sisaltaaRenkaan(s)) return false;
-        if (!onYhtenainenVerkkoKulkujenAvulla(s)) return false;
-        return true;
-    }
-
-    /**
-     * Onko suhteikko yhtenäinen verkko: se on verkko, ja
-     * jokaisesta pisteestä löytyy reitti kaikkiin muihin pisteisiin,
-     * mahdollisesti muiden pisteiden kautta.
-     * Toisin sanoen, ovatko kaikki pisteet yhteydessä toisiinsa niin ettei
-     * pisteitä tai pistejoukkoja ole eristyksissä.
-     * Tämä metodi selvittää yhtenäisyyden tutkimalla,
-     * onko kaikista pisteistä kulku pisteeseen 1.
-     * Aikavaativuus todella surkea
-     * @param s analysoitava suhteikko
-     * @return oliko yhtenäinen
-     */
-
-    public static boolean onYhtenainenVerkkoKulkujenAvulla(Suhteikko s) {
-        if (!tayttaaVerkkoehdon(s))
-            return false;
-
-        if (s.PISTEITA == 0 || s.PISTEITA == 1)
-            return true;
-
-        return kaikistaPisteistaOnKulkuPisteeseen(s, 1);
-    }
-
-    /**
-     * Onko suhteikko vahvasti yhtenäinen verkko:
-     * verkolle yhtenäisyys ja vahva yhtenäisyys ovat yhtäpitäviä.
-     * @param s analysoitava suhteikko
-     * @return oliko (vahvasti) onYhtenainenVerkkoKulkujenAvulla verkko
-     */
-
-    public static boolean vahvastiYhtenainenVerkko(Suhteikko s) {
-        if (!tayttaaVerkkoehdon(s)) return false;
-        if (!onYhtenainenVerkkoKulkujenAvulla(s)) return false;
-        return true;
-    }
-
-    /**
      * TODO vahva yhtenäisyys:
      */
 
@@ -277,15 +212,6 @@ public class Suhteikkoanalyysikirjasto {
      * Privaattimetodit ---------------------------------------------
      */
 
-
-    private static boolean kaikistaPisteistaOnKulkuPisteeseen(Suhteikko s, int piste) {
-        for (int i=1; i<=s.PISTEITA; i++) {
-            if (!onKulkuLeveyshaulla(s, piste, i)) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     private static boolean onKulkuLeveyshaullaVaritettavalle
             (VaritettavaSuhteikko v, int alkupiste, int loppupiste) {

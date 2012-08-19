@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package suhteikkoanalyysi;
 
@@ -83,7 +79,7 @@ public class Verkkoanalyysikirjasto {
      * @return oliko täydellinen verkko
      */
 
-    public static boolean taydellinenVerkkoSeuraajienAvulla(Suhteikko v) {
+    public static boolean taydellinenSeuraajienAvulla(Suhteikko v) {
         for (int i=1; i<=v.PISTEITA; i++) {
             if (v.seuraajienLkm(i) != v.PISTEITA -1) return false;
         }
@@ -91,8 +87,64 @@ public class Verkkoanalyysikirjasto {
         return true;
     }
 
+    /**
+     * TODO: renkaat
+     * Rengas verkossa on vähintään kahden muun pisteen kautta kulkeva
+     * kulku jostakin pisteestä itseensä.
+     * Huom. kulun täytyy kulkea vähintään kolmen pisteen kautta.
+     * @param s analysoitava suhteikko
+     * @return onko suhteikossa rengas
+     */
+
+    public static boolean sisaltaaRenkaan(Suhteikko s) {
 
 
+        throw new Error("kesken");
+    }
 
+    /**
+     * Täyttääkö verkko puuehdon:
+     * TODO määritelmä
+     * @param v analysoitava verkko
+     * @return oliko puu
+     */
+
+    public static boolean tayttaaPuuehdon(Suhteikko v) {
+        if (sisaltaaRenkaan(v)) return false;
+        if (!onYhtenainenKulkujenAvulla(v)) return false;
+        return true;
+    }
+
+    /**
+     * Onko verkko yhtenäinen:
+     * jokaisesta pisteestä löytyy reitti kaikkiin muihin pisteisiin,
+     * mahdollisesti muiden pisteiden kautta.
+     * Toisin sanoen, ovatko kaikki pisteet yhteydessä toisiinsa niin ettei
+     * pisteitä tai pistejoukkoja ole eristyksissä.
+     * Tämä metodi selvittää yhtenäisyyden tutkimalla,
+     * onko kaikista pisteistä kulku pisteeseen 1.
+     *
+     * Huom verkoilla yhtenäisyys ja vahva yhtenäisyys ovat yhtäpitäviä.
+     *
+     * Aikavaativuus todella surkea
+     * @param v analysoitava verkko
+     * @return oliko yhtenäinen
+     */
+
+    public static boolean onYhtenainenKulkujenAvulla(Suhteikko v) {
+        if (v.PISTEITA == 0 || v.PISTEITA == 1)
+            return true;
+
+        return kaikistaPisteistaOnKulkuPisteeseen(v, 1);
+    }
+
+    private static boolean kaikistaPisteistaOnKulkuPisteeseen(Suhteikko v, int piste) {
+        for (int i=1; i<=v.PISTEITA; i++) {
+            if (!Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(v, piste, i)) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }

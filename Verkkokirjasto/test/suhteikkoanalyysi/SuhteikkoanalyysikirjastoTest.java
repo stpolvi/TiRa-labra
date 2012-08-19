@@ -238,43 +238,5 @@ public class SuhteikkoanalyysikirjastoTest {
         assertFalse(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 2);
     }
 
-    /*
-     * TODO Renkaiden olemassaolo:
-     */
-//
-//    @Test
-//    public void tyhjassaEiRenkaita() {
-//        s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-//
-//    }
-
-    /*
-     * yhtenäisyystestit: kulkujen avulla
-     */
-
-    @Test
-    public void yksipisteinenOnYhtenainenVaritettavalle() {
-        s = suhteikot.VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
-        assertTrue(Suhteikkoanalyysikirjasto.onYhtenainenVerkkoKulkujenAvulla(s));
-    }
-
-    @Test
-    public void taydellinenVerkkoYhtenainen() {
-        s = suhteikot.VaritettavaSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Suhteikkoanalyysikirjasto.onYhtenainenVerkkoKulkujenAvulla(s));
-    }
-
-    /*
-     * TODO puuehtotestit:
-     */
-
-//    @Test
-//    public void tyhjaOnPuu() {
-//        fail("kesken");
-//    }
-
-    /*
-     *
-     */
     
 }
