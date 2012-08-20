@@ -52,6 +52,25 @@ public class KaaripuuTest {
             assertTrue(k.etsi(uusiKaari(i, 20-i)));
         }
     }
-    
+
+    @Test
+    public void vaariaKaariaEiLoydy() {
+        for (int i=9; i<26; i++) {
+            assertFalse(k.etsi(uusiKaari(i, 20-i)));
+        }
+    }
+
+    @Test
+    public void poistamisenJalkeenEiLoydy() {
+        for (int i=12; i<28; i++) {
+            k.lisaa(uusiKaari(i, 20+i));
+        }
+        for (int i=12; i<28; i++) {
+            k.poista(uusiKaari(i, 20+i));
+        }
+        for (int i=12; i<28; i++) {
+            assertFalse(k.etsi(uusiKaari(i, 20+i)));
+        }
+    }
 
 }

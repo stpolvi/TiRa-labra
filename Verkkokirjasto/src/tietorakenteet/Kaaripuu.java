@@ -61,11 +61,25 @@ public class Kaaripuu {
             }
 
     public void poista(Kaari k) {
+
         throw new Error("unsupported");
     }
 
         private void poistaRekursiolla(Kaari poistettava, Kaarisolmu s) {
-            
+            if (true) throw new Error("kesken");
+            if (s.getKaari().compareTo(poistettava) > 0) {
+                if (s.getVasenLapsi().getKaari().equals(poistettava)) {
+//                    poistaVasenLapsi(s);
+                } else {
+                    
+                }
+            }
+            if (s.getKaari().compareTo(poistettava) < 0) {
+                if (s.getOikeaLapsi().getKaari().equals(poistettava)) {
+//                    poistaOikeaLapsi(s);
+                }
+            }
+
         }
 
 
