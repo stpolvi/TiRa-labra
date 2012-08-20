@@ -12,87 +12,88 @@ package tietorakenteet;
  */
 public class Kaaripuu {
 
-    private Kaari[] taulu;
-    int oletuskapasiteetti = 50;
-    int kasvatussuhde = 2;
+    private Kaarisolmu juuri;
 
     /**
-     *
-     * @param oletuskapasiteetti
+     * Luo tyhjän Kaaripuun.
      */
 
     public Kaaripuu() {
-        this.taulu = new Kaari[oletuskapasiteetti];
+        this.juuri = null;
     }
 
     /**
-     *
-     * @param k
+     * Lisää puuhun kaaren.
+     * @param k lisättävä kaari
      */
 
     public void lisaa(Kaari k) {
-        int paikka = haePaikka(k);
-        if (taulu[paikka] != null) return;
-        taulu[paikka] = k;
+        if (this.juuri == null)
+            this.juuri = new Kaarisolmu(k, null, null);
+        else
+            lisaaRekursiolla(k, juuri);
     }
 
-    private void kasvataTaulukkoa() {
+        private void lisaaRekursiolla(Kaari lisattava, Kaarisolmu s) {
+            Kaari vuorossa = s.getKaari();
+            if (vuorossa.compareTo(lisattava) > 0) {
+                lisaaVasemmalle(lisattava, s);
+            }
+            if (vuorossa.compareTo(lisattava) < 0) {
+                lisaaOikealle(lisattava, s);
+            }
+        }
 
+            private void lisaaVasemmalle(Kaari lisattava, Kaarisolmu s) {
+                if (s.getVasenLapsi() == null) {
+                        s.setVasenLapsi(new Kaarisolmu(lisattava, null, null));
+                    } else {
+                        lisaaRekursiolla(lisattava, s.getVasenLapsi());
+                    }
+            }
+
+            private void lisaaOikealle(Kaari lisattava, Kaarisolmu s) {
+                    if (s.getOikeaLapsi() == null) {
+                        s.setOikeaLapsi(new Kaarisolmu(lisattava, null, null));
+                    } else {
+                        lisaaRekursiolla(lisattava, s.getOikeaLapsi());
+                    }
+            }
+
+    public void poista(Kaari k) {
+        throw new Error("unsupported");
     }
+
+        private void poistaRekursiolla(Kaari poistettava, Kaarisolmu s) {
+            
+        }
+
+
+    /**
+     * Onko kaari puussa.
+     * @param k etsittävä kaari
+     * @return löytyikö kaari
+     */
 
     public boolean etsi(Kaari k) {
-        return taulu[haePaikka(k)] != null;
+        return etsiRekursiolla(k, this.juuri);
     }
 
-    /**
-     * privaatti.
-     * hakee annetulle kaarelle paikan puusta.
-     * mikäli vastaava kaari oli jo puussa, palauttaa sen indeksin.
-     * mikäli puussa ei ole jo vastaavaa kaarta, palauttaa paikan
-     * johon se voidaan lisätä.
-     * @param k
-     * @return
-     */
+        /**
+         * privaatti Etsi-metodin rekursioapuri.
+         * @param k etsittävä kaari
+         * @param s solmu jota ollaan läpikäymässä
+         * @return löytyikö kaari
+         */
 
-    private int haePaikka(Kaari k) {
-        return haeRekursiolla(k, 1);
-    }
+        private boolean etsiRekursiolla(Kaari k, Kaarisolmu s) {
+            if (s == null) return false;
+            Kaari vuorossa = s.getKaari();
+            if (vuorossa.compareTo(k) > 0)
+                return etsiRekursiolla(k, s.getVasenLapsi());
+            if (vuorossa.compareTo(k) < 0)
+                return etsiRekursiolla(k, s.getOikeaLapsi());
+            return true;
+        }
 
-    /**
-     * TODO: ei vielä binäärihakupuu
-     * @param k
-     * @param aloituskohta
-     * @return
-     */
-
-    private int haeRekursiolla(Kaari k, int aloituskohta) {
-        Kaari tassaPaikassa = taulu[aloituskohta];
-        if (tassaPaikassa == null || tassaPaikassa.equals(k))
-            return aloituskohta;
-        int seuraavaAloituskohta;
-        if (tassaPaikassa.compareTo(k) > 0) 
-            seuraavaAloituskohta = vasemmanLapsenIndeksi(aloituskohta);
-        else
-            seuraavaAloituskohta = oikeanLapsenIndeksi(aloituskohta);
-        
-        kasvataTaulukkoaJosIndeksiMeneeYli(seuraavaAloituskohta);
-        return haeRekursiolla(k, seuraavaAloituskohta);
-    }
-
-    private int vasemmanLapsenIndeksi(int indeksi) {
-        return 2*indeksi;
-    }
-
-    private int oikeanLapsenIndeksi(int indeksi) {
-        return 2*indeksi + 1;
-    }
-
-    private void kasvataTaulukkoaJosIndeksiMeneeYli(int indeksi) {
-        if (indeksi+1 < this.taulu.length) return;
-
-        Kaari[] uusi = new Kaari[this.taulu.length * kasvatussuhde];
-        tyokalut.Tyokalut.kopioiOlioTaulukkoToiseen(this.taulu, uusi);
-        this.taulu = uusi;
-    }
-    
 }

@@ -32,4 +32,11 @@ public class Kaarisolmu {
         return this.vasen;
     }
 
+    public void setVasenLapsi(Kaarisolmu s) {
+        this.vasen = s;
+    }
+
+    public void setOikeaLapsi(Kaarisolmu s) {
+        this.oikea = s;
+    }
 }

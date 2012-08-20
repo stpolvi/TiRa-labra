@@ -43,10 +43,6 @@ public class KaaripuuTest {
         }
     }
 
-    /**
-     * Java heap space, java.lang.OutOfMemoryError
-     */
-
     @Test
     public void puuEiHajoaKunLisataan300Alkiota() {
         for (int i=-100; i<200; i++) {
