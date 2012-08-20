@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="silja-PC" name="tietorakenteet.JonoTest" tests="5" time="0.172" timestamp="2012-08-20T11:33:10">
+<testsuite errors="1" failures="0" hostname="silja-PC" name="tietorakenteet.KaaripuuTest" tests="4" time="1.217" timestamp="2012-08-20T11:33:12">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -263,11 +263,41 @@
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.arch.data.model" value="32" />
   </properties>
-  <testcase classname="tietorakenteet.JonoTest" name="konstruktoriLuoOlion" time="0.015" />
-  <testcase classname="tietorakenteet.JonoTest" name="lisaaminenKasvattaaAlkioidenMaaraaOikein" time="0.0" />
-  <testcase classname="tietorakenteet.JonoTest" name="lisaaminenKasvattaaAlkioidenMaaraaOikeinVaikkaKapasiteettiTayttyy" time="0.047" />
-  <testcase classname="tietorakenteet.JonoTest" name="ottaminenVahentaaAlkioidenMaaraaOikein" time="0.0" />
-  <testcase classname="tietorakenteet.JonoTest" name="alkiotOtetaanOikeassaJarjestyksessa" time="0.0" />
+  <testcase classname="tietorakenteet.KaaripuuTest" name="konstruktoriLuoOlion" time="0.0" />
+  <testcase classname="tietorakenteet.KaaripuuTest" name="etsiLoytaaKunLisattyYksi" time="0.0" />
+  <testcase classname="tietorakenteet.KaaripuuTest" name="etsiLoytaaKunLisattyMonta" time="0.016" />
+  <testcase classname="tietorakenteet.KaaripuuTest" name="puuEiHajoaKunLisataan300Alkiota" time="1.076">
+    <error message="Java heap space" type="java.lang.OutOfMemoryError">java.lang.OutOfMemoryError: Java heap space
+	at tietorakenteet.Kaaripuu.kasvataTaulukkoaJosIndeksiMeneeYli(Kaaripuu.java:93)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:78)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haeRekursiolla(Kaaripuu.java:79)
+	at tietorakenteet.Kaaripuu.haePaikka(Kaaripuu.java:58)
+	at tietorakenteet.Kaaripuu.lisaa(Kaaripuu.java:34)
+	at tietorakenteet.KaaripuuTest.puuEiHajoaKunLisataan300Alkiota(KaaripuuTest.java:53)
+</error>
+  </testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

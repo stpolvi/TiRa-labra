@@ -201,7 +201,41 @@ public class Suhteikkoanalyysikirjasto {
     }
 
     /**
+     * TODO yhtenäisyys:
+     * Määritelmä: suhteikko on yhtenäinen, jos sen pisteiden joukon
+     * jokaisella aidolla epätyhjällä osajoukolla P,
+     * suhteikossa on nuoli P:stä tai nuoli P:hen.
+     */
+
+    public static boolean yhtenainen(Suhteikko s) {
+        throw new Error("kesken");
+    }
+
+    /**
+     * Tutkii leveyshaulla, onko annettu väritettävä suhteikko yhtenäinen.
+     * Huom palauttaa false mikäli syötteeksi annetaan muu kuin
+     * väritettävä suhteikko, vaikka se olisikin yhtenäinen.
+     * Yhtenäisyys, määritelmä: suhteikko on yhtenäinen, jos sen pisteiden joukon
+     * jokaisella aidolla epätyhjällä osajoukolla P,
+     * suhteikossa on nuoli P:stä tai nuoli P:hen.
+     */
+
+    public static boolean yhtenainenVaritettavalle(Suhteikko s) {
+        VaritettavaSuhteikko t;
+        try {
+            t = (VaritettavaSuhteikko) s;
+        } catch (ClassCastException e) {
+            return false;
+        }
+        
+        throw new Error("Kesken");
+    }
+
+    /**
      * TODO vahva yhtenäisyys:
+     * Määritelmä: suhteikko on vahvasti yhtenäinen, jos sen pisteiden joukon
+     * jokaisella aidolla epätyhjällä osajoukolla P,
+     * suhteikossa on nuoli P:stä ja nuoli P:hen.
      */
 
     public static boolean vahvastiYhtenainen(Suhteikko s) {

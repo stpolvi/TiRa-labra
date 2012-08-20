@@ -90,6 +90,31 @@ public class VerkkoanalyysikirjastoTest {
     }
 
     /*
+     * TaydellinenSaannollisyydenAvulla-testit:
+     */
+
+    @Test
+    public void tyhjaOnTaydellinenSaannollisyydenAvulla() {
+        v = TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
+        assertTrue(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+    }
+
+    @Test
+    public void taydellinenVerkkoOnTaydellinenSaannollisyydenAvulla() {
+        v = TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
+        assertTrue(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+    }
+
+    @Test
+    public void yhteydetonUseampipisteinenEiTaydellinenSaannollisyydenAvulla() {
+        v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
+        assertFalse(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+
+        v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
+        assertFalse(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+    }
+
+    /*
      * TODO Renkaiden olemassaolo:
      */
 //

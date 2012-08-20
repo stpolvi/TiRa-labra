@@ -30,6 +30,9 @@ public class Verkkoanalyysikirjasto {
     /**
      * Onko verkko säännöllinen:
      * onko kaikkien pisteiden aste sama.
+     * Jos kaikkien n-pisteisen verkon pisteiden aste on k, niin 
+     * verkon kaarien lukumäärä on (1/2)nk.
+     *
      * Aikavaativuus O(pisteidenLkm)
      * @param v analysoitava verkko
      */
@@ -56,6 +59,9 @@ public class Verkkoanalyysikirjasto {
     /**
      * Onko annettu verkko täydellinen:
      * onko jokaisesta pisteestä yhteys kaikkiin muihin pisteisiin.
+     * Huomaa että täydellisen n-pisteisen verkon kaarien lukumäärä on
+     * (1/2)n(n-1).
+     *
      * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
      * Tilavaativuus O(1)
      * @param v analysoitava verkko
@@ -85,6 +91,18 @@ public class Verkkoanalyysikirjasto {
         }
 
         return true;
+    }
+
+    /**
+     * Sama kuin Taydellinen mutta toteutus eri.
+     * Aikavaativuus O(pisteidenLkm)
+     * @param v analysoitava verkko
+     * @return oliko täydellinen verkko
+     */
+
+    public static boolean taydellinenSaannollisyydenAvulla(Suhteikko v) {
+        if (v.PISTEITA == 0 || v.PISTEITA == 1) return true;
+        return pisteenAste(v, 1) == v.PISTEITA-1 && saannollinen(v);
     }
 
     /**

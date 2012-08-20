@@ -48,8 +48,8 @@ public class Tyokalut {
      * Käy läpi lyhyemmän taulukon verran indeksejä, joten kumpi tahansa
      * saa olla pidempi.
      * Aikavaativuus O(n)
-     * @param kopioitava
-     * @param uusi
+     * @param kopioitava taulukko jonka alkioita kopioidaan
+     * @param uusi mihin kopioidaan
      */
 
     public static void kopioiIntTaulukkoToiseen(int[] kopioitava, int[] uusi) {
@@ -60,5 +60,21 @@ public class Tyokalut {
         }
     }
 
+    /**
+     * Kopioi ensimmäisen oliotaulukon alkiot toiseen.
+     * Käy läpi lyhyemmän taulukon verran indeksejä, joten kumpi tahansa
+     * saa olla pidempi.
+     * Aikavaativuus O(n)
+     * @param kopioitava taulukko jonka alkioiden viitteet kopioidaan toiseen
+     * @param uusi taulukko johon viitteet kopioidaan
+     */
+
+    public static void kopioiOlioTaulukkoToiseen(Object[] kopioitava, Object[] uusi) {
+        int lyhemmanPituus = minimi(kopioitava.length, uusi.length);
+
+        for (int i=0; i<lyhemmanPituus; i++) {
+            uusi[i] = kopioitava[i];
+        }
+    }
 
 }
