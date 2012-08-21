@@ -61,28 +61,55 @@ public class Kaaripuu {
             }
 
     public void poista(Kaari k) {
-
-        throw new Error("unsupported");
+        poistaRekursiolla(k, juuri);
     }
 
         private void poistaRekursiolla(Kaari poistettava, Kaarisolmu s) {
             if (true) throw new Error("kesken");
             if (s.getKaari().compareTo(poistettava) > 0) {
                 if (s.getVasenLapsi().getKaari().equals(poistettava)) {
-//                    poistaVasenLapsi(s);
+                    poistaVasenLapsi(s);
                 } else {
-                    
+                    poistaRekursiolla(poistettava, s.getVasenLapsi());
                 }
             }
             if (s.getKaari().compareTo(poistettava) < 0) {
                 if (s.getOikeaLapsi().getKaari().equals(poistettava)) {
-//                    poistaOikeaLapsi(s);
+                    poistaOikeaLapsi(s);
+                } else {
+                    poistaRekursiolla(poistettava, s.getOikeaLapsi());
                 }
             }
-
         }
 
+            private void poistaVasenLapsi(Kaarisolmu s) {
+                if (lehti(s.getVasenLapsi()))
+                    s.setVasenLapsi(null);
+                else if(s.getVasenLapsi().getVasenLapsi() == null)
+                    s.setVasenLapsi(s.getVasenLapsi().getOikeaLapsi());
+                else if(s.getVasenLapsi().getOikeaLapsi() == null)
+                    s.setVasenLapsi(s.getVasenLapsi().getVasenLapsi());
+                else
+                    poistaKaksilapsinenVasenLapsi(s);
+            }
 
+                private void poistaKaksilapsinenVasenLapsi(Kaarisolmu s) {
+                    Kaarisolmu pieninOikealla = etsiPienin(s.getOikeaLapsi());
+                    
+                }
+
+                    private Kaarisolmu etsiPienin(Kaarisolmu s) {
+                        if (s.getVasenLapsi() == null) return s;
+                        return etsiPienin(s.getVasenLapsi());
+                    }
+
+            private void poistaOikeaLapsi(Kaarisolmu s) {
+                throw new UnsupportedOperationException("Not yet implemented");
+            }
+
+                private boolean lehti(Kaarisolmu s) {
+                    return s.getOikeaLapsi() == null && s.getVasenLapsi() == null;
+                }
     /**
      * Onko kaari puussa.
      * @param k etsittävä kaari
@@ -109,5 +136,6 @@ public class Kaaripuu {
                 return etsiRekursiolla(k, s.getOikeaLapsi());
             return true;
         }
+
 
 }
