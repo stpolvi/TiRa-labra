@@ -65,15 +65,16 @@ public class Kaaripuu {
     }
 
         private void poistaRekursiolla(Kaari poistettava, Kaarisolmu s) {
-            if (true) throw new Error("kesken");
-            if (s.getKaari().compareTo(poistettava) > 0) {
+            if (s == null) return;
+            if (s != null && s.getKaari().equals(poistettava)) this.juuri = null;
+            else if(s.getKaari().compareTo(poistettava) > 0) {
                 if (s.getVasenLapsi().getKaari().equals(poistettava)) {
                     poistaVasenLapsi(s);
                 } else {
                     poistaRekursiolla(poistettava, s.getVasenLapsi());
                 }
             }
-            if (s.getKaari().compareTo(poistettava) < 0) {
+            else if(s.getKaari().compareTo(poistettava) < 0) {
                 if (s.getOikeaLapsi().getKaari().equals(poistettava)) {
                     poistaOikeaLapsi(s);
                 } else {
@@ -94,18 +95,46 @@ public class Kaaripuu {
             }
 
                 private void poistaKaksilapsinenVasenLapsi(Kaarisolmu s) {
-                    Kaarisolmu pieninOikealla = etsiPienin(s.getOikeaLapsi());
-                    
+                    Kaarisolmu pienimmanVanhempiOikealla
+                            = etsiPienimmanVanhempi(s.getOikeaLapsi());
+                    pienimmanVanhempiOikealla.getVasenLapsi()
+                            .setVasenLapsi(s.getVasenLapsi().getVasenLapsi());
+                    pienimmanVanhempiOikealla
+                            .setVasenLapsi
+                            (pienimmanVanhempiOikealla.getVasenLapsi().getOikeaLapsi());
+                    pienimmanVanhempiOikealla.getVasenLapsi()
+                            .setOikeaLapsi(s.getVasenLapsi().getOikeaLapsi());
+                    s.setVasenLapsi(pienimmanVanhempiOikealla.getVasenLapsi());
                 }
 
-                    private Kaarisolmu etsiPienin(Kaarisolmu s) {
-                        if (s.getVasenLapsi() == null) return s;
-                        return etsiPienin(s.getVasenLapsi());
+                    private Kaarisolmu etsiPienimmanVanhempi(Kaarisolmu s) {
+                        if (s.getVasenLapsi().getVasenLapsi() == null) return s;
+                        return etsiPienimmanVanhempi(s.getVasenLapsi());
                     }
 
             private void poistaOikeaLapsi(Kaarisolmu s) {
-                throw new UnsupportedOperationException("Not yet implemented");
+                if (lehti(s.getOikeaLapsi()))
+                    s.setOikeaLapsi(null);
+                else if(s.getOikeaLapsi().getVasenLapsi() == null)
+                    s.setOikeaLapsi(s.getOikeaLapsi().getOikeaLapsi());
+                else if(s.getOikeaLapsi().getOikeaLapsi() == null)
+                    s.setOikeaLapsi(s.getOikeaLapsi().getVasenLapsi());
+                else
+                    poistaKaksilapsinenOikeaLapsi(s);
             }
+
+                private void poistaKaksilapsinenOikeaLapsi(Kaarisolmu s) {
+                    Kaarisolmu pienimmanVanhempiOikealla
+                            = etsiPienimmanVanhempi(s.getOikeaLapsi());
+                    pienimmanVanhempiOikealla.getVasenLapsi()
+                            .setVasenLapsi(s.getVasenLapsi().getVasenLapsi());
+                    pienimmanVanhempiOikealla
+                            .setVasenLapsi
+                            (pienimmanVanhempiOikealla.getVasenLapsi().getOikeaLapsi());
+                    pienimmanVanhempiOikealla.getVasenLapsi()
+                            .setOikeaLapsi(s.getVasenLapsi().getOikeaLapsi());
+                    s.setVasenLapsi(pienimmanVanhempiOikealla.getVasenLapsi());
+                }
 
                 private boolean lehti(Kaarisolmu s) {
                     return s.getOikeaLapsi() == null && s.getVasenLapsi() == null;
