@@ -66,7 +66,8 @@ public class Kaaripuu {
 
         private void poistaRekursiolla(Kaari poistettava, Kaarisolmu s) {
             if (s == null) return;
-            if (s != null && s.getKaari().equals(poistettava)) this.juuri = null;
+            if (s.getKaari().equals(poistettava)) this.juuri = null;
+
             else if(s.getKaari().compareTo(poistettava) > 0) {
                 if (s.getVasenLapsi().getKaari().equals(poistettava)) {
                     poistaVasenLapsi(s);
@@ -107,11 +108,6 @@ public class Kaaripuu {
                     s.setVasenLapsi(pienimmanVanhempiOikealla.getVasenLapsi());
                 }
 
-                    private Kaarisolmu etsiPienimmanVanhempi(Kaarisolmu s) {
-                        if (s.getVasenLapsi().getVasenLapsi() == null) return s;
-                        return etsiPienimmanVanhempi(s.getVasenLapsi());
-                    }
-
             private void poistaOikeaLapsi(Kaarisolmu s) {
                 if (lehti(s.getOikeaLapsi()))
                     s.setOikeaLapsi(null);
@@ -135,6 +131,11 @@ public class Kaaripuu {
                             .setOikeaLapsi(s.getVasenLapsi().getOikeaLapsi());
                     s.setVasenLapsi(pienimmanVanhempiOikealla.getVasenLapsi());
                 }
+
+                    private Kaarisolmu etsiPienimmanVanhempi(Kaarisolmu s) {
+                            if (s.getVasenLapsi().getVasenLapsi() == null) return s;
+                            return etsiPienimmanVanhempi(s.getVasenLapsi());
+                    }
 
                 private boolean lehti(Kaarisolmu s) {
                     return s.getOikeaLapsi() == null && s.getVasenLapsi() == null;

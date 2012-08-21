@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="silja-PC" name="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" tests="18" time="0.265" timestamp="2012-08-21T16:24:32">
+<testsuite errors="0" failures="0" hostname="silja-PC" name="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" tests="18" time="0.499" timestamp="2012-08-21T16:36:20">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -263,21 +263,21 @@
     <property name="sun.arch.data.model" value="32" />
   </properties>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjaSuhteikkoTayttaaVerkkoehdon" time="0.015" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoTayttaaVerkkoehdon" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksisilmukkainenSymmetrinenEiTaytaVerkkoehtoa" time="0.063" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="silmukatonEisymmetrinenEiTaytaVerkkoehtoa" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoTayttaaVerkkoehdon" time="0.016" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksisilmukkainenSymmetrinenEiTaytaVerkkoehtoa" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="silmukatonEisymmetrinenEiTaytaVerkkoehtoa" time="0.093" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellisessa5PisteisessaVerkossaKaikkiAsteet4" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein1PisteisessaJossaSilmukka" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein2PisteisessaJossaYhteys1_2" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjaOnTaydellinen" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoOnTaydellinen" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenSilmukallinenOnTaydellinen" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteinenEpasymmetrinenTaydellinenOnTaydellinen" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteinenEpasymmetrinenTaydellinenOnTaydellinen" time="0.109" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yhteydetonUseampipisteinenEiTaydellinen" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksipisteisellaOnJuuriVaritettavalle" time="0.016" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2OnJuuriVaritettavalle" time="0.015" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjallaEiJuuriaVaritettavalle" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="useampipisteisellaJossaEiYhteyksiaEiJuuriaVaritettavalle" time="0.016" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksipisteisellaOnJuuriVaritettavalle" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2OnJuuriVaritettavalle" time="0.016" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjallaEiJuuriaVaritettavalle" time="0.093" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="useampipisteisellaJossaEiYhteyksiaEiJuuriaVaritettavalle" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellisellaOnJuuri" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1Varitettavalle" time="0.0" />
   <system-out><![CDATA[]]></system-out>

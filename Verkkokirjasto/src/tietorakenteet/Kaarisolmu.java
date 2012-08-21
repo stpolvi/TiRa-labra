@@ -12,10 +12,11 @@ package tietorakenteet;
 public class Kaarisolmu {
 
     private Kaari k;
-    private Kaarisolmu vasen, oikea;
+    private Kaarisolmu emo, vasen, oikea;
 
-    public Kaarisolmu(Kaari k, Kaarisolmu vasenLapsi, Kaarisolmu oikeaLapsi) {
+    public Kaarisolmu(Kaari k, Kaarisolmu emo, Kaarisolmu vasenLapsi, Kaarisolmu oikeaLapsi) {
         this.k = k;
+        this.emo = emo;
         this.vasen = vasenLapsi;
         this.oikea = oikeaLapsi;
     }
@@ -24,12 +25,20 @@ public class Kaarisolmu {
         return this.k;
     }
 
+    public Kaarisolmu getEmo() {
+        return this.emo;
+    }
+
     public Kaarisolmu getOikeaLapsi() {
         return this.oikea;
     }
 
     public Kaarisolmu getVasenLapsi() {
         return this.vasen;
+    }
+
+    public void setEmo(Kaarisolmu s) {
+        this.emo = s;
     }
 
     public void setVasenLapsi(Kaarisolmu s) {
