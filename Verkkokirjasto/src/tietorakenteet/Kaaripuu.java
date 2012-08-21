@@ -29,7 +29,7 @@ public class Kaaripuu {
 
     public void lisaa(Kaari k) {
         if (this.juuri == null)
-            this.juuri = new Kaarisolmu(k, null, null);
+            this.juuri = new Kaarisolmu(k, null, null, null);
         else
             lisaaRekursiolla(k, juuri);
     }
@@ -46,7 +46,7 @@ public class Kaaripuu {
 
             private void lisaaVasemmalle(Kaari lisattava, Kaarisolmu s) {
                 if (s.getVasenLapsi() == null) {
-                        s.setVasenLapsi(new Kaarisolmu(lisattava, null, null));
+                        s.setVasenLapsi(new Kaarisolmu(lisattava, s, null, null));
                     } else {
                         lisaaRekursiolla(lisattava, s.getVasenLapsi());
                     }
@@ -54,7 +54,7 @@ public class Kaaripuu {
 
             private void lisaaOikealle(Kaari lisattava, Kaarisolmu s) {
                     if (s.getOikeaLapsi() == null) {
-                        s.setOikeaLapsi(new Kaarisolmu(lisattava, null, null));
+                        s.setOikeaLapsi(new Kaarisolmu(lisattava, s, null, null));
                     } else {
                         lisaaRekursiolla(lisattava, s.getOikeaLapsi());
                     }
