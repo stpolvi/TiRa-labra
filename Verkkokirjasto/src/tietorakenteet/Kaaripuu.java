@@ -19,10 +19,12 @@ public class Kaaripuu {
 
     /**
      * Lisää puuhun kaaren jos se ei jo ollut siellä.
-     * Kaaret kannattaa lisätä satunnaisessa järjestyksessä.
-     * Siten saadaan tuuhea puu, jossa operaatiot toimivat tehokkaasti.
+     * Kaaret kannattaa lisätä puuhun satunnaisessa järjestyksessä.
+     * Siten saadaan puu, jonka oksat ovat tasapituisia ja niitä on paljon.
+     * Tällaisessa tuuheassa puussa operaatiot toimivat tehokkaasti.
      *
-     * Aikavaativuus O(log n) olettaen että puu on tuuhea
+     * Aikavaativuus O(log n) olettaen että puu on tuuhea,
+     * tilavaativuus O(log n)
      * @param k lisättävä kaari
      */
 
@@ -60,7 +62,8 @@ public class Kaaripuu {
     /**
      * Poistaa annetun kaaren puusta.
      *
-     * Aikavaativuus 
+     * Aikavaativuus O(log n) olettaen että puu on tuuhea,
+     * tilavaativuus O(log n)
      * @param k poistettava kaari
      */
 
@@ -142,10 +145,11 @@ public class Kaaripuu {
                         return s.getEmo().getKaari().compareTo(s.getKaari()) > 0;
                     }
                 
-
-
     /**
      * Onko kaari puussa.
+     *
+     * Aikavaativuus O(log n) olettaen että puu on tuuhea,
+     * tilavaativuus O(log n)
      * @param k etsittävä kaari
      * @return löytyikö kaari
      */
@@ -166,10 +170,10 @@ public class Kaaripuu {
             Kaari vuorossa = s.getKaari();
             if (vuorossa.compareTo(k) > 0)
                 return etsiRekursiolla(k, s.getVasenLapsi());
-            if (vuorossa.compareTo(k) < 0)
+            else if(vuorossa.compareTo(k) < 0)
                 return etsiRekursiolla(k, s.getOikeaLapsi());
-            return true;
+            else
+                return true;
         }
-
-
+        
 }

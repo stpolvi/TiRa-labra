@@ -7,7 +7,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Kaaripuun testiluokka.
  * @author silja
  */
 public class KaaripuuTest {
@@ -19,8 +19,21 @@ public class KaaripuuTest {
         k = new Kaaripuu();
     }
 
+    /**
+     * Apumetodi luo uuden kaaren annetuilla parametreilla.
+     * @param a alkupiste
+     * @param l loppupiste
+     * @return uusi kaari
+     */
+
     private Kaari uusiKaari(int a, int l) {
         return new Kaari(a, l);
+    }
+
+    private Kaari uusiSatunnainenKaari() {
+        Random r = new Random();
+
+        return uusiKaari(r.nextInt(), r.nextInt());
     }
 
     @Test
@@ -83,34 +96,34 @@ public class KaaripuuTest {
 
     @Test
     public void poistamisenJalkeenEiLoydySatunnaisilla() {
-        Random r = new Random();
-        
-        Kaari k1 = uusiKaari(r.nextInt(), r.nextInt());
-        k.lisaa(k1);
-        assertTrue(k.etsi(k1));
-        Kaari k2 = uusiKaari(r.nextInt(), r.nextInt());
+        Kaari k1 = uusiSatunnainenKaari(); //luodaan satunnaisia kaaria
+        Kaari k2 = uusiSatunnainenKaari();
+        Kaari k3 = uusiSatunnainenKaari();
+        Kaari k4 = uusiSatunnainenKaari();
+        Kaari k5 = uusiSatunnainenKaari();
+        Kaari k6 = uusiSatunnainenKaari();
+        Kaari k7 = uusiSatunnainenKaari();
+        Kaari k8 = uusiSatunnainenKaari();
+
+        k.lisaa(k1); //lisätään kaaret puuhun
         k.lisaa(k2);
-        assertTrue(k.etsi(k2));
-        Kaari k3 = uusiKaari(r.nextInt(), r.nextInt());
         k.lisaa(k3);
-        assertTrue(k.etsi(k3));
-        Kaari k4 = uusiKaari(r.nextInt(), r.nextInt());
         k.lisaa(k4);
-        assertTrue(k.etsi(k4));
-        Kaari k5 = uusiKaari(r.nextInt(), r.nextInt());
         k.lisaa(k5);
-        assertTrue(k.etsi(k5));
-        Kaari k6 = uusiKaari(r.nextInt(), r.nextInt());
         k.lisaa(k6);
-        assertTrue(k.etsi(k6));
-        Kaari k7 = uusiKaari(r.nextInt(), r.nextInt());
         k.lisaa(k7);
-        assertTrue(k.etsi(k7));
-        Kaari k8 = uusiKaari(r.nextInt(), r.nextInt());
         k.lisaa(k8);
+
+        assertTrue(k.etsi(k1)); //varmistetaan että kaaret löytyvät puusta
+        assertTrue(k.etsi(k2));
+        assertTrue(k.etsi(k3));
+        assertTrue(k.etsi(k4));
+        assertTrue(k.etsi(k5));
+        assertTrue(k.etsi(k6));
+        assertTrue(k.etsi(k7));
         assertTrue(k.etsi(k8));
 
-        k.poista(k4);
+        k.poista(k4); //poistetaan kaaret puusta sekoitetussa järjestyksessä
         k.poista(k6);
         k.poista(k8);
         k.poista(k3);
@@ -119,6 +132,7 @@ public class KaaripuuTest {
         k.poista(k1);
         k.poista(k2);
 
+        //nyt kaaria ei pitäisi enää löytyä puusta
         assertFalse("Puuhun jäi kaari " + k1.ALKUPISTE + "," + k1.LOPPUPISTE,
                 k.etsi(k1));
         assertFalse("Puuhun jäi kaari " + k2.ALKUPISTE + "," + k2.LOPPUPISTE,

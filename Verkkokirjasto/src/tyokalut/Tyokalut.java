@@ -1,6 +1,8 @@
 
 package tyokalut;
 
+import java.util.Random;
+
 /**
  * Yleishyödyllisiä työkaluja kaikkeen.
  * @author silja
@@ -69,12 +71,47 @@ public class Tyokalut {
      * @param uusi taulukko johon viitteet kopioidaan
      */
 
-    public static void kopioiOlioTaulukkoToiseen(Object[] kopioitava, Object[] uusi) {
+    public static void kopioiOliotaulukkoToiseen(Object[] kopioitava, Object[] uusi) {
         int lyhemmanPituus = minimi(kopioitava.length, uusi.length);
 
         for (int i=0; i<lyhemmanPituus; i++) {
             uusi[i] = kopioitava[i];
         }
     }
+    
+    /**
+     * Sekoittaa annetun oliotaulukon alkiot satunnaiseen järjetykseen.
+     *
+     * Aikavaativuus O(n) taulukon pituuden suhteen
+     */
+
+    public static void sekoitaOliotaulukko(Object[] taulukko) {
+        Random r = new Random();
+        int paikka1;
+        int paikka2;
+
+        for (int i=0; i<taulukko.length *4; i++) {
+            paikka1 = r.nextInt(taulukko.length);
+            paikka2 = r.nextInt(taulukko.length);
+            vaihdaPaittain(taulukko, paikka1, paikka2);
+        }
+    }
+
+    /**
+     * Vaihtaa annetussa oliotaulukossa annettujen indeksien kohdalla olevien
+     * alkioiden paikkaa keskenään.
+     * Indeksit, joita ei ole taulukossa, aiheuttavat poikkeuksen
+     * ArrayIndexOutOfBoundsException
+     * @param taulukko taulukko jossa alkioita siirretään
+     * @param indeksi1 ensimmäisen indeksi
+     * @param indeksi2 toisen indeksi
+     */
+
+    public static void vaihdaPaittain(Object[] taulukko, int indeksi1, int indeksi2) {
+        Object talteen = taulukko[indeksi1];
+        taulukko[indeksi1] = taulukko[indeksi2];
+        taulukko[indeksi2] = talteen;
+    }
+
 
 }

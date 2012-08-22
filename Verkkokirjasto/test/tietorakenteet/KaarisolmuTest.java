@@ -1,19 +1,28 @@
 
 package tietorakenteet;
 
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Kaaarisolmun testiluokka.
  * @author silja
  */
 public class KaarisolmuTest {
 
-    Kaarisolmu k = new Kaarisolmu(new Kaari(2, -19), null, null, null);
-    Kaarisolmu l = new Kaarisolmu(new Kaari(6, 169), null, null, null);
-    Kaarisolmu m = new Kaarisolmu(new Kaari(19, -1900), null, null, null);
-    Kaarisolmu n = new Kaarisolmu(new Kaari(561, 0), null, null, null);
+    Kaarisolmu k;
+    Kaarisolmu l;
+    Kaarisolmu m;
+    Kaarisolmu n;
+
+    @Before
+    public void setUp() {
+        k = new Kaarisolmu(new Kaari(2, -19), null, null, null);
+        l = new Kaarisolmu(new Kaari(6, 169), null, null, null);
+        m = new Kaarisolmu(new Kaari(19, -1900), null, null, null);
+        n = new Kaarisolmu(new Kaari(561, 0), null, null, null);
+    }
 
     @Test
     public void konstruktoriLuoOlion() {
