@@ -37,7 +37,7 @@ public class RelaatioVenyvallaTaulukollaTest {
     @Test
     public void seuraajatNullUudessa() {
         for (int i=1; i<=testattavanKoko; i++) {
-            assertNull(relaatio.getSeuraajat(i));
+            assertTrue(relaatio.getSeuraajat(i)==null);
         }
     }
 

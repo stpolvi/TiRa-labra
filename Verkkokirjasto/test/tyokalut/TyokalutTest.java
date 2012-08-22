@@ -5,7 +5,7 @@
 
 package tyokalut;
 
-import tietorakenteet.Kaari;
+import tietorakenteetOlioille.Kaari;
 import tyokalut.Tyokalut;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -79,7 +79,7 @@ public class TyokalutTest {
             lyhyt[i] = i * 2 + 3;
         }
 
-        Tyokalut.kopioiIntTaulukkoToiseen(lyhyt, pitka);
+        Tyokalut.kopioiTaulukkoToiseen(lyhyt, pitka);
 
         for (int i=0; i<lyhyt.length; i++) {
             assertTrue(pitka[i] == i * 2 + 3);
@@ -95,7 +95,7 @@ public class TyokalutTest {
             pitka[i] = i * 2 + 3;
         }
 
-        Tyokalut.kopioiIntTaulukkoToiseen(pitka, lyhyt);
+        Tyokalut.kopioiTaulukkoToiseen(pitka, lyhyt);
 
         for (int i=0; i<lyhyt.length; i++) {
             assertTrue(lyhyt[i] == i * 2 + 3);
@@ -111,7 +111,7 @@ public class TyokalutTest {
             lyhyt[i] = new Kaari(i,i*2);
         }
 
-        Tyokalut.kopioiOliotaulukkoToiseen(lyhyt, pitka);
+        Tyokalut.kopioiTaulukkoToiseen(lyhyt, pitka);
 
         for (int i=0; i<lyhyt.length; i++) {
             assertTrue(pitka[i].equals(new Kaari(i,i*2)));
@@ -127,7 +127,7 @@ public class TyokalutTest {
             pitka[i] = new Kaari(i,i*2);
         }
 
-        Tyokalut.kopioiOliotaulukkoToiseen(pitka, lyhyt);
+        Tyokalut.kopioiTaulukkoToiseen(pitka, lyhyt);
 
         for (int i=0; i<lyhyt.length; i++) {
             assertTrue(lyhyt[i].equals(new Kaari(i,i*2)));

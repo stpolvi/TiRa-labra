@@ -2,8 +2,7 @@
 package suhteikot;
 
 import relaatiot.Relaatio;
-import tietorakenteet.IntSailio;
-import tietorakenteet.Kaari;
+import tietorakenteetLuvuille.IntSailio;
 
 /**
  * Abstrakti suhteikko, jota voidaan tutkia suhteikkokirjaston algoritmeilla.

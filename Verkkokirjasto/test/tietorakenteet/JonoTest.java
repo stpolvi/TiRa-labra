@@ -1,6 +1,7 @@
 
 package tietorakenteet;
 
+import tietorakenteetLuvuille.Jono;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

@@ -1,7 +1,7 @@
 
 package relaatiot;
 
-import tietorakenteet.IntSailio;
+import tietorakenteetLuvuille.IntSailio;
 
 /**
  * Abstrakti relaatio.
@@ -10,7 +10,7 @@ import tietorakenteet.IntSailio;
 public abstract class Relaatio {
 
     /**
-     * Sen joukon koko, jonka relaatio this on.
+     * Sen joukon koko, jonka relaatio tämä on.
      */
 
     public final int JOUKONKOKO;
@@ -34,7 +34,7 @@ public abstract class Relaatio {
     public abstract void lisaaYhteys(int alkupiste, int loppupiste);
 
     /**
-     * Pisteen seuraajat int-säiliössä.
+     * Pisteen seuraajat {@link IntSailio}ssa.
      * @param piste piste jonka seuraajat
      * @return seuraajat jossakin int-säiliössä
      */
@@ -44,7 +44,7 @@ public abstract class Relaatio {
     /**
      * Onko pisteiden välillä yhteys.
      * Huomaa, että tämä metodi ei toimi, mikäli relaation
-     * rakenteita ei ole järjestetty.
+     * rakenteita ei ole järjestetty ({@link jarjestaRakenteet}).
      * @param alkupiste piste josta yhteys olisi
      * @param loppupiste piste johon yhteys olisi
      * @return oliko yhteyttä alkupisteestä loppupisteeseen

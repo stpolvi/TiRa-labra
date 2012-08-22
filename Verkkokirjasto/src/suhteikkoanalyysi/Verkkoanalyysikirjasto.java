@@ -2,7 +2,7 @@
 package suhteikkoanalyysi;
 
 import suhteikot.Suhteikko;
-import tietorakenteet.IntSailio;
+import tietorakenteetLuvuille.IntSailio;
 
 /**
  * Verkkoanalyysikirjastossa on algoritmeja, joilla voidaan tutkia verkkoja

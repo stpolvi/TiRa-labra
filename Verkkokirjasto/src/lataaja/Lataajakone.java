@@ -2,8 +2,8 @@
 package lataaja;
 
 import suhteikot.Suhteikko;
-import tietorakenteet.Kaari;
-import tietorakenteet.Kaaripuu;
+import tietorakenteetOlioille.Kaari;
+import tietorakenteetOlioille.Kaaripuu;
 
 /**
  * Tämän luokan avulla voi ladata suhteikon valmiiksi tutkimista varten.
@@ -16,7 +16,7 @@ public class Lataajakone {
     private Kaaripuu kaaripuu;
 
     /**
-     * Luo lataajakoneen annetulle suhteikolle.
+     * Luo lataajakoneen annetulle {@link Suhteikko}-oliolle.
      *
      * Aikavaativuus O(1)
      * @param suhteikko
@@ -27,7 +27,8 @@ public class Lataajakone {
     }
 
     /**
-     * Luo suhteikon yhteyksiä vastaavat Kaaret ja tallettaa ne binäärihakupuuhun.
+     * Luo suhteikon yhteyksiä vastaavat {@link Kaari}-oliot ja
+     * tallettaa ne binäärihakupuuhun.
      *
      * Aikavaativuus O(???)
      */

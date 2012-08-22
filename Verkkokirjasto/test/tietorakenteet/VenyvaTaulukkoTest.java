@@ -1,6 +1,7 @@
 
 package tietorakenteet;
 
+import tietorakenteetLuvuille.VenyvaTaulukko;
 import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +43,7 @@ public class VenyvaTaulukkoTest {
 
     void poistaTaulukostaNLukua(int n) {
         for (int i=1; i<=n; i++) {
-            taulukko.poista(i);
+            taulukko.poistaYksiEsiintyma(i);
         }
     }
 
@@ -100,12 +101,24 @@ public class VenyvaTaulukkoTest {
     }
 
     @Test
-    public void AlkioidenLkmKasvaaKunLisataan() {
+    public void AlkioidenLkmKasvaaKunLisataanEriLukuja() {
         alkioitaPitaisiOlla(0);
 
         int laskuri = 0;
         for (int i=8; i>-19; i--) {
             taulukko.lisaa(i);
+            laskuri++;
+            alkioitaPitaisiOlla(laskuri);
+        }
+    }
+
+    @Test
+    public void AlkioidenLkmKasvaaKunLisataanSamojaLukuja() {
+        alkioitaPitaisiOlla(0);
+
+        int laskuri = 0;
+        for (int i=8; i>-19; i--) {
+            taulukko.lisaa(7);
             laskuri++;
             alkioitaPitaisiOlla(laskuri);
         }
@@ -171,7 +184,22 @@ public class VenyvaTaulukkoTest {
         taulukko.lisaa(4);
         alkioitaPitaisiOlla(1);
 
-        taulukko.poista(4);
+        taulukko.poistaYksiEsiintyma(4);
+        alkioitaPitaisiOlla(0);
+    }
+
+    @Test
+    public void lisaaJaPoistaSamaaAlkiotaJolloinPoistetaanAinaYksiEsiintyma() {
+        taulukko.lisaa(4);
+        taulukko.lisaa(4);
+        taulukko.lisaa(4);
+        alkioitaPitaisiOlla(3);
+
+        taulukko.poistaYksiEsiintyma(4);
+        alkioitaPitaisiOlla(2);
+        taulukko.poistaYksiEsiintyma(4);
+        alkioitaPitaisiOlla(1);
+        taulukko.poistaYksiEsiintyma(4);
         alkioitaPitaisiOlla(0);
     }
 
@@ -197,10 +225,10 @@ public class VenyvaTaulukkoTest {
         alkioitaPitaisiOlla(laskuri);
 
         lisaaTaulukkoonNLukua(6);
-        laskuri = laskuri + 4;
+        laskuri = laskuri + 6;
         alkioitaPitaisiOlla(laskuri);
 
-        taulukko.poista(900);
+        taulukko.poistaYksiEsiintyma(900);
         alkioitaPitaisiOlla(laskuri);
     }
 

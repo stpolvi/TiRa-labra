@@ -2,8 +2,7 @@
 package suhteikot;
 
 import relaatiot.Relaatio;
-import tietorakenteet.IntSailio;
-import tietorakenteet.Kaari;
+import tietorakenteetLuvuille.IntSailio;
 
 /**
  * TavallinenSuhteikko-olio kuvaa suhteikkoa (eli ns. suunnattua verkkoa),

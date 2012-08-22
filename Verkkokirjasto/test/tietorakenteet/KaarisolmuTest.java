@@ -1,6 +1,8 @@
 
 package tietorakenteet;
 
+import tietorakenteetOlioille.Kaarisolmu;
+import tietorakenteetOlioille.Kaari;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;

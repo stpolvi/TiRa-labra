@@ -1,8 +1,8 @@
 
 package relaatiot;
 
-import tietorakenteet.IntSailio;
-import tietorakenteet.VenyvaTaulukko;
+import tietorakenteetLuvuille.IntSailio;
+import tietorakenteetLuvuille.VenyvaTaulukkoVain1Esiintyma;
 
 /**
  * Kuvaa suhteikon pisteiden välistä relaatiota.
@@ -12,7 +12,7 @@ import tietorakenteet.VenyvaTaulukko;
 public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     private final int INDEKSIKORJAUS = 1;
-    private VenyvaTaulukko[] yhteydet;
+    private VenyvaTaulukkoVain1Esiintyma[] yhteydet;
 
     /**
      * Relaatio annetun kokoisessa joukossa.
@@ -21,7 +21,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     public RelaatioVenyvallaTaulukolla(int joukonKoko) {
         super(joukonKoko);
-        yhteydet = new VenyvaTaulukko[this.JOUKONKOKO];
+        yhteydet = new VenyvaTaulukkoVain1Esiintyma[this.JOUKONKOKO];
     }
 
     /**
@@ -31,11 +31,11 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      */
     
     public void lisaaYhteys(int alkupiste, int loppupiste) {
-        VenyvaTaulukko vanhatSeuraajat
-                = (VenyvaTaulukko) getSeuraajat(alkupiste);
+        VenyvaTaulukkoVain1Esiintyma vanhatSeuraajat
+                = (VenyvaTaulukkoVain1Esiintyma) getSeuraajat(alkupiste);
 
         if (vanhatSeuraajat == null) {
-            vanhatSeuraajat = new VenyvaTaulukko();
+            vanhatSeuraajat = new VenyvaTaulukkoVain1Esiintyma();
             setSeuraajat(alkupiste, vanhatSeuraajat);
         }
 
@@ -46,11 +46,12 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      * Valmistaa relaation tulevaa käyttöä varten
      * järjestämällä seuraajataulukot.
      * Tämän jälkeen binäärihakua hyödyntävä etsi-metodi toimii niissä oikein.
-     * Huomaa, että onYhteys-metodi toimii vain valmiissa relaatiossa.
+     * Huomaa, että onYhteys-metodi toimii vain relaatiossa, jonka rakenteet on
+     * järjestetty.
      */
     
     public void jarjestaRakenteet() {
-        VenyvaTaulukko seuraajat;
+        VenyvaTaulukkoVain1Esiintyma seuraajat;
         for (int i=0; i<JOUKONKOKO; i++) {
             seuraajat = this.yhteydet[i];
             if (seuraajat != null) seuraajat.jarjesta();
@@ -97,7 +98,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      * @param seuraajat seuraajat int-säiliössä
      */
 
-    private void setSeuraajat(int alkupiste, VenyvaTaulukko seuraajat) {
+    private void setSeuraajat(int alkupiste, VenyvaTaulukkoVain1Esiintyma seuraajat) {
         yhteydet[alkupiste - INDEKSIKORJAUS] = seuraajat;
     }
 

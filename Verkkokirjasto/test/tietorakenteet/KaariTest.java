@@ -1,6 +1,7 @@
 
 package tietorakenteet;
 
+import tietorakenteetOlioille.Kaari;
 import java.util.Random;
 import org.junit.Test;
 import static org.junit.Assert.*;

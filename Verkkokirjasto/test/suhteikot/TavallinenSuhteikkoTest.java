@@ -3,7 +3,7 @@ package suhteikot;
 
 import org.junit.Test;
 import relaatiot.RelaatioVenyvallaTaulukolla;
-import tietorakenteet.IntSailio;
+import tietorakenteetLuvuille.IntSailio;
 import static org.junit.Assert.*;
 
 /**
@@ -73,6 +73,7 @@ public class TavallinenSuhteikkoTest {
      */
     public static TavallinenSuhteikko taydellinen4PisteinenJossaSilmukka() {
         RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(4);
+        
         r.lisaaYhteys(1, 2);
         r.lisaaYhteys(1, 3);
         r.lisaaYhteys(4, 1);

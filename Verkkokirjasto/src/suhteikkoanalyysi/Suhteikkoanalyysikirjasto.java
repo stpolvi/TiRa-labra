@@ -4,7 +4,7 @@ package suhteikkoanalyysi;
 import java.awt.Color;
 import suhteikot.Suhteikko;
 import suhteikot.VaritettavaSuhteikko;
-import tietorakenteet.*;
+import tietorakenteetLuvuille.*;
 
 /**
  * Kirjasto, joka tarjoaa suhteikkojen rakenteen tutkimiseen sopivia algoritmeja.
@@ -64,14 +64,14 @@ public class Suhteikkoanalyysikirjasto {
     }
 
     public static boolean symmetrinenJokaEiToimi(Suhteikko s) {
-        VenyvaTaulukko[] kaannetty = new VenyvaTaulukko[s.PISTEITA];
+        VenyvaTaulukkoVain1Esiintyma[] kaannetty = new VenyvaTaulukkoVain1Esiintyma[s.PISTEITA];
         int[] seuraajat;
         for (int i=1; i<= s.PISTEITA; i++) {
             seuraajat = s.getSeuraajat(i).toIntArray();
             if (seuraajat == null) continue;
             for (int j=1; j<=seuraajat.length; j++) {
                 if (kaannetty[seuraajat[j]] == null)
-                    kaannetty[seuraajat[j]] = new VenyvaTaulukko();
+                    kaannetty[seuraajat[j]] = new VenyvaTaulukkoVain1Esiintyma();
                 kaannetty[seuraajat[j]].lisaa(i);
             }
         }
