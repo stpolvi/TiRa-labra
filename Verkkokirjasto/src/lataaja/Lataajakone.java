@@ -19,7 +19,7 @@ public class Lataajakone {
      * Luo lataajakoneen annetulle suhteikolle.
      *
      * Aikavaativuus O(1)
-     * @param s ladattava suhteikko
+     * @param suhteikko
      */
 
     public Lataajakone(Suhteikko suhteikko) {
@@ -27,7 +27,7 @@ public class Lataajakone {
     }
 
     /**
-     * Luo suhteikon kaaria vastaavat Kaaret ja tallettaa ne binäärihakupuuhun.
+     * Luo suhteikon yhteyksiä vastaavat Kaaret ja tallettaa ne binäärihakupuuhun.
      *
      * Aikavaativuus O(???)
      */

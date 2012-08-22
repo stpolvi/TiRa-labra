@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="silja-PC" name="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" tests="18" time="0.479" timestamp="2012-08-22T12:06:24">
+<testsuite errors="0" failures="0" hostname="silja-PC" name="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" tests="18" time="0.465" timestamp="2012-08-22T12:30:36">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -106,14 +106,15 @@
     <property name="javadoc.private" value="false" />
     <property name="annotation.processing.processors.list" value="" />
     <property name="sun.desktop" value="windows" />
-    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
     <property name="build.test.classes.dir" value="build/test/classes" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
     <property name="libs.jaxb.src" value="" />
     <property name="libs.MySQLDriver.javadoc" value="" />
     <property name="netbeans.dynamic.classpath" value="C:\Program Files (x86)\NetBeans 6.9.1\platform\core\core.jar;C:\Program Files (x86)\NetBeans 6.9.1\platform\core\org-openide-filesystems.jar;C:\Program Files (x86)\NetBeans 6.9.1\platform\core\locale\core_ja.jar;C:\Program Files (x86)\NetBeans 6.9.1\platform\core\locale\core_pt_BR.jar;C:\Program Files (x86)\NetBeans 6.9.1\platform\core\locale\core_zh_CN.jar;C:\Program Files (x86)\NetBeans 6.9.1\platform\core\locale\org-openide-filesystems_ja.jar;C:\Program Files (x86)\NetBeans 6.9.1\platform\core\locale\org-openide-filesystems_pt_BR.jar;C:\Program Files (x86)\NetBeans 6.9.1\platform\core\locale\org-openide-filesystems_zh_CN.jar;C:\Program Files (x86)\NetBeans 6.9.1\nb\core\org-netbeans-upgrader.jar;C:\Program Files (x86)\NetBeans 6.9.1\nb\core\locale\core_nb.jar;C:\Program Files (x86)\NetBeans 6.9.1\nb\core\locale\core_nb_ja.jar;C:\Program Files (x86)\NetBeans 6.9.1\nb\core\locale\core_nb_pt_BR.jar;C:\Program Files (x86)\NetBeans 6.9.1\nb\core\locale\core_nb_zh_CN.jar;C:\Program Files (x86)\NetBeans 6.9.1\nb\core\locale\org-netbeans-upgrader_ja.jar;C:\Program Files (x86)\NetBeans 6.9.1\nb\core\locale\org-netbeans-upgrader_pt_BR.jar;C:\Program Files (x86)\NetBeans 6.9.1\nb\core\locale\org-netbeans-upgrader_zh_CN.jar" />
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.beans-binding.javadoc" value="C:\Program Files (x86)\NetBeans 6.9.1\java\docs\beansbinding-1.2.1-doc.zip" />
     <property name="platform.active" value="default_platform" />
+    <property name="maven.mode.standalone" value="true" />
     <property name="ap.cmd.line.internal" value="" />
     <property name="libs.spring-framework300.classpath" value="C:\Program Files (x86)\NetBeans 6.9.1\ide\modules\ext\commons-logging-1.1.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\cglib-2.2.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-aop-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-asm-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-aspects-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-beans-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-context-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-context-support-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-core-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-expression-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-instrument-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-instrument-tomcat-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-jdbc-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-jms-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-orm-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-oxm-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-test-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-tx-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-web-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-webmvc-portlet-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-webmvc-3.0.2.RELEASE.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\spring-3.0\spring-struts-3.0.2.RELEASE.jar" />
     <property name="http.nonProxyHosts" value="localhost|127.0.0.1|silja-PC" />
@@ -152,13 +153,13 @@
     <property name="libs.beans-binding.src" value="" />
     <property name="libs.junit.classpath" value="C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\junit-3.8.2.jar" />
     <property name="java.library.path" value="C:\Program Files (x86)\Java\jdk1.6.0_21\jre\bin;.;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Java\jdk1.6.0_21\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\MiKTeX 2.9\miktex\bin\;C:\Program Files (x86)\scala\bin" />
-    <property name="do.archive+manifest.available+main.class+mkdist.available" value="true" />
     <property name="libs.PostgreSQLDriver.javadoc" value="" />
+    <property name="do.archive+manifest.available+main.class+mkdist.available" value="true" />
     <property name="libs.toplink.javadoc" value="" />
     <property name="ant.java.version" value="1.6" />
+    <property name="java.class.version" value="50.0" />
     <property name="javadoc.noindex" value="false" />
     <property name="basedir" value="C:\Users\silja\Documents\GitHub\TiRa-labra\Verkkokirjasto" />
-    <property name="java.class.version" value="50.0" />
     <property name="sun.awt.exception.handler" value="org.netbeans.core.startup.TopLogging$AWTHandler" />
     <property name="javac.test.classpath" value=":build/classes:C:\Program Files (x86)\NetBeans 6.9.1\platform\modules\ext\junit-4.5.jar" />
     <property name="javac.processorpath" value="" />
@@ -166,21 +167,21 @@
     <property name="libs.hibernate-persistence.src" value="" />
     <property name="javadoc.splitindex" value="true" />
     <property name="libs.toplink.src" value="" />
-    <property name="libs.javac-api.javadoc" value="" />
     <property name="javac.test.processorpath" value=":build/classes:C:\Program Files (x86)\NetBeans 6.9.1\platform\modules\ext\junit-4.5.jar" />
+    <property name="libs.javac-api.javadoc" value="" />
     <property name="javadoc.preview" value="true" />
     <property name="libs.MySQLDriver.maven-pom" value="" />
     <property name="libs.CopyLibs.javadoc" value="" />
     <property name="libs.PostgreSQLDriver.classpath" value="C:\Program Files (x86)\NetBeans 6.9.1\ide\modules\ext\postgresql-8.3-603.jdbc3.jar" />
     <property name="libs.jaxws21.maven-pom" value="" />
     <property name="libs.junit_4.classpath" value="C:\Program Files (x86)\NetBeans 6.9.1\platform\modules\ext\junit-4.5.jar" />
-    <property name="build.dir" value="build" />
     <property name="sun.boot.library.path" value="C:\Program Files (x86)\Java\jdk1.6.0_21\jre\bin" />
+    <property name="build.dir" value="build" />
     <property name="sun.management.compiler" value="HotSpot Client Compiler" />
     <property name="libs.swing-app-framework.classpath" value="C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\appframework-1.0.3.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\swing-worker-1.1.jar" />
     <property name="libs.ejb3-persistence.javadoc" value="" />
-    <property name="user.variant" value="" />
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="user.variant" value="" />
     <property name="javadoc.encoding.used" value="UTF-8" />
     <property name="javadoc.windowtitle" value="" />
     <property name="libs.hibernate-support.src" value="" />
@@ -215,11 +216,11 @@
     <property name="endorsed.classpath.cmd.line.arg" value="-Xbootclasspath/p:&apos;C:\Users\silja\Documents\GitHub\TiRa-labra\Verkkokirjasto\${endorsed.classpath}&apos;" />
     <property name="jar.index" value="false" />
     <property name="libs.spring-framework300.javadoc" value="" />
-    <property name="java.vm.version" value="17.0-b17" />
     <property name="libs.MySQLDriver.src" value="" />
+    <property name="java.vm.version" value="17.0-b17" />
     <property name="java.class.path" value="C:\Users\silja\Documents\GitHub\TiRa-labra\Verkkokirjasto\build\classes;C:\Program Files (x86)\NetBeans 6.9.1\platform\modules\ext\junit-4.5.jar;C:\Users\silja\Documents\GitHub\TiRa-labra\Verkkokirjasto\build\test\classes;C:\Program Files (x86)\NetBeans 6.9.1\java\ant\lib\ant-launcher.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\ant\lib\ant.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\ant\patches\72080.jar" />
-    <property name="libs.hibernate-persistence.classpath" value="C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\antlr-2.7.6.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\asm.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\asm-attrs.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\cglib-2.1.3.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\commons-collections-2.1.1.jar;C:\Program Files (x86)\NetBeans 6.9.1\ide\modules\ext\commons-logging-1.1.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\dom4j-1.6.1.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\ehcache-1.2.3.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\jdbc2_0-stdext.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\jta.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate3.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-tools.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-annotations.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-commons-annotations.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-entitymanager.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\javassist.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\ejb3-persistence.jar" />
     <property name="annotation.processing.processor.options" value="" />
+    <property name="libs.hibernate-persistence.classpath" value="C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\antlr-2.7.6.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\asm.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\asm-attrs.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\cglib-2.1.3.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\commons-collections-2.1.1.jar;C:\Program Files (x86)\NetBeans 6.9.1\ide\modules\ext\commons-logging-1.1.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\dom4j-1.6.1.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\ehcache-1.2.3.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\jdbc2_0-stdext.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\jta.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate3.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-tools.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-annotations.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-commons-annotations.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\hibernate-entitymanager.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\javassist.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\hibernate\ejb3-persistence.jar" />
     <property name="os.arch" value="x86" />
     <property name="javac.deprecation" value="false" />
     <property name="build.classes.excludes" value="**/*.java,**/*.form" />
@@ -234,8 +235,8 @@
     <property name="ant.file.Verkkokirjasto" value="C:\Users\silja\Documents\GitHub\TiRa-labra\Verkkokirjasto\build.xml" />
     <property name="file.separator" value="\" />
     <property name="java.runtime.version" value="1.6.0_21-b07" />
-    <property name="sun.boot.class.path" value="C:\Users\silja\Documents\GitHub\TiRa-labra\Verkkokirjasto\${endorsed.classpath};C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\resources.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\rt.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\sunrsasign.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\jsse.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\jce.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\charsets.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\classes" />
     <property name="debug.test.classpath" value=":build/classes:C:\Program Files (x86)\NetBeans 6.9.1\platform\modules\ext\junit-4.5.jar:build/test/classes" />
+    <property name="sun.boot.class.path" value="C:\Users\silja\Documents\GitHub\TiRa-labra\Verkkokirjasto\${endorsed.classpath};C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\resources.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\rt.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\sunrsasign.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\jsse.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\jce.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\lib\charsets.jar;C:\Program Files (x86)\Java\jdk1.6.0_21\jre\classes" />
     <property name="libs.beans-binding.classpath" value="C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\beansbinding-1.2.1.jar" />
     <property name="have.tests" value="true" />
     <property name="main.class" value="verkkokirjasto" />
@@ -251,8 +252,8 @@
     <property name="javac.classpath" value="" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="do.archive+manifest.available" value="true" />
-    <property name="libs.swing-layout.src" value="C:\Program Files (x86)\NetBeans 6.9.1\platform\docs\swing-layout-1.0.4-src.zip" />
     <property name="libs.swing-layout.javadoc" value="C:\Program Files (x86)\NetBeans 6.9.1\platform\docs\swing-layout-1.0.4-doc.zip" />
+    <property name="libs.swing-layout.src" value="C:\Program Files (x86)\NetBeans 6.9.1\platform\docs\swing-layout-1.0.4-src.zip" />
     <property name="java.vendor" value="Sun Microsystems Inc." />
     <property name="javac.target" value="1.5" />
     <property name="libs.eclipselink.classpath" value="C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\eclipselink\eclipselink-2.0.2.jar;C:\Program Files (x86)\NetBeans 6.9.1\java\modules\ext\eclipselink\eclipselink-javax.persistence-2.0.jar" />
@@ -263,23 +264,23 @@
     <property name="sun.arch.data.model" value="32" />
   </properties>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjaSuhteikkoTayttaaVerkkoehdon" time="0.0090" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoTayttaaVerkkoehdon" time="0.0050" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoTayttaaVerkkoehdon" time="0.0040" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksisilmukkainenSymmetrinenEiTaytaVerkkoehtoa" time="0.0010" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="silmukatonEisymmetrinenEiTaytaVerkkoehtoa" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="silmukatonEisymmetrinenEiTaytaVerkkoehtoa" time="0.087" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellisessa5PisteisessaVerkossaKaikkiAsteet4" time="0.0010" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein1PisteisessaJossaSilmukka" time="0.0020" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein2PisteisessaJossaYhteys1_2" time="0.09" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein1PisteisessaJossaSilmukka" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein2PisteisessaJossaYhteys1_2" time="0.0010" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjaOnTaydellinen" time="0.0010" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoOnTaydellinen" time="0.0010" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoOnTaydellinen" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenSilmukallinenOnTaydellinen" time="0.0010" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteinenEpasymmetrinenTaydellinenOnTaydellinen" time="0.094" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yhteydetonUseampipisteinenEiTaydellinen" time="0.0010" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteinenEpasymmetrinenTaydellinenOnTaydellinen" time="0.093" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yhteydetonUseampipisteinenEiTaydellinen" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksipisteisellaOnJuuriVaritettavalle" time="0.0030" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2OnJuuriVaritettavalle" time="0.013" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2OnJuuriVaritettavalle" time="0.014" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjallaEiJuuriaVaritettavalle" time="0.079" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="useampipisteisellaJossaEiYhteyksiaEiJuuriaVaritettavalle" time="0.01" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="useampipisteisellaJossaEiYhteyksiaEiJuuriaVaritettavalle" time="0.0020" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellisellaOnJuuri" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1Varitettavalle" time="0.0010" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1Varitettavalle" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
