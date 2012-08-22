@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 
 package tietorakenteet;
 
@@ -23,7 +18,11 @@ public class Kaaripuu {
     }
 
     /**
-     * Lisää puuhun kaaren.
+     * Lisää puuhun kaaren jos se ei jo ollut siellä.
+     * Kaaret kannattaa lisätä satunnaisessa järjestyksessä.
+     * Siten saadaan tuuhea puu, jossa operaatiot toimivat tehokkaasti.
+     *
+     * Aikavaativuus O(log n) olettaen että puu on tuuhea
      * @param k lisättävä kaari
      */
 
@@ -45,101 +44,106 @@ public class Kaaripuu {
         }
 
             private void lisaaVasemmalle(Kaari lisattava, Kaarisolmu s) {
-                if (s.getVasenLapsi() == null) {
-                        s.setVasenLapsi(new Kaarisolmu(lisattava, s, null, null));
-                    } else {
-                        lisaaRekursiolla(lisattava, s.getVasenLapsi());
-                    }
+                if (s.getVasenLapsi() == null) 
+                    s.setVasenLapsi(new Kaarisolmu(lisattava, s, null, null));
+                else 
+                    lisaaRekursiolla(lisattava, s.getVasenLapsi());                   
             }
 
             private void lisaaOikealle(Kaari lisattava, Kaarisolmu s) {
-                    if (s.getOikeaLapsi() == null) {
-                        s.setOikeaLapsi(new Kaarisolmu(lisattava, s, null, null));
-                    } else {
-                        lisaaRekursiolla(lisattava, s.getOikeaLapsi());
-                    }
+                if (s.getOikeaLapsi() == null)
+                    s.setOikeaLapsi(new Kaarisolmu(lisattava, s, null, null));
+                else
+                    lisaaRekursiolla(lisattava, s.getOikeaLapsi());
             }
+
+    /**
+     * Poistaa annetun kaaren puusta.
+     *
+     * Aikavaativuus 
+     * @param k poistettava kaari
+     */
 
     public void poista(Kaari k) {
         poistaRekursiolla(k, juuri);
     }
 
         private void poistaRekursiolla(Kaari poistettava, Kaarisolmu s) {
-            if (s == null) return;
-            if (s.getKaari().equals(poistettava)) this.juuri = null;
+            if (s == null) return; //poistettavaa ei ole puussa
 
-            else if(s.getKaari().compareTo(poistettava) > 0) {
-                if (s.getVasenLapsi().getKaari().equals(poistettava)) {
-                    poistaVasenLapsi(s);
-                } else {
-                    poistaRekursiolla(poistettava, s.getVasenLapsi());
-                }
-            }
-            else if(s.getKaari().compareTo(poistettava) < 0) {
-                if (s.getOikeaLapsi().getKaari().equals(poistettava)) {
-                    poistaOikeaLapsi(s);
-                } else {
-                    poistaRekursiolla(poistettava, s.getOikeaLapsi());
-                }
-            }
+            if (s.getKaari().compareTo(poistettava) > 0)
+                poistaRekursiolla(poistettava, s.getVasenLapsi());
+            else if (s.getKaari().compareTo(poistettava) < 0)
+                poistaRekursiolla(poistettava, s.getOikeaLapsi());
+            else
+                poistaSolmu(s);
         }
 
-            private void poistaVasenLapsi(Kaarisolmu s) {
-                if (lehti(s.getVasenLapsi()))
-                    s.setVasenLapsi(null);
-                else if(s.getVasenLapsi().getVasenLapsi() == null)
-                    s.setVasenLapsi(s.getVasenLapsi().getOikeaLapsi());
-                else if(s.getVasenLapsi().getOikeaLapsi() == null)
-                    s.setVasenLapsi(s.getVasenLapsi().getVasenLapsi());
+            private void poistaSolmu(Kaarisolmu s) {
+                if (this.juuri == s)
+                    this.juuri = null;
+                else if(onLehti(s))
+                    poistaLehti(s);
+                else if(s.getVasenLapsi() == null)
+                    poistaSolmuJollaEiVasentaLasta(s);
+                else if(s.getOikeaLapsi() == null)
+                    poistaSolmuJollaEiOikeaaLasta(s);
                 else
-                    poistaKaksilapsinenVasenLapsi(s);
+                    poistaKaksilapsinenSolmu(s);
             }
 
-                private void poistaKaksilapsinenVasenLapsi(Kaarisolmu s) {
-                    Kaarisolmu pienimmanVanhempiOikealla
-                            = etsiPienimmanVanhempi(s.getOikeaLapsi());
-                    pienimmanVanhempiOikealla.getVasenLapsi()
-                            .setVasenLapsi(s.getVasenLapsi().getVasenLapsi());
-                    pienimmanVanhempiOikealla
-                            .setVasenLapsi
-                            (pienimmanVanhempiOikealla.getVasenLapsi().getOikeaLapsi());
-                    pienimmanVanhempiOikealla.getVasenLapsi()
-                            .setOikeaLapsi(s.getVasenLapsi().getOikeaLapsi());
-                    s.setVasenLapsi(pienimmanVanhempiOikealla.getVasenLapsi());
-                }
-
-            private void poistaOikeaLapsi(Kaarisolmu s) {
-                if (lehti(s.getOikeaLapsi()))
-                    s.setOikeaLapsi(null);
-                else if(s.getOikeaLapsi().getVasenLapsi() == null)
-                    s.setOikeaLapsi(s.getOikeaLapsi().getOikeaLapsi());
-                else if(s.getOikeaLapsi().getOikeaLapsi() == null)
-                    s.setOikeaLapsi(s.getOikeaLapsi().getVasenLapsi());
-                else
-                    poistaKaksilapsinenOikeaLapsi(s);
-            }
-
-                private void poistaKaksilapsinenOikeaLapsi(Kaarisolmu s) {
-                    Kaarisolmu pienimmanVanhempiOikealla
-                            = etsiPienimmanVanhempi(s.getOikeaLapsi());
-                    pienimmanVanhempiOikealla.getVasenLapsi()
-                            .setVasenLapsi(s.getVasenLapsi().getVasenLapsi());
-                    pienimmanVanhempiOikealla
-                            .setVasenLapsi
-                            (pienimmanVanhempiOikealla.getVasenLapsi().getOikeaLapsi());
-                    pienimmanVanhempiOikealla.getVasenLapsi()
-                            .setOikeaLapsi(s.getVasenLapsi().getOikeaLapsi());
-                    s.setVasenLapsi(pienimmanVanhempiOikealla.getVasenLapsi());
-                }
-
-                    private Kaarisolmu etsiPienimmanVanhempi(Kaarisolmu s) {
-                            if (s.getVasenLapsi().getVasenLapsi() == null) return s;
-                            return etsiPienimmanVanhempi(s.getVasenLapsi());
-                    }
-
-                private boolean lehti(Kaarisolmu s) {
+                private boolean onLehti(Kaarisolmu s) {
                     return s.getOikeaLapsi() == null && s.getVasenLapsi() == null;
                 }
+
+                private void poistaLehti(Kaarisolmu s) {
+                    Kaarisolmu emo = s.getEmo();
+                    if (emonsaVasenLapsi(s))
+                        emo.setVasenLapsi(null);
+                    else
+                        emo.setOikeaLapsi(null);
+                }
+
+                private void poistaSolmuJollaEiVasentaLasta(Kaarisolmu s) {
+                    Kaarisolmu emo = s.getEmo();
+                    if (emonsaVasenLapsi(s))
+                        emo.setVasenLapsi(s.getOikeaLapsi());
+                    else
+                        emo.setOikeaLapsi(s.getOikeaLapsi());
+                }
+
+                private void poistaSolmuJollaEiOikeaaLasta(Kaarisolmu s) {
+                    Kaarisolmu emo = s.getEmo();
+                    if (emonsaVasenLapsi(s))
+                        emo.setVasenLapsi(s.getVasenLapsi());
+                    else
+                        emo.setOikeaLapsi(s.getVasenLapsi());
+                }
+
+                private void poistaKaksilapsinenSolmu(Kaarisolmu poistettava) {
+                    Kaarisolmu pieninOikealla = etsiPieninPerillinen(poistettava.getOikeaLapsi());
+
+                    pieninOikealla.getEmo().setVasenLapsi(pieninOikealla.getOikeaLapsi());
+                    pieninOikealla.setVasenLapsi(poistettava.getVasenLapsi());
+                    pieninOikealla.setOikeaLapsi(poistettava.getOikeaLapsi());
+
+                    if (emonsaVasenLapsi(poistettava))
+                        poistettava.getEmo().setVasenLapsi(pieninOikealla);
+                    else 
+                        poistettava.getEmo().setOikeaLapsi(pieninOikealla);
+                }
+
+                    private Kaarisolmu etsiPieninPerillinen(Kaarisolmu s) {
+                        if (s.getVasenLapsi() == null) return s;
+                        return etsiPieninPerillinen(s.getVasenLapsi());
+                    }
+
+                    private boolean emonsaVasenLapsi(Kaarisolmu s) {
+                        return s.getEmo().getKaari().compareTo(s.getKaari()) > 0;
+                    }
+                
+
+
     /**
      * Onko kaari puussa.
      * @param k etsittävä kaari

@@ -62,6 +62,12 @@ public class KaaripuuTest {
     }
 
     @Test
+    public void olemattomanPoistaminenEiKaadaPuuta() {
+        k.poista(null);
+        k.poista(uusiKaari(4, 19));
+    }
+
+    @Test
     public void poistamisenJalkeenEiLoydyPerakkaisilla() {
         for (int i=12; i<28; i++) {
             k.lisaa(uusiKaari(i, 20+i));
