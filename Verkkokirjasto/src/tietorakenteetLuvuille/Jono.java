@@ -15,6 +15,10 @@ public class Jono {
     private int tail; //viimeisen alkion indeksi
     private final int INDEKSIKORJAUS = 1;
 
+    /**
+     * Uuden taulukon oletuskapasiteetti ennen kasvatusta.
+     */
+
     public final int OLETUSKAPASITEETTI = 51;
 
     /**
