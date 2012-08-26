@@ -162,7 +162,7 @@ public class VaritettavaSuhteikkoTest {
             assertEquals(s.getVari(i), sini);
         }
 
-        s.alustaVarit();
+        s.poistaVarit();
 
         for (int i=1; i<=6; i++) {
             assertTrue(s.getVari(i) == null);

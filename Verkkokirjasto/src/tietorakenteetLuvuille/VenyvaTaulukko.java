@@ -15,6 +15,7 @@ import tyokalut.Tyokalut;
  * -muutoin peräkkäishaulla O(n)
  * @author silja
  */
+
 public class VenyvaTaulukko implements IntSailio {
 
     private int[] taulukko;
@@ -27,6 +28,10 @@ public class VenyvaTaulukko implements IntSailio {
      */
 
     public final int KASVATUSSUHDE;
+
+    /*
+     * KONSTRUKTORIT -------------------------------
+     */
 
     /**
      * Taulukko, jonka aloituskapasiteetti viisi. Kasvaa lisättäessa kertoimella 2.
@@ -51,8 +56,20 @@ public class VenyvaTaulukko implements IntSailio {
         this.alkioita = 0;
     }
 
+    /*
+     * IntSailion metodien toteutukset ------------------------------
+     */
+
     /**
-     * Int-säiliön metodin toteutus.
+     * Alkioiden lukumäärä.
+     * @return taulukossa olevien lukujen määrä
+     */
+
+    public int alkioita() {
+        return this.alkioita;
+    }
+
+    /**
      * Lisää alkion taulukkoon, mikäli se ei jo ollut siellä.
      * Tarkistaa peräkkäishaulla oliko alkio jo taulukossa: O(n)
      * Kasvattaa taulukkoa kaksinkertaiseksi jos tarvis: vähemmän kuin O(n)
@@ -65,49 +82,43 @@ public class VenyvaTaulukko implements IntSailio {
         this.taulukko[viimeisenAlkionIndeksi() + 1] = lisattava;
         alkioita++;
     }
-    
+
     /**
-     * Poistaa taulukosta alkioitten ylimääräiset esiintymät niin että kaikkia
-     * alkioita on tasan yksi esiintymä taulukossa. Alkioiden lukumäärä
-     * pienenee vastaavasti.
+     * Katkaisee kapseloidun taulukon alkioiden lukumäärää vastaavaksi
+     * ja pikajärjestää sen eli käyttää quicksortia.
      */
 
-    public void poistaLiiatEsiintymat() {
-        jarjesta();
-        for (int i=0; i<alkioita-1; i++) {
-            if (taulukko[i] == taulukko[i+1]) {
-                if (i+2 < alkioita) taulukko[i+1] = taulukko[i+2];
-                alkioita--;
-            }
-        }
+    public void jarjesta() {
+        int[] uusi = taulukkoKatkaistuna();
+        Tyokalut.pikajarjesta(uusi);
+        this.taulukko = uusi;
     }
 
     /**
-     * Poistaa alkion yhden esiintymän taulukosta. Taulukon koko ei muutu.
-     * O(1)
-     * @param poistettava alkio joka poistetaan
+     * Tämän säiliön alkiot int-taulukkona.
+     * O(1) jos taulukko on järjestetty (jarjesta),
+     * O(n) muuten
+     * @return
      */
 
-    public void poistaYksiEsiintyma(int poistettava) {
-        int poistettavanIndeksi = perakkaishae(poistettava);
-        if (poistettavanIndeksi < 0) return;
-        
-        siirraAlkio(viimeisenAlkionIndeksi(), poistettavanIndeksi);
-        this.alkioita--;
+    public int[] toIntArray() {
+        return taulukkoKatkaistuna();
     }
 
     /**
-     * Int-säiliön metodin toteutus.
      * Etsii alkiota taulukosta käyttäen binäärihakua.
      * Huomaa ettei metodi toimi järjestämättömässä taulukossa.
      * @param etsittava alkio jota etsitään
      * @return true jos alkio löytyi, false muuten
      */
 
-    
     public boolean etsi(int etsittava) {
         return binhae(etsittava) >= 0;
     }
+
+    /*
+     * PUBLIC-METODIT, etsiminen --------------------------------
+     */
     
     /**
      * Binäärihaku venyvästä taulukosta. Huomaa ettei metodi toimi
@@ -117,7 +128,6 @@ public class VenyvaTaulukko implements IntSailio {
      */
 
     public int binhae(int etsittava) {
-//        return Arrays.binarySearch(this.taulukko, etsittava);
         int vasen = 0;
         int oikea = alkioita() - INDEKSIKORJAUS;
         int keski;
@@ -135,7 +145,6 @@ public class VenyvaTaulukko implements IntSailio {
 
         return -1;
     }
-
 
     /**
      * Etsii alkiota peräkkäishaulla.
@@ -161,40 +170,43 @@ public class VenyvaTaulukko implements IntSailio {
         return -1;
     }
 
-    
-    /**
-     * IntSailio-rajapinnan metodin toteutus.
-     * @return taulukossa olevien lukujen määrä
+    /*
+     * Muut PUBLIC-METODIT ---------------------------------
      */
 
-    public int alkioita() {
-        return this.alkioita;
+    /**
+     * Poistaa taulukosta alkioitten ylimääräiset esiintymät niin että kaikkia
+     * alkioita on tasan yksi esiintymä taulukossa. Alkioiden lukumäärä
+     * pienenee vastaavasti.
+     */
+
+    public void poistaLiiatEsiintymat() {
+        jarjesta();
+        for (int i=0; i<alkioita-1; i++) {
+            if (taulukko[i] == taulukko[i+1]) {
+                if (i+2 < alkioita) taulukko[i+1] = taulukko[i+2];
+                alkioita--;
+            }
+        }
     }
     
     /**
-     * jarjesta toteutetaan myöhemmin itse,
-     * käytetty kirjastometodia binäärihaun testausta varten
+     * Poistaa alkion yhden esiintymän taulukosta. Taulukon koko ei muutu, mutta
+     * alkioiden lukumäärä pienenee yhdellä.
+     * O(1)
+     * @param poistettava alkio joka poistetaan
      */
 
-    public void jarjesta() {
-        int[] uusi = taulukkoKatkaistuna();
-        Tyokalut.pikajarjesta(uusi);
-        this.taulukko = uusi;
-    }
-    
-    /**
-     * Tämän säiliön alkiot int-taulukkona.
-     * O(1) jos taulukko on järjestetty (jarjesta),
-     * O(n) muuten
-     * @return
-     */
+    public void poistaYksiEsiintyma(int poistettava) {
+        int poistettavanIndeksi = perakkaishae(poistettava);
+        if (poistettavanIndeksi < 0) return;
 
-    public int[] toIntArray() {
-        return taulukkoKatkaistuna();
+        siirraAlkio(viimeisenAlkionIndeksi(), poistettavanIndeksi);
+        this.alkioita--;
     }
 
     /*
-     * PRIVAATTIMETODIT ALLA ---------------------------------
+     * PRIVAATTIMETODIT ---------------------------------
      */
 
     private void siirraAlkio(int siirrettavanIndeksi, int uusiPaikka) {
@@ -235,7 +247,7 @@ public class VenyvaTaulukko implements IntSailio {
         if (taulukkoTaynna())
             return this.taulukko;
         int[] palautettava = new int[alkioita];
-        tyokalut.Tyokalut.kopioiTaulukkoToiseen(this.taulukko, palautettava);
+        Tyokalut.kopioiTaulukkoToiseen(this.taulukko, palautettava);
         return palautettava;
     }
 

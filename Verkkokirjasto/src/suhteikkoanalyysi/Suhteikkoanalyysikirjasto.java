@@ -138,7 +138,9 @@ public class Suhteikkoanalyysikirjasto {
      * Onko suhteikossa kulku pisteestä toiseen:
      * onko alkupisteestä reitti, mahdollisesti muiden pisteiden kautta,
      * yhteyksiä pitkin loppupisteeseen.
-     * Aikavaativuus??
+     * Aikavaativuus O(1) jos alkupiste ja lopuppiste ovat samat,
+     * O(log n) jos alkupisteestä on suoraan yhteys loppupisteeseen,
+     * TODO O(???) muuten.
      * @param s analysoitava suhteikko
      * @param alkupiste piste josta lähdetään
      * @param loppupiste piste johon yritetään kulkea
@@ -147,6 +149,7 @@ public class Suhteikkoanalyysikirjasto {
 
     public static boolean onKulkuLeveyshaulla(Suhteikko s, int alkupiste, int loppupiste) {
         if (alkupiste == loppupiste) return true;
+        if (s.onYhteys(alkupiste, loppupiste)) return true;
         VaritettavaSuhteikko v;
         try {
             v = (VaritettavaSuhteikko) s;
@@ -241,11 +244,51 @@ public class Suhteikkoanalyysikirjasto {
     public static boolean vahvastiYhtenainen(Suhteikko s) {
         throw new Error("kesken");
     }
+    
+    /**
+     * TODO väritysluku
+     * Kuinka monta eri väriä vähintään tarvitaan kun halutaan värittää
+     * suhteikko niin ettei siinä ole kahta samanväristä pistettä vierekkäin.
+     * @param s analysoitava suhteikko
+     * @return suhteikon väritysluku
+     */
+
+    public static int varitysluku(Suhteikko s) {
+        throw new Error("kesken");
+    }
+
+    /**
+     * TODO komponentit
+     * Annetun pisteen yhtenäinen komponentti annetussa suhteikossa:
+     * suppein mahdollinen joukko suhteikon pisteitä siten, että annettu
+     * piste kuuluu joukkoon,
+     * joukon virittämä aliverkko on yhtenäinen,
+     * ja joukkoon ei voida lisätä pisteitä menettämättä yhtenäisyyttä.
+     * Toisin sanoen, pienimmän sellaisen yhtenäisen aliverkon pisteet,
+     * johon annettu piste kuuluu.
+     * @param s analysoitava suhteikko
+     * @return pisteen yhtenäisen komponentin pisteet satunnaisessa järjestyksessä
+     */
+
+    public static int[] yhtenainenKomponentti(Suhteikko s, int piste) {
+        IntSailio seur = s.getSeuraajat(piste);
+        if (seur == null || seur.toIntArray().length == 0) {
+            int[] vastaus = new int[1];
+            vastaus[0] = piste;
+            return vastaus;
+        }
+        VaritettavaSuhteikko v;
+        try {
+            v = (VaritettavaSuhteikko) s;
+            return yhtenainenKomponenttiVaritettavalle(v, piste);
+        } catch (ClassCastException e) {
+            throw new Error("yhtenainen komponentti varittamattomalle kesken");
+        }
+    }
 
     /*
      * Privaattimetodit ---------------------------------------------
      */
-
 
     private static boolean onKulkuLeveyshaullaVaritettavalle
             (VaritettavaSuhteikko v, int alkupiste, int loppupiste) {
@@ -271,6 +314,30 @@ public class Suhteikkoanalyysikirjasto {
         return false;
     }
 
+    private static int[] yhtenainenKomponenttiVaritettavalle
+            (VaritettavaSuhteikko v, int piste) {
 
+        VenyvaTaulukko komponentti = new VenyvaTaulukko();
+
+        v.varitaKaikki(Color.WHITE);
+        Jono jono = new Jono();
+        jono.lisaa(piste);
+        int vuorossa;
+        int[] vuorossaOlevanSeuraajat;
+
+        while(jono.alkioita() > 0) {
+            vuorossa = jono.ota();
+            v.varita(vuorossa, Color.BLACK);
+            vuorossaOlevanSeuraajat = v.getSeuraajat(vuorossa).toIntArray();
+            if (vuorossaOlevanSeuraajat == null) continue;
+
+            for (int seuraaja : vuorossaOlevanSeuraajat) {
+                if (! v.getVari(seuraaja).equals(Color.BLACK))
+                    komponentti.lisaa(seuraaja);
+            }
+        }
+
+        return komponentti.toIntArray();
+    }
 
 }

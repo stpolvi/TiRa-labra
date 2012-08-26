@@ -8,15 +8,19 @@ import relaatiot.Relaatio;
  * TavallinenSuhteikko-olio kuvaa suhteikkoa (eli ns. suunnattua verkkoa),
  * joka pisteet ovat kokonaislukuja. Jos suhteikossa on n pistettä,
  * sen pisteet ovat 1,2,3,...,n. Suhteikko koostuu pisteistä ja niiden välisestä
- * Relaatiosta. Tämän suhteikon pisteille voi määrittää värin, jota voi muuttaa.
+ * Relaatiosta. Tämän suhteikon pisteille voi määrittää värin (java.awt.Color),
+ * jota voi muuttaa.
  * @author silja
  */
 
 public class VaritettavaSuhteikko extends TavallinenSuhteikko {
 
     private Color[] varit;
-
     private final int INDEKSIKORJAUS = 1;
+
+    /*
+     * KONSTRUKTORIT ----------------------------------------
+     */
     
     /**
      * Parametriton konstruktori luo tyhjän suhteikon:
@@ -49,15 +53,22 @@ public class VaritettavaSuhteikko extends TavallinenSuhteikko {
      */
 
     public VaritettavaSuhteikko(Relaatio relaatio, Color vari) {
-        super(relaatio);
-        varit = new Color[relaatio.JOUKONKOKO];
+        this(relaatio);
         alustaKaikkiPisteetVarilla(vari);
     }
+
+    /*
+     * PRIVAATTIMETODIT ---------------------------------------
+     */
 
     private void alustaKaikkiPisteetVarilla(Color vari) {
         varitaKaikki(vari);
     }
-    
+
+    /*
+     * PUBLIC-METODIT ----------------------------------------
+     */
+
     /**
      * Asettaa annetulle pisteelle annetun värin.
      * @param piste väritettävä piste
@@ -85,7 +96,7 @@ public class VaritettavaSuhteikko extends TavallinenSuhteikko {
      * Vaativuus O(n)
      */
 
-    public void alustaVarit() {
+    public void poistaVarit() {
         for (int i=0; i<varit.length; i++) {
             varit[i] = null;
         }
@@ -102,5 +113,4 @@ public class VaritettavaSuhteikko extends TavallinenSuhteikko {
         return varit[piste - INDEKSIKORJAUS];
     }
 
-    
 }

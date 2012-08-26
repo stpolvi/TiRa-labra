@@ -2,14 +2,14 @@
 package lataaja;
 
 import suhteikot.Suhteikko;
-import tietorakenteetOlioille.Kaari;
-import tietorakenteetOlioille.Kaaripuu;
+import tietorakenteetOlioille.*;
+import tyokalut.Tyokalut;
 
 /**
  * Tämän luokan avulla voi ladata suhteikon valmiiksi tutkimista varten.
- *
  * @author silja
  */
+
 public class Lataajakone {
 
     private Suhteikko suhteikko;
@@ -35,20 +35,31 @@ public class Lataajakone {
 
     public void teeKaaripuu() {
         kaaripuu = new Kaaripuu();
-        int[] seuraajat;
-        Kaari kaari;
-        Kaari[] kaaret = new Kaari[suhteikko.PISTEITA * suhteikko.PISTEITA];
+        Kaari[] kaaret = luoKaaret();
+        Tyokalut.sekoitaOliotaulukko(kaaret);
 
-        for (int i=1; i<=suhteikko.PISTEITA; i++) {
-            seuraajat = suhteikko.getSeuraajat(i).toIntArray();
-
-            for (int j=0; j<seuraajat.length; j++) {
-                kaari = new Kaari(i, seuraajat[j]);
-                kaaret[i*suhteikko.PISTEITA + j-1] = kaari;
-            }
+        for (Kaari k : kaaret) {
+            if (k == null) return;
+            kaaripuu.lisaa(k);
         }
-
-        tyokalut.Tyokalut.sekoitaOliotaulukko(kaaret);
     }
+
+        private Kaari[] luoKaaret() {
+            int[] seuraajat;
+            Kaari kaari;
+            Kaari[] kaaret = new Kaari[suhteikko.PISTEITA * suhteikko.PISTEITA];
+            int laskuri = 0;
+
+            for (int i=1; i<=suhteikko.PISTEITA; i++) {
+                seuraajat = suhteikko.getSeuraajat(i).toIntArray();
+
+                for (int seur : seuraajat) {
+                    kaari = new Kaari(i, seur);
+                    kaaret[laskuri++] = kaari;
+                }
+            }
+
+            return kaaret;
+        }
 
 }

@@ -1,6 +1,7 @@
 
 package suhteikot;
 
+//import lataaja.Lataajakone;
 import relaatiot.Relaatio;
 import tietorakenteetLuvuille.IntSailio;
 
@@ -8,6 +9,7 @@ import tietorakenteetLuvuille.IntSailio;
  * Abstrakti suhteikko, jota voidaan tutkia suhteikkokirjaston algoritmeilla.
  * @author silja
  */
+
 public abstract class Suhteikko {
     
     /**
@@ -21,6 +23,14 @@ public abstract class Suhteikko {
      */
 
     final Relaatio relaatio;
+    
+//    /**
+//     * Pakkausnäkyvä Lataajakone, jonka avulla suhteikon tietoja voi jäsennellä
+//     * valmiiksi. Lataajaa ei ole pakko käyttää mutta se nopeuttaa
+//     * suhteikon tutkiskelua.
+//     */
+//
+//    Lataajakone lataaja;
 
     /**
      * Parametriton konstruktori luo tyhjän suhteikon.
@@ -67,5 +77,4 @@ public abstract class Suhteikko {
 
     public abstract int seuraajienLkm(int piste);
 
-    
 }

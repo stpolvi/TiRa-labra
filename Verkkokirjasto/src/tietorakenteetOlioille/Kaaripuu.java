@@ -1,8 +1,6 @@
 
 package tietorakenteetOlioille;
 
-import tietorakenteetOlioille.Kaari;
-
 /**
  * Kaaripuu on binäärihakupuu, johon voi tallettaa Kaaria.
  * @author silja

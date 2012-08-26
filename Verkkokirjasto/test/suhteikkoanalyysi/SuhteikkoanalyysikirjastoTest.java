@@ -237,6 +237,15 @@ public class SuhteikkoanalyysikirjastoTest {
         assertTrue(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 1);
         assertFalse(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 2);
     }
+    
+    /**
+     * TODO yhtenainenKomponentti-testit
+     */
+
+    @Test
+    public void yhtenainenKomponenttiTOIMII() {
+        fail("kesken");
+    }
 
     
 }

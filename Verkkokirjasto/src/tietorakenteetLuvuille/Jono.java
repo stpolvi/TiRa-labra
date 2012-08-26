@@ -1,6 +1,8 @@
 
 package tietorakenteetLuvuille;
 
+import tyokalut.Tyokalut;
+
 /**
  * Tietorakenne, johon voi tallettaa int-lukuja.
  * Alkiot lisätään aina jonon loppuun, ja
@@ -11,8 +13,8 @@ package tietorakenteetLuvuille;
 public class Jono {
 
     private int[] taulukko;
-    private int head; //ensimmäisen alkion indeksi
-    private int tail; //viimeisen alkion indeksi
+    private int eka; //ensimmäisen alkion indeksi
+    private int vika; //viimeisen alkion indeksi
     private final int INDEKSIKORJAUS = 1;
 
     /**
@@ -30,8 +32,8 @@ public class Jono {
 
     public Jono() {
         this.taulukko = new int[OLETUSKAPASITEETTI];
-        this.head = 1; //ensimmäisen alkion indeksi
-        this.tail = 0; //viimeisen alkion indeksi
+        this.eka = 1; //ensimmäisen alkion indeksi
+        this.vika = 0; //viimeisen alkion indeksi alussa ekan "väärällä" puolella
     }
 
     /**
@@ -42,9 +44,9 @@ public class Jono {
     public void lisaa(int lisattava) {
         if (taulukkoTaynna())
             kasvataTaulukkoa();
-        int uudenPaikka = seuraavaIndeksi(tail);
+        int uudenPaikka = seuraavaIndeksi(vika);
         this.taulukko[uudenPaikka] = lisattava;
-        this.tail = uudenPaikka;
+        this.vika = uudenPaikka;
     }
 
     /**
@@ -55,8 +57,8 @@ public class Jono {
     public int ota() {
         if (alkioita() == 0)
             throw new Error("Ottaminen tyhjästä jonosta");
-        int vastaus = this.taulukko[head];
-        this.head = seuraavaIndeksi(head);
+        int vastaus = this.taulukko[eka];
+        this.eka = seuraavaIndeksi(eka);
         return vastaus;
     }
 
@@ -66,9 +68,9 @@ public class Jono {
      */
 
     public int alkioita() {
-        if (head == tail+1) return 0;
-        if (head <= tail) return tail-head+1;
-        return this.taulukko.length - (head-tail-1);
+        if (eka == vika+1) return 0;
+        if (eka <= vika) return vika-eka+1;
+        return this.taulukko.length - (eka-vika-1);
     }
 
     /*
@@ -80,16 +82,30 @@ public class Jono {
     }
 
     private void kasvataTaulukkoa() {
-        int[] uusi = new int[alkioita() * 2];
-        tyokalut.Tyokalut.kopioiTaulukkoToiseen(this.taulukko, uusi);
+        int[] uusi = new int[this.taulukko.length *2];
+        
+        if (eka <= vika)
+            Tyokalut.kopioiTaulukkoToiseen(this.taulukko, uusi);
+        else
+            kopioiTaulukkoUuteenSiirtaenLoppupaata(uusi);
+
         this.taulukko = uusi;
     }
+
+        private void kopioiTaulukkoUuteenSiirtaenLoppupaata(int[] uusi) {
+            for (int i=0; i<=this.vika; i++)
+                uusi[i] = this.taulukko[i];
+
+            int siirto = uusi.length - this.taulukko.length;
+            for (int i=this.eka; i<this.taulukko.length; i++) {
+                uusi[i + siirto] = this.taulukko[i];
+            }
+        }
 
     private int seuraavaIndeksi(int indeksi) {
         if (indeksi == this.taulukko.length - INDEKSIKORJAUS)
             return 0;
-        else
-            return indeksi + 1;
+        return indeksi + 1;
     }
     
 }

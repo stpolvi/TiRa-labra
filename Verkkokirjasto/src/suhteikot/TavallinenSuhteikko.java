@@ -11,6 +11,7 @@ import tietorakenteetLuvuille.IntSailio;
  * Relaatiosta.
  * @author silja
  */
+
 public class TavallinenSuhteikko extends Suhteikko {
 
     /**
@@ -32,9 +33,12 @@ public class TavallinenSuhteikko extends Suhteikko {
         super(relaatio);
     }
 
+    /*
+     * Yliluokka Suhteikon metodien toteutukset ------------------------------
+     */
+
     /**
-     * Yliluokan Suhteikko abstraktin metodin toteutus:
-     * onko alkupisteestä yhteys loppupisteeseen.
+     * Onko alkupisteestä yhteys loppupisteeseen.
      *
      * @param alkupiste piste josta yhteys mahdollisesti on
      * @param loppupiste piste johon yhteys mahdollisesti on
@@ -49,19 +53,18 @@ public class TavallinenSuhteikko extends Suhteikko {
     }
     
     /**
-     * Yliluokan Suhteikko metodin toteutus.
-     * Annetun pisteen seuraajat int-säiliössä
+     * Annetun pisteen seuraajat int-säiliössä.
      *
      * @param alkupiste piste jonka seuraajat halutaan
      * @return seuraajat jossakin int-säiliössä
      */
+
     @Override
     public IntSailio getSeuraajat(int piste) {
         return this.relaatio.getSeuraajat(piste);
     }
 
     /**
-     * Yliluokan Suhteikko metodin toteutus.
      * Kuinka monta seuraajaa pisteellä on.
      * @param piste analysoitava piste
      * @return seuraajien lukumäärä

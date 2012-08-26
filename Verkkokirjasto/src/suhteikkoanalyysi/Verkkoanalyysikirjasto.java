@@ -3,6 +3,7 @@ package suhteikkoanalyysi;
 
 import suhteikot.Suhteikko;
 import tietorakenteetLuvuille.IntSailio;
+import tyokalut.Tyokalut;
 
 /**
  * Verkkoanalyysikirjastossa on algoritmeja, joilla voidaan tutkia verkkoja
@@ -165,4 +166,33 @@ public class Verkkoanalyysikirjasto {
         return true;
     }
 
+
+
+    /**
+     * TODO hallitsevuusluku
+     * Kuinka monta pistettä on pienimmässä sellaisessa pistejoukossa,
+     * että jokainen verkon piste joko on joukossa tai on joukossa
+     * olevan naapuri.
+     * @param v analysoitava verkko
+     * @return verkon hallitsevuusluku
+     */
+
+    public static int hallitsevuusluku(Suhteikko v) {
+        throw new Error("kesken");
+    }
+
+    /**
+     * TODO hallitseva
+     * Onko annettu pistejoukko hallitseva annetussa verkossa:
+     * onko jokainen verkon piste joko joukossa tai sitten joukossa
+     * olevan naapuri. Järjestää annetun int-taulukon.
+     */
+
+    public static boolean hallitseva(Suhteikko v, int[] pistejoukko) {
+        Tyokalut.pikajarjesta(pistejoukko);
+        for (int i=1; i<=v.PISTEITA; i++) {
+
+        }
+        throw new Error("kesken");
+    }
 }
