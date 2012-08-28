@@ -5,6 +5,7 @@ package tietorakenteetOlioille;
  * Kaaripuu on binäärihakupuu, johon voi tallettaa Kaaria.
  * @author silja
  */
+
 public class Kaaripuu {
 
     private Kaarisolmu juuri;

@@ -96,22 +96,22 @@ public class VerkkoanalyysikirjastoTest {
     @Test
     public void tyhjaOnTaydellinenSaannollisyydenAvulla() {
         v = TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertTrue(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+        assertTrue(Verkkoanalyysikirjasto.taydellinenSaannollisyydenAvulla(v));
     }
 
     @Test
     public void taydellinenVerkkoOnTaydellinenSaannollisyydenAvulla() {
         v = TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+        assertTrue(Verkkoanalyysikirjasto.taydellinenSaannollisyydenAvulla(v));
     }
 
     @Test
     public void yhteydetonUseampipisteinenEiTaydellinenSaannollisyydenAvulla() {
         v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
-        assertFalse(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+        assertFalse(Verkkoanalyysikirjasto.taydellinenSaannollisyydenAvulla(v));
 
         v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
-        assertFalse(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+        assertFalse(Verkkoanalyysikirjasto.taydellinenSaannollisyydenAvulla(v));
     }
 
     /*
@@ -141,12 +141,53 @@ public class VerkkoanalyysikirjastoTest {
     }
 
     /*
-     * TODO puuehtotestit:
+     * Hallitseva-testit:
      */
 
-//    @Test
-//    public void tyhjaOnPuu() {
-//        fail("kesken");
-//    }
+    @Test
+    public void kokoVerkkoOnHallitsevaPistejoukko() {
+        int koko = 19;
+        v = TavallinenSuhteikkoTest.uusiSuhteikkoTaydellinenN(koko);
+        int[] pistejoukko = new int[koko];
+        for (int i=0; i<pistejoukko.length; i++) 
+            pistejoukko[i] = i; //huom taulukko on nyt järjestyksessä
+        assertTrue(Verkkoanalyysikirjasto.hallitseva(v, pistejoukko));
+    }
+
+    @Test
+    public void tyhjaPistejoukkoEiHallitseva() {
+        int koko = 8;
+        v = TavallinenSuhteikkoTest.uusiSuhteikkoTaydellinenN(koko);
+        int[] pistejoukko = new int[0];
+        assertFalse(Verkkoanalyysikirjasto.hallitseva(v, pistejoukko));
+    }
+
+    @Test
+    public void yhteydettomassaAitoOsajoukkoEiHallitseva() {
+        v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(13);
+        int[] pistejoukko = new int[4];
+        for (int i=0; i<pistejoukko.length; i++)
+            pistejoukko[i] = i+2; //huom valmiiksi järjestyksessä
+        assertFalse(Verkkoanalyysikirjasto.hallitseva(v, pistejoukko));
+    }
+
+    /*
+     * on yhteys joukkoon -testit:
+     */
+
+    @Test
+    public void yhteydettomassaEiYhteysOsajoukkoon() {
+        fail("kesken");
+    }
+
+    @Test
+    public void yhteydettomassaYhteysOsajoukkoonItseJoukonAlkiosta() {
+        fail("kesken");
+    }
+
+    @Test
+    public void taydellisessaAinaYhteysJoukkoon() {
+        fail("kesken");
+    }
 
 }

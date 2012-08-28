@@ -185,11 +185,10 @@ public class Verkkoanalyysikirjasto {
      * TODO hallitseva
      * Onko annettu pistejoukko hallitseva annetussa verkossa:
      * onko jokainen verkon piste joko joukossa tai sitten joukossa
-     * olevan naapuri. Järjestää annetun int-taulukon.
+     * olevan naapuri. Joukon on oltava valmiiksi järjestetty.
      */
 
     public static boolean hallitseva(Suhteikko v, int[] pistejoukko) {
-        Tyokalut.pikajarjesta(pistejoukko);
         for (int i=1; i<=v.PISTEITA; i++) {
             if (Tyokalut.etsiBinaarihaulla(i, 0, pistejoukko.length-1, pistejoukko)) continue;
             if (!onYhteysJoukkoon(v, i, pistejoukko)) return false;

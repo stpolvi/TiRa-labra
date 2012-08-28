@@ -1,8 +1,6 @@
 
 package tietorakenteetOlioille;
 
-import tietorakenteetOlioille.Kaari;
-
 /**
  * Kaarisolmulla on kaari, emo, vasen lapsi ja oikea lapsi.
  * Näistä mikä tahansa voi olla null, vaikka kaaren ei ole mielekästä olla null.

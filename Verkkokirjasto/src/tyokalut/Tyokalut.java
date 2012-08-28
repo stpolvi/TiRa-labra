@@ -1,16 +1,15 @@
 
 package tyokalut;
 
-import java.util.Random;
-
 /**
  * Yleishyödyllisiä työkaluja kaikkeen.
  * @author silja
  */
+
 public class Tyokalut {
 
     /**
-     * Kahden kokonaisluvun keskiarvo katkaistuna kokonaislukuna
+     * Kahden kokonaisluvun keskiarvo katkaistuna kokonaislukuna.
      * @param a ensimmäinen luku
      * @param b toinen luku
      * @return keskiarvo joka on katkaistu kokonaisluvuksi pyöristämättä
@@ -22,7 +21,7 @@ public class Tyokalut {
     }
 
     /**
-     * Kolmen kokonaisluvun keskiarvo katkaistuna kokonaislukuna
+     * Kolmen kokonaisluvun keskiarvo katkaistuna kokonaislukuna.
      * @param a ensimmäinen luku
      * @param b toinen luku
      * @return keskiarvo joka on katkaistu kokonaisluvuksi pyöristämättä
@@ -103,23 +102,24 @@ public class Tyokalut {
         }
     }
     
-    /**
-     * Sekoittaa annetun oliotaulukon alkiot satunnaiseen järjetykseen.
-     *
-     * Aikavaativuus O(n) taulukon pituuden suhteen
-     */
-
-    public static void sekoitaOliotaulukko(Object[] taulukko) {
-        Random r = new Random();
-        int paikka1;
-        int paikka2;
-
-        for (int i=0; i<taulukko.length *4; i++) {
-            paikka1 = r.nextInt(taulukko.length);
-            paikka2 = r.nextInt(taulukko.length);
-            vaihdaPaittain(taulukko, paikka1, paikka2);
-        }
-    }
+//    /**
+//     * Sekoittaa annetun oliotaulukon alkiot satunnaiseen järjetykseen.
+//     *
+//     * Aikavaativuus O(n) taulukon pituuden suhteen
+//     */
+//
+//    public static void sekoitaOliotaulukko(Object[] taulukko) {
+//        Random r = new Random();
+//        int paikka1;
+//        int paikka2;
+//
+//        for (int i=0; i<taulukko.length *4; i++) {
+//            paikka1 = r.nextInt(taulukko.length);
+//            paikka2 = r.nextInt(taulukko.length);
+//            vaihdaPaittain(taulukko, paikka1, paikka2);
+//        }
+//    }
+    
     /**
      * Vaihtaa annetussa int-taulukossa annettujen indeksien kohdalla olevien
      * alkioiden paikkaa keskenään.

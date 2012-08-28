@@ -232,10 +232,9 @@ public class SuhteikkoanalyysikirjastoTest {
      */
 
     @Test
-    public void kaksipisteisellaJossaYhteys1_2AinoaJokinJuuri1Varitettavalle() {
+    public void kaksipisteisellaJossaYhteys1_2PieninJuuri1Varitettavalle() {
         s = suhteikot.VaritettavaSuhteikkoTest.pisteita2Yhteys1_2();
         assertTrue(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 1);
-        assertFalse(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 2);
     }
     
     /**

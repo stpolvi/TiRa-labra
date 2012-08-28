@@ -6,12 +6,11 @@
 package tyokalut;
 
 import tietorakenteetOlioille.Kaari;
-import tyokalut.Tyokalut;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
+ * Työkalujen testiluokka.
  * @author silja
  */
 public class TyokalutTest {
@@ -47,6 +46,15 @@ public class TyokalutTest {
         assertTrue(Tyokalut.minimi(-5, -900) == -900);
         assertTrue(Tyokalut.minimi(-5, 900) == -5);
         assertTrue(Tyokalut.minimi(5, 5) == 5);
+    }
+
+    @Test
+    public void maksimiToimii() {
+        assertTrue(Tyokalut.maksimi(5, 900) == 900);
+        assertTrue(Tyokalut.maksimi(5, -900) == 5);
+        assertTrue(Tyokalut.maksimi(-5, -900) == -5);
+        assertTrue(Tyokalut.maksimi(-5, 900) == 900);
+        assertTrue(Tyokalut.maksimi(5, 5) == 5);
     }
 
     @Test

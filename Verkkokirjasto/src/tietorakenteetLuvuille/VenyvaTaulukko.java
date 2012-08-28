@@ -129,21 +129,21 @@ public class VenyvaTaulukko implements IntSailio {
      * PUBLIC-METODIT ---------------------------------
      */
 
-    /**
-     * Poistaa taulukosta alkioitten ylimääräiset esiintymät niin että kaikkia
-     * alkioita on tasan yksi esiintymä taulukossa. Alkioiden lukumäärä
-     * pienenee vastaavasti.
-     */
-
-    public void poistaLiiatEsiintymat() {
-        jarjesta();
-        for (int i=0; i<alkioita-1; i++) {
-            if (taulukko[i] == taulukko[i+1]) {
-                if (i+2 < alkioita) taulukko[i+1] = taulukko[i+2];
-                alkioita--;
-            }
-        }
-    }
+//    /**
+//     * Poistaa taulukosta alkioitten ylimääräiset esiintymät niin että kaikkia
+//     * alkioita on tasan yksi esiintymä taulukossa. Alkioiden lukumäärä
+//     * pienenee vastaavasti.
+//     */
+//
+//    public void poistaLiiatEsiintymat() {
+//        jarjesta();
+//        for (int i=0; i<alkioita-1; i++) {
+//            if (taulukko[i] == taulukko[i+1]) {
+//                if (i+2 < alkioita) taulukko[i+1] = taulukko[i+2];
+//                alkioita--;
+//            }
+//        }
+//    }
     
     /**
      * Poistaa alkion yhden esiintymän taulukosta. Taulukon koko ei muutu, mutta
@@ -189,7 +189,8 @@ public class VenyvaTaulukko implements IntSailio {
     }
 
     private int uudenPituus() {
-        if (taulukonKapasiteetti() == 0) return KASVATUSSUHDE;
+        if (taulukonKapasiteetti() == 0)
+            return KASVATUSSUHDE;
         return KASVATUSSUHDE*taulukonKapasiteetti();
     }
 

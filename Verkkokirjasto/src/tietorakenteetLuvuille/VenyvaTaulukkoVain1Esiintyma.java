@@ -1,13 +1,12 @@
 
 package tietorakenteetLuvuille;
 
-import tyokalut.Tyokalut;
-
 /**
  * Kuten {@link VenyvaTaulukko} mutta kustakin alkiosta voi olla
  * taulukossa korkeintaan yksi esiintymä kerrallaan.
  * @author silja
  */
+
 public class VenyvaTaulukkoVain1Esiintyma extends VenyvaTaulukko {
 
     /**
