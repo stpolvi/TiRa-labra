@@ -191,8 +191,25 @@ public class Verkkoanalyysikirjasto {
     public static boolean hallitseva(Suhteikko v, int[] pistejoukko) {
         Tyokalut.pikajarjesta(pistejoukko);
         for (int i=1; i<=v.PISTEITA; i++) {
-
+            if (Tyokalut.etsiBinaarihaulla(i, 0, pistejoukko.length-1, pistejoukko)) continue;
+            if (!onYhteysJoukkoon(v, i, pistejoukko)) return false;
         }
+        throw new Error("kesken");
+    }
+    
+    /**
+     * Onko annetusta pisteestä yhteys annettuun pistejoukkoon, eli johonkin
+     * joukon pisteeseen.
+     * Huomaa että metodi toimii ainoastaan järjestetylle taulukolle.
+     * Aikavaativuus ??
+     * @param v analysoitava suhteikko
+     * @param piste yhteyden lähtöpiste
+     * @param pistejoukko joukko, jonka pisteeseen yhteys olisi
+     * @return oliko yhteyttä
+     */
+
+    public static boolean onYhteysJoukkoon
+            (Suhteikko v, int piste, int[] jarjestettyPistejoukko) {
         throw new Error("kesken");
     }
 }

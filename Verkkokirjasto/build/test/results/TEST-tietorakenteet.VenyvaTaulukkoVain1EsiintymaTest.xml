@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="0" hostname="silja-PC" name="tietorakenteet.VenyvaTaulukkoVain1EsiintymaTest" tests="5" time="0.202" timestamp="2012-08-26T18:15:10">
+<testsuite errors="0" failures="0" hostname="silja-PC" name="tietorakenteet.VenyvaTaulukkoVain1EsiintymaTest" tests="6" time="0.187" timestamp="2012-08-28T11:51:43">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -265,10 +265,11 @@
     <property name="libs.JWSAntTasks.javadoc" value="" />
     <property name="sun.arch.data.model" value="32" />
   </properties>
-  <testcase classname="tietorakenteet.VenyvaTaulukkoVain1EsiintymaTest" name="parametritonKonstruktoriLuoOlion" time="0.015" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoVain1EsiintymaTest" name="parametritonKonstruktoriLuoOlion" time="0.0" />
   <testcase classname="tietorakenteet.VenyvaTaulukkoVain1EsiintymaTest" name="kaksiparametrinenKonstruktoriLuoOlionKunKasvatussuhde2TaiYli" time="0.0" />
-  <testcase classname="tietorakenteet.VenyvaTaulukkoVain1EsiintymaTest" name="AlkioidenLkmKasvaaKunLisataanEriLukuja" time="0.078" />
-  <testcase classname="tietorakenteet.VenyvaTaulukkoVain1EsiintymaTest" name="AlkioidenLkmKasvaaYhdellaKunLisataanSamaaLukuaMonesti" time="0.0" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoVain1EsiintymaTest" name="alkioidenLkmKasvaaYhdellaKunLisataanLukuNolla" time="0.063" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoVain1EsiintymaTest" name="AlkioidenLkmKasvaaKunLisataanEriLukuja" time="0.0" />
+  <testcase classname="tietorakenteet.VenyvaTaulukkoVain1EsiintymaTest" name="alkioidenLkmKasvaaYhdellaKunLisataanSamaaLukuaMonesti" time="0.0" />
   <testcase classname="tietorakenteet.VenyvaTaulukkoVain1EsiintymaTest" name="lisaaminenJaPoistaminenMuuttavatAlkioidenMaaraaOikein" time="0.0" />
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

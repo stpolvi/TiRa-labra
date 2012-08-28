@@ -180,6 +180,78 @@ public class Tyokalut {
                 pikajarjesta(taulu, vasen, loppu);
   }
 
+    /**
+     * Etsii annetusta taulukosta annetulta väliltä käyttäen binäärihakua.
+     * Huomaa että metodin käyttö edellyttää että taulukko on järjestetty.
+     * Aikavaativuus O(log n)
+     * @param etsittava luku jota etsitään
+     * @param alku ensimmäinen paikka josta etsitään
+     * @param viimeinen paikka josta etsitään
+     * @param taulukko taulukko josta etsitään
+     * @return löytyikö alkio taulukosta
+     */
+
+    public static boolean etsiBinaarihaulla(int etsittava, int alku, int loppu, int[] taulukko) {
+        return binaarihae(etsittava, alku, loppu, taulukko) >= 0;
+    }
+
+    /**
+     * Binäärihaku annetusta taulukosta annetulta väliltä.
+     * Huomaa että metodin käyttö edellyttää että taulukko on järjestetty.
+     * Aikavaativuus O(log n)
+     * @param etsittava haettava
+     * @param alku ensimmäinen paikka josta etsitään
+     * @param viimeinen paikka josta etsitään
+     * @return indeksi josta etsittävä löytyi, tai -1 mikäli sitä ei löytynyt
+     */
+
+    public static int binaarihae(int etsittava, int alku, int loppu, int[] taulukko) {
+        int vasen = alku;
+        int oikea = loppu;
+        int keski;
+
+        while (vasen <= oikea) {
+            keski = tyokalut.Tyokalut.keskiarvo(vasen, oikea);
+
+            if (taulukko[keski] == etsittava)
+                return keski;
+            else if (taulukko[keski] > etsittava)
+                oikea = keski-1;
+            else
+                vasen = keski+1;
+        }
+
+        return -1;
+    }
+
+    /**
+     * Etsii alkiota peräkkäishaulla.
+     * Aikavaativuus O(n).
+     * @param etsittava alkio jota etsitään
+     * @param alku ensimmäinen paikka josta etsitään
+     * @param viimeinen paikka josta etsitään
+     * @return true jos löytyi, false muuten
+     */
+
+    public static boolean etsiPerakkaishaulla(int etsittava, int alku, int loppu, int[] taulukko) {
+        return perakkaishae(etsittava, alku, loppu, taulukko) >= 0;
+    }
+
+    /**
+     * Peräkkäishaku annetusta taulukosta.
+     * Aikavaativuus O(n).
+     * @param haettava alkio jota haetaan
+     * @param alku ensimmäinen paikka josta etsitään
+     * @param viimeinen paikka josta etsitään
+     * @return haettavan indeksi jos löytyi, muutoin -1
+     */
+
+    public static int perakkaishae(int haettava, int alku, int loppu, int[] taulukko) {
+        for (int i=alku; i<=loppu; i++) {
+            if (taulukko[i] == haettava) return i;
+        }
+        return -1;
+    }
 
 
         

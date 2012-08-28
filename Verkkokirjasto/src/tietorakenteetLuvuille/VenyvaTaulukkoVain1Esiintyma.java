@@ -1,6 +1,8 @@
 
 package tietorakenteetLuvuille;
 
+import tyokalut.Tyokalut;
+
 /**
  * Kuten {@link VenyvaTaulukko} mutta kustakin alkiosta voi olla
  * taulukossa korkeintaan yksi esiintymä kerrallaan.
@@ -28,12 +30,14 @@ public class VenyvaTaulukkoVain1Esiintyma extends VenyvaTaulukko {
 
     /**
      * Lisää alkion taulukkoon jos se ei jo ollut siellä.
+     * Tarkistaa peräkkäishaulla oliko alkio jo taulukossa.
+     * Aikavaativuus O(n)
      * @param lisattava lisättävä alkio
      */
 
     @Override
     public void lisaa(int lisattava) {
-        if (!etsiPerakkaishaulla(lisattava))
+        if (!super.etsiPerakkaishaulla(lisattava))
             super.lisaa(lisattava);
     }
 }

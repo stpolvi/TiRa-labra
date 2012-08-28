@@ -49,7 +49,7 @@ public class Kaaripuu {
                 if (s.getVasenLapsi() == null) 
                     s.setVasenLapsi(new Kaarisolmu(lisattava, s, null, null));
                 else 
-                    lisaaRekursiolla(lisattava, s.getVasenLapsi());                   
+                    lisaaRekursiolla(lisattava, s.getVasenLapsi());                  
             }
 
             private void lisaaOikealle(Kaari lisattava, Kaarisolmu s) {

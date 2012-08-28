@@ -96,6 +96,13 @@ public class VenyvaTaulukkoVain1EsiintymaTest {
     }
 
     @Test
+    public void alkioidenLkmKasvaaYhdellaKunLisataanLukuNolla() {
+        alkioitaPitaisiOlla(0);
+        taulukko.lisaa(0);
+        alkioitaPitaisiOlla(1);
+    }
+
+    @Test
     public void AlkioidenLkmKasvaaKunLisataanEriLukuja() {
         alkioitaPitaisiOlla(0);
 
@@ -108,7 +115,7 @@ public class VenyvaTaulukkoVain1EsiintymaTest {
     }
 
     @Test
-    public void AlkioidenLkmKasvaaYhdellaKunLisataanSamaaLukuaMonesti() {
+    public void alkioidenLkmKasvaaYhdellaKunLisataanSamaaLukuaMonesti() {
         alkioitaPitaisiOlla(0);
 
         for (int i=8; i>-19; i--) {

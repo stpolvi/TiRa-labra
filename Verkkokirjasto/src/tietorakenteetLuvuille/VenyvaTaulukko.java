@@ -70,8 +70,7 @@ public class VenyvaTaulukko implements IntSailio {
     }
 
     /**
-     * Lisää alkion taulukkoon, mikäli se ei jo ollut siellä.
-     * Tarkistaa peräkkäishaulla oliko alkio jo taulukossa: O(n)
+     * Lisää alkion taulukkoon.
      * Kasvattaa taulukkoa kaksinkertaiseksi jos tarvis: vähemmän kuin O(n)
      * Yhteensä: noin O(n) ??
      * @param lisattava lisättävä alkio
@@ -113,65 +112,21 @@ public class VenyvaTaulukko implements IntSailio {
      */
 
     public boolean etsi(int etsittava) {
-        return binhae(etsittava) >= 0;
-    }
-
-    /*
-     * PUBLIC-METODIT, etsiminen --------------------------------
-     */
-    
-    /**
-     * Binäärihaku venyvästä taulukosta. Huomaa ettei metodi toimi
-     * järjestämättömässä venyvässä taulukossa.
-     * @param etsittava haettava
-     * @return indeksi josta etsittävä löytyi, tai -1 mikäli sitä ei löytynyt
-     */
-
-    public int binhae(int etsittava) {
-        int vasen = 0;
-        int oikea = alkioita() - INDEKSIKORJAUS;
-        int keski;
-
-        while (vasen <= oikea) {
-            keski = tyokalut.Tyokalut.keskiarvo(vasen, oikea);
-
-            if (taulukko[keski] == etsittava)
-                return keski;
-            else if (taulukko[keski] > etsittava)
-                oikea = keski-1;
-            else
-                vasen = keski+1;
-        }
-
-        return -1;
+        return Tyokalut.etsiBinaarihaulla(etsittava, 0, this.alkioita-1, this.taulukko);
     }
 
     /**
-     * Etsii alkiota peräkkäishaulla.
-     * Tämä haku ei vaadi että taulukko olisi järjestyksessä.
+     * Etsii alkiota taulukosta käyttäen peräkkäishakua.
      * @param etsittava alkio jota etsitään
-     * @return true jos löytyi, false muuten
+     * @return true jos alkio löytyi, false muuten
      */
 
     public boolean etsiPerakkaishaulla(int etsittava) {
-        return perakkaishae(etsittava) >= 0;
+        return Tyokalut.etsiPerakkaishaulla(etsittava, 0, this.alkioita-1, this.taulukko);
     }
-
-    /**
-     * Peräkkäishaku. Ei vaadi että taulukko olisi järjestyksessä.
-     * @param haettava alkio jota haetaan
-     * @return haettavan indeksi jos löytyi, muutoin -1
-     */
-
-    public int perakkaishae(int haettava) {
-        for (int i=0; i<alkioita; i++) {
-            if (this.taulukko[i] == haettava) return i;
-        }
-        return -1;
-    }
-
+    
     /*
-     * Muut PUBLIC-METODIT ---------------------------------
+     * PUBLIC-METODIT ---------------------------------
      */
 
     /**
@@ -198,7 +153,8 @@ public class VenyvaTaulukko implements IntSailio {
      */
 
     public void poistaYksiEsiintyma(int poistettava) {
-        int poistettavanIndeksi = perakkaishae(poistettava);
+        int poistettavanIndeksi 
+                = Tyokalut.perakkaishae(poistettava, 0, this.alkioita, this.taulukko);
         if (poistettavanIndeksi < 0) return;
 
         siirraAlkio(viimeisenAlkionIndeksi(), poistettavanIndeksi);
