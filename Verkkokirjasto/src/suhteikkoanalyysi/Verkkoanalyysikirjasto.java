@@ -193,7 +193,7 @@ public class Verkkoanalyysikirjasto {
             if (Tyokalut.etsiBinaarihaulla(i, 0, pistejoukko.length-1, pistejoukko)) continue;
             if (!onYhteysJoukkoon(v, i, pistejoukko)) return false;
         }
-        throw new Error("kesken");
+        return true;
     }
     
     /**
@@ -209,6 +209,25 @@ public class Verkkoanalyysikirjasto {
 
     public static boolean onYhteysJoukkoon
             (Suhteikko v, int piste, int[] jarjestettyPistejoukko) {
-        throw new Error("kesken");
+        int joukonKoko = jarjestettyPistejoukko.length;
+        if (joukonKoko == 0) return false;
+
+        if (v.seuraajienLkm(piste) == 0)
+            return Tyokalut.etsiBinaarihaulla
+                    (piste, 0, joukonKoko-1, jarjestettyPistejoukko);
+
+        int[] seuraajat = v.getSeuraajat(piste).toIntArray();
+        int s = 0, p = 0;
+        while (true) {
+            if (seuraajat[s] < jarjestettyPistejoukko[p]) {
+                if (s == seuraajat.length - 1) return false;
+                s++;
+            } else if (seuraajat[s] > jarjestettyPistejoukko[p]) {
+                if (p == jarjestettyPistejoukko.length - 1) return false;
+                p++;
+            } else
+                return true;
+        }
     }
+
 }

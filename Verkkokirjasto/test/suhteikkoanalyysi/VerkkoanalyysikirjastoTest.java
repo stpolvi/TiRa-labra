@@ -172,22 +172,47 @@ public class VerkkoanalyysikirjastoTest {
     }
 
     /*
-     * on yhteys joukkoon -testit:
+     * onYhteysJoukkoon -testit:
      */
 
     @Test
     public void yhteydettomassaEiYhteysOsajoukkoon() {
-        fail("kesken");
+        v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(6);
+        int[] joukko = new int[5];
+        for (int i = 0; i< joukko.length; i++)
+            joukko[i] = i+1;
+
+        assertFalse(Verkkoanalyysikirjasto.onYhteysJoukkoon(v, 6, joukko));
     }
 
     @Test
     public void yhteydettomassaYhteysOsajoukkoonItseJoukonAlkiosta() {
-        fail("kesken");
+        v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(6);
+        int[] joukko = new int[3];
+        for (int i = 0; i< joukko.length; i++)
+            joukko[i] = i+2;
+
+        assertTrue(Verkkoanalyysikirjasto.onYhteysJoukkoon(v, 2, joukko));
+        assertTrue(Verkkoanalyysikirjasto.onYhteysJoukkoon(v, 3, joukko));
+        assertTrue(Verkkoanalyysikirjasto.onYhteysJoukkoon(v, 4, joukko));
     }
 
     @Test
     public void taydellisessaAinaYhteysJoukkoon() {
-        fail("kesken");
+        v = TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
+        int[] joukko = new int[3];
+        for (int i = 0; i < joukko.length; i++)
+            joukko[i] = i+2;
+
+        for (int i=1; i<=v.PISTEITA; i++)
+            assertTrue(Verkkoanalyysikirjasto.onYhteysJoukkoon(v, i, joukko));
+    }
+
+    public void tyhjaanJoukkoonEiYhteytta() {
+        v = TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
+        int[] joukko = new int[0];
+        for (int i=1; i<=v.PISTEITA; i++)
+            assertFalse(Verkkoanalyysikirjasto.onYhteysJoukkoon(v, i, joukko));
     }
 
 }
