@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="1" hostname="silja-PC" name="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" tests="19" time="0.531" timestamp="2012-08-30T08:58:40">
+<testsuite errors="0" failures="0" hostname="silja-PC" name="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" tests="19" time="0.343" timestamp="2012-08-30T09:24:11">
   <properties>
     <property name="default.javac.source" value="1.6" />
     <property name="file.encoding.pkg" value="sun.io" />
@@ -265,9 +265,9 @@
     <property name="sun.arch.data.model" value="32" />
   </properties>
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjaSuhteikkoTayttaaVerkkoehdon" time="0.015" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoTayttaaVerkkoehdon" time="0.016" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksisilmukkainenSymmetrinenEiTaytaVerkkoehtoa" time="0.015" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="silmukatonEisymmetrinenEiTaytaVerkkoehtoa" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoTayttaaVerkkoehdon" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksisilmukkainenSymmetrinenEiTaytaVerkkoehtoa" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="silmukatonEisymmetrinenEiTaytaVerkkoehtoa" time="0.11" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellisessa5PisteisessaVerkossaKaikkiAsteet4" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein1PisteisessaJossaSilmukka" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="asteetOikein2PisteisessaJossaYhteys1_2" time="0.0" />
@@ -275,18 +275,14 @@
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenVerkkoOnTaydellinen" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellinenSilmukallinenOnTaydellinen" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteinenEpasymmetrinenTaydellinenOnTaydellinen" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yhteydetonUseampipisteinenEiTaydellinen" time="0.109" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksipisteisellaOnJuuriVaritettavalle" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yhteydetonUseampipisteinenEiTaydellinen" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kolmepisteinenJossaEiKaikkiaYhteyksiaEiTaydellinen" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yksipisteisellaOnJuuriVaritettavalle" time="0.016" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2OnJuuriVaritettavalle" time="0.0" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="tyhjallaEiJuuriaVaritettavalle" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="useampipisteisellaJossaEiYhteyksiaEiJuuriaVaritettavalle" time="0.109" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellisellaOnJuuri" time="0.0" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="useampipisteisellaJossaEiYhteyksiaEiJuuriaVaritettavalle" time="0.015" />
+  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="taydellisellaOnJuuri" time="0.016" />
   <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="kaksipisteisellaJossaYhteys1_2PieninJuuri1Varitettavalle" time="0.0" />
-  <testcase classname="suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest" name="yhtenainenKomponenttiTOIMII" time="0.016">
-    <failure message="kesken" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: kesken
-	at suhteikkoanalyysi.SuhteikkoanalyysikirjastoTest.yhtenainenKomponenttiTOIMII(SuhteikkoanalyysikirjastoTest.java:246)
-</failure>
-  </testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -32,13 +32,14 @@ public class Kaari implements Comparable<Kaari> {
 
     /**
      * Vertailee kaaria ensisijaisesti alkupisteen ja toissijaisesti
-     * loppupisteen perusteella.
+     * loppupisteen perusteella. Null on kaikkia kaaria pienempi.
      * @param k verrattava kaari
      * @return negatiivinen jos tämä on pienempi kuin verrattava,
      * positiivinen jos suurempi, nolla jos samankokoiset.
      */
 
     public int compareTo(Kaari k) {
+        if (k == null) return 1;
         if (this.ALKUPISTE < k.ALKUPISTE) return -1;
         if (this.ALKUPISTE > k.ALKUPISTE) return 1;
         return this.LOPPUPISTE - k.LOPPUPISTE;

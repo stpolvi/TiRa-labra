@@ -1,6 +1,7 @@
 
 package suhteikkoanalyysi;
 
+import suhteikot.TavallinenSuhteikkoTest;
 import suhteikot.TavallinenSuhteikko;
 import relaatiot.RelaatioVenyvallaTaulukolla;
 import suhteikot.Suhteikko;
@@ -138,6 +139,12 @@ public class SuhteikkoanalyysikirjastoTest {
         assertFalse(Suhteikkoanalyysikirjasto.taydellinen(s));
     }
 
+    @Test
+    public void kolmepisteinenJossaEiKaikkiaYhteyksiaEiTaydellinen() {
+        s = TavallinenSuhteikkoTest.pisteita3Yhteys2_1ja3_3();
+        assertFalse(Suhteikkoanalyysikirjasto.taydellinen(s));
+    }
+
     /*
      * LöytyyJuuri-testit tavalliselle suhteikolle/verkolle:
      */
@@ -237,14 +244,14 @@ public class SuhteikkoanalyysikirjastoTest {
         assertTrue(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 1);
     }
     
-    /**
-     * TODO yhtenainenKomponentti-testit
-     */
-
-    @Test
-    public void yhtenainenKomponenttiTOIMII() {
-        fail("kesken");
-    }
+//    /**
+//     * TODO yhtenainenKomponentti-testit
+//     */
+//
+//    @Test
+//    public void yhtenainenKomponenttiTOIMII() {
+//        fail("kesken");
+//    }
 
     
 }

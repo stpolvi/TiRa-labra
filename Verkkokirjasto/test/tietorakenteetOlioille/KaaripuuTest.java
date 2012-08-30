@@ -75,11 +75,24 @@ public class KaaripuuTest {
     }
 
     @Test
-    public void olemattomanPoistaminenEiKaadaPuuta() {
+    public void olemattomanPoistaminenEiKaadaTyhjaaPuuta() {
         k.poista(null);
         k.poista(uusiKaari(4, 19));
     }
 
+    @Test
+    public void olemattomanPoistaminenEiKaadaEpatyhjaaPuuta() {
+        k.lisaa(uusiKaari(8, 11));
+        k.lisaa(uusiKaari(1, 1000));
+        k.lisaa(uusiKaari(-2918, 13));
+        k.lisaa(uusiKaari(15, 4));
+        k.lisaa(uusiKaari(4, 2));
+
+        k.poista(null);
+        k.poista(uusiKaari(4, 19));
+        k.poista(uusiKaari(8, 12));
+    }
+    
     @Test
     public void poistamisenJalkeenEiLoydyPerakkaisilla() {
         for (int i=12; i<28; i++) {

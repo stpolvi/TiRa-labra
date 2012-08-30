@@ -41,6 +41,19 @@ public class TavallinenSuhteikkoTest {
     }
 
     /**
+     * Apumetodi luo uuden kolmepisteisen suhteikon,
+     * jossa yhteys pisteestä 2 pisteeseen 1 ja pisteestä 3 itseensä.
+     * @return uusi suhteikko
+     */
+
+    public static TavallinenSuhteikko pisteita3Yhteys2_1ja3_3() {
+        RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(3);
+        r.lisaaYhteys(2, 1);
+        r.lisaaYhteys(3, 3);
+        return new TavallinenSuhteikko(r);
+    }
+
+    /**
      * Apumetodi luo uuden n-pisteisen suhteikon,
      * jossa ei yhteyksiä.
      * @param n luotavan suhteikon pisteiden määrä
