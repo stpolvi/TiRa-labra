@@ -12,6 +12,7 @@ import tyokalut.Tyokalut;
  * Verkkoehdon tutkiminen jätetään käyttäjän vastuulle.
  * @author silja
  */
+
 public class Verkkoanalyysikirjasto {
 
     /**
@@ -38,22 +39,10 @@ public class Verkkoanalyysikirjasto {
      * @param v analysoitava verkko
      */
 
-    public static boolean saannollinen(Suhteikko v) {
+    public static boolean onSaannollinen(Suhteikko v) {
         if (v.PISTEITA == 0) return true;
 
         if (!kaikkiAsteetSamatEpatyhjassa(v)) return false; // O(pisteidenLkm)
-        return true;
-    }
-
-    /**
-     * Privaatti. Aikavaativuus O(pisteidenLkm)
-     */
-
-    private static boolean kaikkiAsteetSamatEpatyhjassa(Suhteikko v) {
-        int ekanAste = pisteenAste(v, 1); //O(1)
-        for (int i=2; i<=v.PISTEITA; i++) { //O(pisteidenLkm)
-            if (pisteenAste(v, i) != ekanAste) return false;
-        }
         return true;
     }
 
@@ -69,7 +58,7 @@ public class Verkkoanalyysikirjasto {
      * @return oliko täydellinen
      */
 
-    public static boolean taydellinen(Suhteikko v) {
+    public static boolean onTaydellinen(Suhteikko v) {
         for (int i=1; i<=v.PISTEITA; i++) {
             for (int j=i+1; j<=v.PISTEITA; j++) {
                 if (!v.onYhteys(i, j)) return false; //O(log pisteidenLkm)
@@ -86,7 +75,7 @@ public class Verkkoanalyysikirjasto {
      * @return oliko täydellinen verkko
      */
 
-    public static boolean taydellinenSeuraajienAvulla(Suhteikko v) {
+    public static boolean onTaydellinenSeuraajienAvulla(Suhteikko v) {
         for (int i=1; i<=v.PISTEITA; i++) {
             if (v.seuraajienLkm(i) != v.PISTEITA -1) return false;
         }
@@ -101,9 +90,9 @@ public class Verkkoanalyysikirjasto {
      * @return oliko täydellinen verkko
      */
 
-    public static boolean taydellinenSaannollisyydenAvulla(Suhteikko v) {
+    public static boolean onTaydellinenSaannollisyydenAvulla(Suhteikko v) {
         if (v.PISTEITA == 0 || v.PISTEITA == 1) return true;
-        return pisteenAste(v, 1) == v.PISTEITA-1 && saannollinen(v);
+        return pisteenAste(v, 1) == v.PISTEITA-1 && onSaannollinen(v);
     }
 
     /**
@@ -134,6 +123,11 @@ public class Verkkoanalyysikirjasto {
         return true;
     }
 
+    public static boolean onYhtenainenJuurienAvulla(Suhteikko v) {
+        if (v.PISTEITA == 0) return true;
+        return Suhteikkoanalyysikirjasto.onJuuri(v, 1);
+    }
+
     /**
      * Onko verkko yhtenäinen:
      * jokaisesta pisteestä löytyy reitti kaikkiin muihin pisteisiin,
@@ -155,30 +149,6 @@ public class Verkkoanalyysikirjasto {
             return true;
 
         return kaikistaPisteistaOnKulkuPisteeseen(v, 1);
-    }
-
-    private static boolean kaikistaPisteistaOnKulkuPisteeseen(Suhteikko v, int piste) {
-        for (int i=1; i<=v.PISTEITA; i++) {
-            if (!Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(v, piste, i)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-
-
-    /**
-     * TODO hallitsevuusluku
-     * Kuinka monta pistettä on pienimmässä sellaisessa pistejoukossa,
-     * että jokainen verkon piste joko on joukossa tai on joukossa
-     * olevan naapuri.
-     * @param v analysoitava verkko
-     * @return verkon hallitsevuusluku
-     */
-
-    public static int hallitsevuusluku(Suhteikko v) {
-        throw new Error("kesken");
     }
 
     /**
@@ -228,6 +198,31 @@ public class Verkkoanalyysikirjasto {
             } else
                 return true;
         }
+    }
+
+/*
+ * Privaattimetodit -----------------------------
+ */
+
+    private static boolean kaikistaPisteistaOnKulkuPisteeseen(Suhteikko v, int piste) {
+        for (int i=1; i<=v.PISTEITA; i++) {
+            if (!Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(v, piste, i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    /**
+     * Privaatti. Aikavaativuus O(pisteidenLkm)
+     */
+
+    private static boolean kaikkiAsteetSamatEpatyhjassa(Suhteikko v) {
+        int ekanAste = pisteenAste(v, 1); //O(1)
+        for (int i=2; i<=v.PISTEITA; i++) { //O(pisteidenLkm)
+            if (pisteenAste(v, i) != ekanAste) return false;
+        }
+        return true;
     }
 
 }

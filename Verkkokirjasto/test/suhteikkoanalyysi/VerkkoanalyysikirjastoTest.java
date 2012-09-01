@@ -22,20 +22,20 @@ public class VerkkoanalyysikirjastoTest {
     @Test
     public void tyhjaVerkkoOnSaannollinen() {
         v = TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertTrue(Verkkoanalyysikirjasto.saannollinen(v));
+        assertTrue(Verkkoanalyysikirjasto.onSaannollinen(v));
     }
 
     @Test
     public void taydellinenVerkkoOnSaannollinen() {
         v = TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Verkkoanalyysikirjasto.saannollinen(v));
+        assertTrue(Verkkoanalyysikirjasto.onSaannollinen(v));
     }
 
     @Test
     public void yhteydettomatOvatSaannollisia() {
         for (int i=1; i<=5; i++) {
             v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(i);
-            assertTrue(Verkkoanalyysikirjasto.saannollinen(v));
+            assertTrue(Verkkoanalyysikirjasto.onSaannollinen(v));
         }
     }
 
@@ -46,22 +46,22 @@ public class VerkkoanalyysikirjastoTest {
     @Test
     public void tyhjaOnTaydellinenVerkko() {
         v = TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertTrue(Verkkoanalyysikirjasto.taydellinen(v));
+        assertTrue(Verkkoanalyysikirjasto.onTaydellinen(v));
     }
 
     @Test
     public void taydellinenVerkkoOnTaydellinenVerkko() {
         v = TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Verkkoanalyysikirjasto.taydellinen(v));
+        assertTrue(Verkkoanalyysikirjasto.onTaydellinen(v));
     }
 
     @Test
     public void yhteydetonUseampipisteinenEiTaydellinenVerkko() {
         v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
-        assertFalse(Verkkoanalyysikirjasto.taydellinen(v));
+        assertFalse(Verkkoanalyysikirjasto.onTaydellinen(v));
 
         v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
-        assertFalse(Verkkoanalyysikirjasto.taydellinen(v));
+        assertFalse(Verkkoanalyysikirjasto.onTaydellinen(v));
     }
 
     /*
@@ -71,22 +71,22 @@ public class VerkkoanalyysikirjastoTest {
     @Test
     public void tyhjaOnTaydellinenSeuraajienAvulla() {
         v = TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertTrue(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+        assertTrue(Verkkoanalyysikirjasto.onTaydellinenSeuraajienAvulla(v));
     }
 
     @Test
     public void taydellinenVerkkoOnTaydellinenSeuraajienAvulla() {
         v = TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+        assertTrue(Verkkoanalyysikirjasto.onTaydellinenSeuraajienAvulla(v));
     }
 
     @Test
     public void yhteydetonUseampipisteinenEiTaydellinenSeuraajienAvulla() {
         v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
-        assertFalse(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+        assertFalse(Verkkoanalyysikirjasto.onTaydellinenSeuraajienAvulla(v));
 
         v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
-        assertFalse(Verkkoanalyysikirjasto.taydellinenSeuraajienAvulla(v));
+        assertFalse(Verkkoanalyysikirjasto.onTaydellinenSeuraajienAvulla(v));
     }
 
     /*
@@ -96,22 +96,22 @@ public class VerkkoanalyysikirjastoTest {
     @Test
     public void tyhjaOnTaydellinenSaannollisyydenAvulla() {
         v = TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertTrue(Verkkoanalyysikirjasto.taydellinenSaannollisyydenAvulla(v));
+        assertTrue(Verkkoanalyysikirjasto.onTaydellinenSaannollisyydenAvulla(v));
     }
 
     @Test
     public void taydellinenVerkkoOnTaydellinenSaannollisyydenAvulla() {
         v = TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Verkkoanalyysikirjasto.taydellinenSaannollisyydenAvulla(v));
+        assertTrue(Verkkoanalyysikirjasto.onTaydellinenSaannollisyydenAvulla(v));
     }
 
     @Test
     public void yhteydetonUseampipisteinenEiTaydellinenSaannollisyydenAvulla() {
         v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
-        assertFalse(Verkkoanalyysikirjasto.taydellinenSaannollisyydenAvulla(v));
+        assertFalse(Verkkoanalyysikirjasto.onTaydellinenSaannollisyydenAvulla(v));
 
         v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
-        assertFalse(Verkkoanalyysikirjasto.taydellinenSaannollisyydenAvulla(v));
+        assertFalse(Verkkoanalyysikirjasto.onTaydellinenSaannollisyydenAvulla(v));
     }
 
     /*

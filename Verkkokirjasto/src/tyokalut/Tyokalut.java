@@ -253,7 +253,23 @@ public class Tyokalut {
         return -1;
     }
 
+    public static boolean onSamaTaulukko(int[] taulukko, int[] verrattava) {
+        if (taulukko.length != verrattava.length) return false;
 
+        for (int i=0; i<taulukko.length; i++)
+            if (taulukko[i] != verrattava[i]) return false;
+
+        return true;
+    }
+
+    public static int[] luoTaulukko1_N(int pisteita) {
+        int[] vastaus = new int[pisteita];
+
+        for (int i=0; i<vastaus.length; i++)
+            vastaus[i] = i+1;
+        
+        return vastaus;
+    }
         
 
 

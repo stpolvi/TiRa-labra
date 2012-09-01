@@ -202,6 +202,17 @@ public class Suhteikkoanalyysikirjasto {
         }
         return true;
     }
+    
+    /**
+     * Eristetty piste on piste, josta ei ole yhteyksiä muihin pisteisiin
+     * kumpaankaan suuntaan.
+     * @param s
+     * @return
+     */
+
+    public static int[] eristetytPisteet(Suhteikko s) {
+
+    }
 
     /**
      * TODO yhtenäisyys:
@@ -210,28 +221,23 @@ public class Suhteikkoanalyysikirjasto {
      * suhteikossa on nuoli P:stä tai nuoli P:hen.
      */
 
-    public static boolean yhtenainen(Suhteikko s) {
-        throw new Error("kesken");
-    }
-
-    /**
-     * Tutkii leveyshaulla, onko annettu väritettävä suhteikko yhtenäinen.
-     * Huom palauttaa false mikäli syötteeksi annetaan muu kuin
-     * väritettävä suhteikko, vaikka se olisikin yhtenäinen.
-     * Yhtenäisyys, määritelmä: suhteikko on yhtenäinen, jos sen pisteiden joukon
-     * jokaisella aidolla epätyhjällä osajoukolla P,
-     * suhteikossa on nuoli P:stä tai nuoli P:hen.
-     */
-
-    public static boolean yhtenainenVaritettavalle(Suhteikko s) {
+    public static boolean onYhtenainen(Suhteikko s) {
+        if (s.PISTEITA == 0 || s.PISTEITA == 1)
+            return true; //tyhjä ja yksipisteinen automaattisesti yhtenäisiä
         VaritettavaSuhteikko t;
+
         try {
             t = (VaritettavaSuhteikko) s;
+            return onYhtenainenVaritettavalle(t);
         } catch (ClassCastException e) {
             return false;
         }
-        
-        throw new Error("Kesken");
+    }
+
+    public static boolean onYhtanainenJuurienAvulla(Suhteikko s) {
+        for (int i=1; i<s.PISTEITA; i++)
+            if (onJuuri(s, i)) return true;
+        return false;
     }
 
     /**
@@ -241,22 +247,10 @@ public class Suhteikkoanalyysikirjasto {
      * suhteikossa on nuoli P:stä ja nuoli P:hen.
      */
 
-    public static boolean vahvastiYhtenainen(Suhteikko s) {
+    public static boolean onVahvastiYhtenainen(Suhteikko s) {
         throw new Error("kesken");
     }
     
-    /**
-     * TODO väritysluku
-     * Kuinka monta eri väriä vähintään tarvitaan kun halutaan värittää
-     * suhteikko niin ettei siinä ole kahta samanväristä pistettä vierekkäin.
-     * @param s analysoitava suhteikko
-     * @return suhteikon väritysluku
-     */
-
-    public static int varitysluku(Suhteikko s) {
-        throw new Error("kesken");
-    }
-
     /**
      * TODO komponentit
      * Annetun pisteen yhtenäinen komponentti annetussa suhteikossa:
@@ -338,6 +332,17 @@ public class Suhteikkoanalyysikirjasto {
         }
 
         return komponentti.toIntArray();
+    }
+
+    /**
+     * Tutkii leveyshaulla, onko annettu väritettävä suhteikko yhtenäinen.
+     * Yhtenäisyys, määritelmä: suhteikko on yhtenäinen, jos sen pisteiden joukon
+     * jokaisella aidolla epätyhjällä osajoukolla P,
+     * suhteikossa on nuoli P:stä tai nuoli P:hen.
+     */
+
+    private static boolean onYhtenainenVaritettavalle(VaritettavaSuhteikko c) {
+        throw new Error("kesken");
     }
 
 }
