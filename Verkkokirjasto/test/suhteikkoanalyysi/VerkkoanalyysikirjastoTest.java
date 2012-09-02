@@ -1,6 +1,9 @@
 
 package suhteikkoanalyysi;
 
+import java.awt.Color;
+import relaatiot.RelaatioVenyvallaTaulukolla;
+import tyokalut.Tyokalut;
 import suhteikot.VaritettavaSuhteikko;
 import suhteikot.VaritettavaSuhteikkoTest;
 import suhteikot.TavallinenSuhteikkoTest;
@@ -130,15 +133,47 @@ public class VerkkoanalyysikirjastoTest {
      */
 
     @Test
-    public void yksipisteinenOnYhtenainenVaritettavalle() {
+    public void yksipisteinenOnYhtenainenKulkujenAvulla() {
         VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
         assertTrue(Verkkoanalyysikirjasto.onYhtenainenKulkujenAvulla(c));
     }
 
     @Test
-    public void taydellinenVerkkoYhtenainen() {
+    public void taydellinenVerkkoYhtenainenKulkujenAvulla() {
         VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.taydellinen5PisteinenVerkko();
         assertTrue(Verkkoanalyysikirjasto.onYhtenainenKulkujenAvulla(c));
+    }
+
+    /*
+     * yhtenäisyystestit: juurien avulla
+     */
+
+    @Test
+    public void yksipisteinenOnYhtenainenJuurienAvulla() {
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
+        assertTrue(Verkkoanalyysikirjasto.onYhtenainenJuurienAvulla(c));
+    }
+
+    @Test
+    public void taydellinenVerkkoYhtenainenJuurienAvulla() {
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.taydellinen5PisteinenVerkko();
+        assertTrue(Verkkoanalyysikirjasto.onYhtenainenJuurienAvulla(c));
+    }
+
+    /*
+     * yhtenäisyystestit: varitettavalle
+     */
+
+    @Test
+    public void yksipisteinenOnYhtenainenVaritettavalle() {
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
+        assertTrue(Verkkoanalyysikirjasto.onYhtenainenVaritettavalle(c));
+    }
+
+    @Test
+    public void taydellinenVerkkoYhtenainenVaritettavalle() {
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.taydellinen5PisteinenVerkko();
+        assertTrue(Verkkoanalyysikirjasto.onYhtenainenVaritettavalle(c));
     }
 
     /*
@@ -214,6 +249,78 @@ public class VerkkoanalyysikirjastoTest {
         int[] joukko = new int[0];
         for (int i=1; i<=v.PISTEITA; i++)
             assertFalse(Verkkoanalyysikirjasto.onYhteysJoukkoon(v, i, joukko));
+    }
+
+    /*
+     * EristetytPisteet-testit:
+     */
+
+    @Test
+    public void taydellisessaEiEristettyjaPisteita() {
+        v = TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
+        assertTrue(Tyokalut.onSamaTaulukko
+                (Verkkoanalyysikirjasto.eristetytPisteet(v), new int[0]));
+    }
+
+    @Test
+    public void yhteydettomassaKaikkiPisteetEristettyja() {
+        v = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(7);
+        int[] oikeatEristetyt = Tyokalut.luoTaulukko1_N(7);
+        assertTrue(Tyokalut.onSamaTaulukko
+                (Verkkoanalyysikirjasto.eristetytPisteet(v), oikeatEristetyt));
+    }
+
+    /*
+     * Puuehtotestit:
+     */
+
+    @Test
+    public void tyhjaTayttaaPuuehdon() {
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.uusiTyhjaSuhteikko();
+        assertTrue(Verkkoanalyysikirjasto.tayttaaPuuehdon(c));
+    }
+
+    @Test
+    public void yksipisteinenTayttaaPuuehdon() {
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
+        assertTrue(Verkkoanalyysikirjasto.tayttaaPuuehdon(c));
+    }
+
+    @Test
+    public void taydellinenKaksipisteinenTayttaaPuuehdon() {
+        RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(2);
+        r.lisaaYhteys(1, 2);
+        r.lisaaYhteys(2, 1);
+        VaritettavaSuhteikko c = new VaritettavaSuhteikko(r);
+        assertTrue(Verkkoanalyysikirjasto.tayttaaPuuehdon(c));
+    }
+
+    /*
+     * yhtenainenKomponentti-testit:
+     */
+
+    @Test
+    public void yhteydettomassaYhtenainenKomponenttiAinaVainYksiPiste() {
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(8);
+        int[] oikeaKomponentti = new int[1];
+        for (int i=1; i<=c.PISTEITA; i++) {
+            oikeaKomponentti[0] = i;
+            assertTrue(Tyokalut.onSamaTaulukko
+                    (Verkkoanalyysikirjasto.yhtenainenKomponentti(c, i), oikeaKomponentti));
+        }
+    }
+
+    @Test
+    public void taydellisessaYhtenainenKomponenttiKokoVerkko() {
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.taydellinen5PisteinenVerkko();
+        int[] oikeaKomponentti = Tyokalut.luoTaulukko1_N(5);
+        int[] vaitettyKomponentti;
+        for (int i=1; i<=c.PISTEITA; i++) {
+            vaitettyKomponentti = Verkkoanalyysikirjasto.yhtenainenKomponentti(c, i);
+            Tyokalut.pikajarjesta(vaitettyKomponentti);
+            assertTrue(Tyokalut.onSamaTaulukko
+                    (vaitettyKomponentti, oikeaKomponentti));
+        }
     }
 
 }

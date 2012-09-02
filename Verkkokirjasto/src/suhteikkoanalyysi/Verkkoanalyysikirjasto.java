@@ -7,6 +7,7 @@ import suhteikot.VaritettavaSuhteikko;
 import tietorakenteetLuvuille.IntSailio;
 import tietorakenteetLuvuille.Jono;
 import tietorakenteetLuvuille.VenyvaTaulukko;
+import tietorakenteetLuvuille.VenyvaTaulukkoVain1Esiintyma;
 import tyokalut.Tyokalut;
 
 /**
@@ -73,6 +74,18 @@ public class Verkkoanalyysikirjasto {
         if (!kaikkiAsteetSamatEpatyhjassa(v)) return false; // O(pisteidenLkm)
         return true;
     }
+
+        /**
+         * Privaatti. Aikavaativuus O(pisteidenLkm)
+         */
+
+        private static boolean kaikkiAsteetSamatEpatyhjassa(Suhteikko v) {
+            int ekanAste = pisteenAste(v, 1); //O(1)
+            for (int i=2; i<=v.PISTEITA; i++) { //O(pisteidenLkm)
+                if (pisteenAste(v, i) != ekanAste) return false;
+            }
+            return true;
+        }
 
     /**
      * Onko annettu verkko täydellinen:
@@ -315,22 +328,10 @@ public class Verkkoanalyysikirjasto {
  */
 
     
-    /**
-     * Privaatti. Aikavaativuus O(pisteidenLkm)
-     */
-
-    private static boolean kaikkiAsteetSamatEpatyhjassa(Suhteikko v) {
-        int ekanAste = pisteenAste(v, 1); //O(1)
-        for (int i=2; i<=v.PISTEITA; i++) { //O(pisteidenLkm)
-            if (pisteenAste(v, i) != ekanAste) return false;
-        }
-        return true;
-    }
 
 
     /**
-     * TODO komponentit 
-     * Annetun pisteen yhtenäinen komponentti annetussa verkossa:
+     * Annetun pisteen yhtenäinen komponentti annetussa väritettävässä verkossa:
      * suppein mahdollinen joukko verkon pisteitä siten, että annettu
      * piste kuuluu joukkoon,
      * joukon virittämä aliverkko on yhtenäinen,
@@ -342,20 +343,14 @@ public class Verkkoanalyysikirjasto {
      * @return pisteen yhtenäisen komponentin pisteet satunnaisessa järjestyksessä
      */
 
-    public static int[] yhtenainenKomponentti(Suhteikko v, int piste) {
+    public static int[] yhtenainenKomponentti(VaritettavaSuhteikko v, int piste) {
         IntSailio seur = v.getSeuraajat(piste);
         if (seur == null || seur.toIntArray().length == 0) {
             int[] vastaus = new int[1];
             vastaus[0] = piste;
             return vastaus;
         }
-        VaritettavaSuhteikko variv;
-        try {
-            variv = (VaritettavaSuhteikko) v;
-            return yhtenainenKomponenttiVaritettavalle(variv, piste);
-        } catch (ClassCastException e) {
-            throw new Error("yhtenainen komponentti varittamattomalle kesken");
-        }
+        return yhtenainenKomponenttiIsommalle(v, piste);
     }
 
         /**
@@ -363,10 +358,10 @@ public class Verkkoanalyysikirjasto {
          * Palauttaa annetun pisteen yhtenäisen komponentin pisteet.
          */
 
-        private static int[] yhtenainenKomponenttiVaritettavalle
+        private static int[] yhtenainenKomponenttiIsommalle
                 (VaritettavaSuhteikko v, int piste) {
 
-            VenyvaTaulukko komponentti = new VenyvaTaulukko();
+            VenyvaTaulukko komponentti = new VenyvaTaulukkoVain1Esiintyma();
 
             v.varitaKaikki(Color.WHITE);
             Jono jono = new Jono();
@@ -386,6 +381,7 @@ public class Verkkoanalyysikirjasto {
                 }
             }
 
+            komponentti.lisaa(piste);
             return komponentti.toIntArray();
         }
 

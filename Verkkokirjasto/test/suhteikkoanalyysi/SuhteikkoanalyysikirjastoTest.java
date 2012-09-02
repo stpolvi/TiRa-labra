@@ -247,15 +247,6 @@ public class SuhteikkoanalyysikirjastoTest {
         assertTrue(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(c) == 1);
     }
     
-//    /**
-//     * TODO yhtenainenKomponentti-testit
-//     */
-//
-//    @Test
-//    public void yhtenainenKomponenttiTOIMII() {
-//        fail("kesken");
-//    }
-
     /*
      * EristetytPisteet-testit:
      */
@@ -300,6 +291,32 @@ public class SuhteikkoanalyysikirjastoTest {
         VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(13);
         for (int i=1; i<=c.PISTEITA; i++)
             assertTrue(Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(c, i, i));
+    }
+    
+    @Test
+    public void yhteydettomassaEiKulkujaLeveyshaullaPisteistaToisiin() {
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(13);
+        for (int i=1; i<c.PISTEITA; i++) {
+            assertFalse(Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(c, i, 13));
+            assertFalse(Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(c, 13, i));
+        }
+    }
+
+    @Test
+    public void kaksipisteisessaOnKulkuLeveyshaullaPisteestaSeuraajaansa() {
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.pisteita2Yhteys1_2();
+        assertTrue(Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(c, 1, 2));
+    }
+
+    @Test
+    public void onKulkuLeveyshaullaVaikkaEiYhteytta() {
+        RelaatioVenyvallaTaulukolla r = new RelaatioVenyvallaTaulukolla(6);
+        r.lisaaYhteys(3, 4);
+        r.lisaaYhteys(3, 6);
+        r.lisaaYhteys(6, 5);
+        r.lisaaYhteys(5, 1);
+        VaritettavaSuhteikko c = new VaritettavaSuhteikko(r);
+        assertTrue(Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(c, 3, 1));
     }
     
 }
