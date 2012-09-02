@@ -11,6 +11,7 @@ import tietorakenteetLuvuille.*;
  * O-analyysiä javadocissa metodien kohdalla.
  * @author silja
  */
+
 public class Suhteikkoanalyysikirjasto {
 
     private Suhteikkoanalyysikirjasto() {}
@@ -20,91 +21,91 @@ public class Suhteikkoanalyysikirjasto {
      * kumpaankaan suuntaan.
      * Aikavaativuus O(pisteidenLkm * yhteyksienLkm),
      * tilavaativuus O(1)
-     * @param s
-     * @return
+     * @param s analysoitava suhteikko
+     * @return eristetyt pisteet järjestyksessä
      */
 
     public static int[] eristetytPisteet(Suhteikko s) {
         VenyvaTaulukkoVain1Esiintyma eristetyt = new VenyvaTaulukkoVain1Esiintyma();
 
         for (int i=1; i<=s.PISTEITA; i++)
-            if (s.seuraajienLkm(i) == 0)
+            if (s.seuraajienLkm(i) == 0 || ainutSeuraajaPisteItse(s, i))
                 eristetyt.lisaa(i);
 
         for (int i=1; i<=s.PISTEITA; i++)
             if (s.seuraajienLkm(i) != 0)
                 for (int j : s.getSeuraajat(i).toIntArray())
-                    eristetyt.poistaYksiEsiintyma(j);
+                    if (i != j)
+                        eristetyt.poistaYksiEsiintyma(j);
                 
         return eristetyt.toIntArray();
     }
 
+        /**
+         * Privaatti.
+         * Onko pisteellä täsmälleen yksi seuraaja joka on piste itse.
+         */
+
+        private static boolean ainutSeuraajaPisteItse(Suhteikko s, int piste) {
+            if (s.seuraajienLkm(piste) != 1) return false;
+            return s.onYhteys(piste, piste);
+        }
+
     /**
-     * Onko annettu piste suhteikon juuri:
+     * Onko annettu piste väritettävän suhteikon juuri:
      * onko siitä kulku kaikkiin muihin pisteisiin.
      * Aikavaativuus riippuu leveyshausta, jonka analyysi kesken
-     * @param s analysoitava suhteikko
+     * @param c analysoitava suhteikko
      * @param piste onko juuri
      * @return oliko juuri
      */
 
-    public static boolean onJuuri(Suhteikko s, int piste) {
-        for (int i=1; i<=s.PISTEITA; i++) {
-            if (!onKulkuLeveyshaulla(s, piste, i)) return false;
+    public static boolean onJuuri(VaritettavaSuhteikko c, int piste) {
+        for (int i=1; i<=c.PISTEITA; i++) {
+            if (!onKulkuLeveyshaulla(c, piste, i)) return false;
         }
         return true;
     }
 
     /**
-     * Onko suhteikossa kulku pisteestä toiseen:
+     * Onko annetussa väritettävässä suhteikossa kulku pisteestä toiseen:
      * onko alkupisteestä reitti, mahdollisesti muiden pisteiden kautta,
      * yhteyksiä pitkin loppupisteeseen.
-     * Aikavaativuus O(1) jos alkupiste ja lopuppiste ovat samat,
+     * Aikavaativuus O(1) jos alkupiste ja loppupiste ovat samat,
      * O(log n) jos alkupisteestä on suoraan yhteys loppupisteeseen,
      * TODO O(???) muuten.
-     * @param s analysoitava suhteikko
+     * @param c analysoitava suhteikko
      * @param alkupiste piste josta lähdetään
      * @param loppupiste piste johon yritetään kulkea
      * @return onko kulkua olemassa
      */
 
-    public static boolean onKulkuLeveyshaulla(Suhteikko s, int alkupiste, int loppupiste) {
+    public static boolean onKulkuLeveyshaulla
+            (VaritettavaSuhteikko c, int alkupiste, int loppupiste) {
+
         if (alkupiste == loppupiste) return true;
-        if (s.onYhteys(alkupiste, loppupiste)) return true;
-        VaritettavaSuhteikko v;
-        try {
-            v = (VaritettavaSuhteikko) s;
-            return onKulkuLeveyshaullaVaritettavalle(v, alkupiste, loppupiste);
-        } catch (ClassCastException e) {
-            throw new Error("Kulun tutkimista ei toteutettu muulle kuin "
-                    + "väritettävälle suhteikolle.");
-        }
-    }
-    
-        private static boolean onKulkuLeveyshaullaVaritettavalle
-                (VaritettavaSuhteikko v, int alkupiste, int loppupiste) {
+        if (c.onYhteys(alkupiste, loppupiste)) return true;
 
-            v.varitaKaikki(Color.WHITE);
-            Jono jono = new Jono();
-            jono.lisaa(alkupiste);
-            int vuorossa;
-            IntSailio vuorossaOlevanSeuraajat;
+        c.varitaKaikki(Color.WHITE);
+        Jono jono = new Jono();
+        jono.lisaa(alkupiste);
+        int vuorossa;
+        IntSailio vuorossaOlevanSeuraajat;
 
-            while (jono.alkioita() > 0) {
-                vuorossa = jono.ota();
-                v.varita(vuorossa, Color.BLACK);
-                vuorossaOlevanSeuraajat = v.getSeuraajat(vuorossa);
-                if (vuorossaOlevanSeuraajat == null) continue;
+        while (jono.alkioita() > 0) {
+            vuorossa = jono.ota();
+            c.varita(vuorossa, Color.BLACK);
+            vuorossaOlevanSeuraajat = c.getSeuraajat(vuorossa);
+            if (vuorossaOlevanSeuraajat == null) continue;
 
-                for (int seuraaja : vuorossaOlevanSeuraajat.toIntArray()) {
-                    if (v.getVari(seuraaja).equals(Color.BLACK)) continue;
-                    if (seuraaja == loppupiste) return true;
-                    jono.lisaa(seuraaja);
-                }
+            for (int seuraaja : vuorossaOlevanSeuraajat.toIntArray()) {
+                if (c.getVari(seuraaja).equals(Color.BLACK)) continue;
+                if (seuraaja == loppupiste) return true;
+                jono.lisaa(seuraaja);
             }
-            return false;
         }
-
+        return false;
+    }
 
     /**
      * Onko suhteikko silmukaton:
@@ -162,50 +163,17 @@ public class Suhteikkoanalyysikirjasto {
     }
 
     /**
-     * TODO yhtenäisyys:
-     * Määritelmä: suhteikko on yhtenäinen, jos sen pisteiden joukon
-     * jokaisella aidolla epätyhjällä osajoukolla P,
-     * suhteikossa on nuoli P:stä tai nuoli P:hen.
-     * @param s analysoitava suhteikko
-     * @return oliko yhtenäinen
-     */
-
-    public static boolean onYhtenainen(Suhteikko s) {
-        if (s.PISTEITA == 0 || s.PISTEITA == 1)
-            return true; //tyhjä ja yksipisteinen automaattisesti yhtenäisiä
-        VaritettavaSuhteikko t;
-
-        try {
-            t = (VaritettavaSuhteikko) s;
-            return onYhtenainenVaritettavalle(t);
-        } catch (ClassCastException e) {
-            throw new Error("kesken");
-        }
-    }
-    
-        /**
-         * Tutkii leveyshaulla, onko annettu väritettävä suhteikko yhtenäinen.
-         * Yhtenäisyys, määritelmä: suhteikko on yhtenäinen, jos sen pisteiden joukon
-         * jokaisella aidolla epätyhjällä osajoukolla P,
-         * suhteikossa on nuoli P:stä tai nuoli P:hen.
-         */
-
-        private static boolean onYhtenainenVaritettavalle(VaritettavaSuhteikko c) {
-            throw new Error("kesken");
-        }
-
-    /**
-     * Palauttaa suhteikon sen juuren nimen, jonka nimi on pienin luku.
+     * Palauttaa väritetyn suhteikon sen juuren nimen, joka on pienin luku.
      * Jos juuria ei ole, palauttaa -1.
      * Juuri on piste, josta on kulku suhteikon jokaiseen muuhun pisteeseen.
      * Aikavaativuus riippuu leveyshaun analyysistä, joka kesken
-     * @param s analysoitava suhteikko
+     * @param c analysoitava suhteikko
      * @return pienin juuri
      */
 
-    public static int pieninJuuriBruteForce(Suhteikko s) {
-        for (int i=1; i<=s.PISTEITA; i++) { // O(pisteidenLkm)
-            if (onJuuri(s, i)) return i;    // O-analyysi kesken
+    public static int pieninJuuriBruteForce(VaritettavaSuhteikko c) {
+        for (int i=1; i<=c.PISTEITA; i++) { // O(pisteidenLkm)
+            if (onJuuri(c, i)) return i;    // O-analyysi kesken
         }
         return -1;
     }

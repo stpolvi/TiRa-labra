@@ -1,15 +1,18 @@
 
 package suhteikkoanalyysi;
 
+import suhteikot.VaritettavaSuhteikkoTest;
+import tyokalut.Tyokalut;
 import suhteikot.TavallinenSuhteikkoTest;
 import suhteikot.TavallinenSuhteikko;
 import relaatiot.RelaatioVenyvallaTaulukolla;
 import suhteikot.Suhteikko;
 import org.junit.Test;
+import suhteikot.VaritettavaSuhteikko;
 import static org.junit.Assert.*;
 
 /**
- * Suhteikkokirjaston testiluokka
+ * Suhteikkoanalyysikirjaston testiluokka
  * @author silja
  */
 
@@ -240,8 +243,8 @@ public class SuhteikkoanalyysikirjastoTest {
 
     @Test
     public void kaksipisteisellaJossaYhteys1_2PieninJuuri1Varitettavalle() {
-        s = suhteikot.VaritettavaSuhteikkoTest.pisteita2Yhteys1_2();
-        assertTrue(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 1);
+        VaritettavaSuhteikko c = suhteikot.VaritettavaSuhteikkoTest.pisteita2Yhteys1_2();
+        assertTrue(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(c) == 1);
     }
     
 //    /**
@@ -253,5 +256,50 @@ public class SuhteikkoanalyysikirjastoTest {
 //        fail("kesken");
 //    }
 
+    /*
+     * EristetytPisteet-testit:
+     */
+
+    @Test
+    public void taydellisessaEiEristettyjaPisteita() {
+        s = TavallinenSuhteikkoTest.uusiSuhteikkoTaydellinenN(6);
+        assertTrue(Tyokalut.onSamaTaulukko
+                (Suhteikkoanalyysikirjasto.eristetytPisteet(s), new int[0]));
+    }
+
+    @Test
+    public void kaksiPisteisessaJossaYhteysToiseenSuuntaanEiEristettyjaPisteita() {
+        s = TavallinenSuhteikkoTest.pisteita2Yhteys1_2();
+        assertTrue(Tyokalut.onSamaTaulukko
+                (Suhteikkoanalyysikirjasto.eristetytPisteet(s), new int[0]));
+    }
+
+    @Test
+    public void yhteydettomassaKaikkiPisteetEristettyja() {
+        s = TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(7);
+        int[] oikeatEristetyt = Tyokalut.luoTaulukko1_N(7);
+        assertTrue(Tyokalut.onSamaTaulukko
+                (Suhteikkoanalyysikirjasto.eristetytPisteet(s), oikeatEristetyt));
+    }
+
+    @Test
+    public void onEristettyPisteVaikkaYhteysItseensa() {
+        s = TavallinenSuhteikkoTest.pisteita3Yhteys2_1ja3_3();
+        int[] oikeatEristetyt = new int[1];
+        oikeatEristetyt[0] = 3;
+        assertTrue(Tyokalut.onSamaTaulukko
+                (Suhteikkoanalyysikirjasto.eristetytPisteet(s), oikeatEristetyt));
+    }
+
+    /*
+     * onKulkuLeveyshaulla-testit:
+     */
+
+    @Test
+    public void yhteydettomassaOnKulkuLeveyshaullaPisteestaItseensa() {
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(13);
+        for (int i=1; i<=c.PISTEITA; i++)
+            assertTrue(Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(c, i, i));
+    }
     
 }

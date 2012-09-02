@@ -283,7 +283,7 @@ public class Tyokalut {
      * Luo taulukon, jossa on alkiot 1...pisteita. Myös taulukon pituus on
      * pisteita.
      * @param pisteita kuinka pitkä taulukko halutaan
-     * @return uusi taulukko
+     * @return uusi taulukko järjestyksessä
      */
 
     public static int[] luoTaulukko1_N(int pisteita) {

@@ -5,6 +5,7 @@
 
 package tyokalut;
 
+import java.util.Random;
 import kaaritietorakenteet.Kaari;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -13,6 +14,7 @@ import static org.junit.Assert.*;
  * Työkalujen testiluokka.
  * @author silja
  */
+
 public class TyokalutTest {
 
     @Test
@@ -140,5 +142,53 @@ public class TyokalutTest {
         for (int i=0; i<lyhyt.length; i++) {
             assertTrue(lyhyt[i].equals(new Kaari(i,i*2)));
         }
+    }
+
+    @Test
+    public void onSamaTaulukkoToimiiSamoille() {
+        int[] t1 = new int[4];
+        int[] t2 = new int[4];
+        Random r = new Random();
+        int uusiLuku;
+        for (int i=0; i<t1.length; i++) {
+            uusiLuku = r.nextInt();
+            t1[i] = uusiLuku;
+            t2[i] = uusiLuku;
+        }
+        assertTrue(Tyokalut.onSamaTaulukko(t1, t2));
+        assertTrue(Tyokalut.onSamaTaulukko(t2, t1));
+    }
+
+    @Test
+    public void onSamaTaulukkoToimiiEriPituisille() {
+        int[] t1 = new int[4];
+        int[] t2 = new int[5];
+        assertFalse(Tyokalut.onSamaTaulukko(t2, t1));
+        assertFalse(Tyokalut.onSamaTaulukko(t1, t2));
+    }
+
+    @Test
+    public void onSamaTaulukkoToimiiSamanPituisilleEriSisaltoisille() {
+        int[] t1 = new int[4];
+        int[] t2 = new int[4];
+        Random r = new Random();
+        int uusiLuku;
+        for (int i=0; i<t1.length; i++) {
+            uusiLuku = r.nextInt();
+            t1[i] = uusiLuku;
+            t2[i] = uusiLuku;
+        }
+        t1[2] = 2;
+        t2[2] = 3;
+        assertFalse(Tyokalut.onSamaTaulukko(t1, t2));
+        assertFalse(Tyokalut.onSamaTaulukko(t2, t1));
+    }
+
+    @Test
+    public void luoTaulukko1_NToimii() {
+        int[] testattava = Tyokalut.luoTaulukko1_N(9);
+        assertTrue(testattava.length == 9);
+        for (int i=0; i<testattava.length; i++)
+            assertTrue(testattava[i] == i+1);
     }
 }

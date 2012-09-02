@@ -1,6 +1,7 @@
 
 package suhteikkoanalyysi;
 
+import suhteikot.VaritettavaSuhteikko;
 import suhteikot.VaritettavaSuhteikkoTest;
 import suhteikot.TavallinenSuhteikkoTest;
 import suhteikot.Suhteikko;
@@ -130,14 +131,14 @@ public class VerkkoanalyysikirjastoTest {
 
     @Test
     public void yksipisteinenOnYhtenainenVaritettavalle() {
-        v = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
-        assertTrue(Verkkoanalyysikirjasto.onYhtenainenKulkujenAvulla(v));
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
+        assertTrue(Verkkoanalyysikirjasto.onYhtenainenKulkujenAvulla(c));
     }
 
     @Test
     public void taydellinenVerkkoYhtenainen() {
-        v = VaritettavaSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Verkkoanalyysikirjasto.onYhtenainenKulkujenAvulla(v));
+        VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.taydellinen5PisteinenVerkko();
+        assertTrue(Verkkoanalyysikirjasto.onYhtenainenKulkujenAvulla(c));
     }
 
     /*

@@ -124,20 +124,20 @@ public class Verkkoanalyysikirjasto {
     }
 
     /**
-     * Selvittää onko annettu verkko yhtenäinen käyttämällä tietoa
+     * Selvittää onko annettu väritettävä verkko yhtenäinen käyttämällä tietoa
      * että verkko on yhtenäinen täsmälleen silloin kun siinä
      * on juuri.
      * @param v analysoitava verkko
      * @return oliko yhtenäinen
      */
 
-    public static boolean onYhtenainenJuurienAvulla(Suhteikko v) {
+    public static boolean onYhtenainenJuurienAvulla(VaritettavaSuhteikko v) {
         if (v.PISTEITA == 0) return true;
         return Suhteikkoanalyysikirjasto.onJuuri(v, 1);
     }
 
     /**
-     * Onko verkko yhtenäinen:
+     * Onko annettu väritettävä verkko yhtenäinen:
      * jokaisesta pisteestä löytyy reitti kaikkiin muihin pisteisiin,
      * mahdollisesti muiden pisteiden kautta.
      * Toisin sanoen, ovatko kaikki pisteet yhteydessä toisiinsa niin ettei
@@ -152,7 +152,7 @@ public class Verkkoanalyysikirjasto {
      * @return oliko yhtenäinen
      */
 
-    public static boolean onYhtenainenKulkujenAvulla(Suhteikko v) {
+    public static boolean onYhtenainenKulkujenAvulla(VaritettavaSuhteikko v) {
         if (v.PISTEITA == 0 || v.PISTEITA == 1)
             return true;
 
@@ -164,7 +164,7 @@ public class Verkkoanalyysikirjasto {
          * Selvittää onko kaikista muista verkon pisteistä kulku annettuun pisteeseen.
          */
 
-        private static boolean kaikistaPisteistaOnKulkuPisteeseen(Suhteikko v, int piste) {
+        private static boolean kaikistaPisteistaOnKulkuPisteeseen(VaritettavaSuhteikko v, int piste) {
             for (int i=1; i<=v.PISTEITA; i++) {
                 if (!Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(v, piste, i)) {
                     return false;
@@ -273,7 +273,7 @@ public class Verkkoanalyysikirjasto {
     }
     
     /**
-     * Onko annettu verkko puu:
+     * Onko annettu väritettävä verkko puu:
      * onko se yhtenäinen eikä siinä ole yhtään rengasta.
      * Ehdon tutkimisessa on käytetty Heikki Junnilan Verkot-kurssin
      * luentomateriaalin (mainittu lähteissä) lausetta IV 1.8, jonka mukaan
@@ -285,10 +285,10 @@ public class Verkkoanalyysikirjasto {
      * @return täyttääkö annettu verkko puuehdon
      */
 
-    public static boolean tayttaaPuuehdon(Suhteikko v) {
+    public static boolean tayttaaPuuehdon(VaritettavaSuhteikko v) {
         if (v.PISTEITA == 0) return true;
 
-        if (!onYhtenainenKulkujenAvulla(v))
+        if (!onYhtenainenJuurienAvulla(v))
             return false;
         return viivojaMaxPisteitaMiinusYksi(v);
     }
