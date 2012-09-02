@@ -167,13 +167,13 @@ public class VerkkoanalyysikirjastoTest {
     @Test
     public void yksipisteinenOnYhtenainenVaritettavalle() {
         VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
-        assertTrue(Verkkoanalyysikirjasto.onYhtenainenVaritettavalle(c));
+        assertTrue(Verkkoanalyysikirjasto.onYhtenainenLeveyssuunteisellaHaulla(c));
     }
 
     @Test
     public void taydellinenVerkkoYhtenainenVaritettavalle() {
         VaritettavaSuhteikko c = VaritettavaSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Verkkoanalyysikirjasto.onYhtenainenVaritettavalle(c));
+        assertTrue(Verkkoanalyysikirjasto.onYhtenainenLeveyssuunteisellaHaulla(c));
     }
 
     /*

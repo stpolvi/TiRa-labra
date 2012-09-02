@@ -244,7 +244,7 @@ public class SuhteikkoanalyysikirjastoTest {
     @Test
     public void kaksipisteisellaJossaYhteys1_2PieninJuuri1Varitettavalle() {
         VaritettavaSuhteikko c = suhteikot.VaritettavaSuhteikkoTest.pisteita2Yhteys1_2();
-        assertTrue(Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(c) == 1);
+        assertTrue(Suhteikkoanalyysikirjasto.pieninJuuri(c) == 1);
     }
     
     /*

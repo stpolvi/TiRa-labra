@@ -26,6 +26,8 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     /**
      * Lisää yhteyden annettujen pisteiden välille.
+     * Aikavaativuus O(yhteyksienLkm),
+     * tilavaativuus O(1)
      * @param alkupiste piste josta yhteys alkaa
      * @param loppupiste piste johon yhteys on
      */
@@ -39,7 +41,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
             setSeuraajat(alkupiste, vanhatSeuraajat);
         }
 
-        vanhatSeuraajat.lisaa(loppupiste);
+        vanhatSeuraajat.lisaa(loppupiste); //Aika O(n) taulukon koon suhteen
     }
 
     /**
@@ -48,19 +50,22 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
      * Tämän jälkeen binäärihakua hyödyntävä etsi-metodi toimii niissä oikein.
      * Huomaa, että onYhteys-metodi toimii vain relaatiossa, jonka rakenteet on
      * järjestetty.
+     * Aikavaativuus O(pisteidenLkm * yhteyksienLkm),
+     * tilavaativuus O(1)
      */
     
     public void jarjestaRakenteet() {
         VenyvaTaulukkoVain1Esiintyma seuraajat;
-        for (int i=0; i<JOUKONKOKO; i++) {
+        for (int i=0; i<JOUKONKOKO; i++) { //O(pisteidenLkm)
             seuraajat = this.yhteydet[i];
-            if (seuraajat != null) seuraajat.jarjesta();
+            if (seuraajat != null) 
+                seuraajat.jarjesta(); //järjestäminen O(n log n) yhteyksien suhteen
         }
     }
 
     /**
      * Pisteen seuraajat int-säiliössä.
-     * Aikavaativuus O(1)
+     * Aikavaativuus O(1),
      * Tilavaativuus O(1)
      * @param piste piste jonka seuraajat halutaan
      * @return seuraajat jossakin int-säiliössä
@@ -73,7 +78,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
     /**
      * Onko alkupisteestä loppupisteeseen yhteys.
      * Huomaa, että jarjestaRakenteet-metodia on kutsuttava ennen tämän metodin käyttöä.
-     * Aikavaativuus: O(log pisteidenLkm)
+     * Aikavaativuus: O(log yhteyksienLkm),
      * Tilavaativuus: O(1)
      * @param alkupiste piste josta yhteys on
      * @param loppupiste piste johon yhteys on
@@ -85,7 +90,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
         if (seuraajat == null)                          // O(1)
             return false;
         return seuraajat.etsi(loppupiste);   // O(log n) missä n seuraajien lkm
-    }                                        //      -> O(log pisteidenLkm)
+    }                                        //      -> O(log yhteyksienLkm)
 
 
     /*
@@ -94,6 +99,7 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
 
     /**
      * Privaatti. Asettaa seuraajajoukon.
+     * Aikavaativuus O(1), tilavaativuus O(1)
      * @param alkupiste piste jonka seuraajat
      * @param seuraajat seuraajat int-säiliössä
      */
@@ -101,6 +107,5 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
     private void setSeuraajat(int alkupiste, VenyvaTaulukkoVain1Esiintyma seuraajat) {
         yhteydet[alkupiste - INDEKSIKORJAUS] = seuraajat;
     }
-
 
 }

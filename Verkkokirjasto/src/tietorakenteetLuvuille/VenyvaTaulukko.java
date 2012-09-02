@@ -9,7 +9,7 @@ import tyokalut.Tyokalut;
  * lisättäessä kaksinkertaiseksi.
  * Kapseloitu taulukko voidaan katkaista oikean pituiseksi metodilla.
  *
- * Lisääminen keskimäärin ?????, poisto O(1)
+ * Lisääminen laskennallisesti O(1), poisto O(1)
  * järjestäminen toteutetaan O(n log n)
  * etsiminen: -jos järjestyksessä, binäärihaulla O(log n)
  * -muutoin peräkkäishaulla O(n)
@@ -71,8 +71,8 @@ public class VenyvaTaulukko implements IntSailio {
 
     /**
      * Lisää alkion taulukkoon.
-     * Kasvattaa taulukkoa kaksinkertaiseksi jos tarvis: vähemmän kuin O(n)
-     * Yhteensä: noin O(n) ??
+     * Kasvattaa taulukkoa kaksinkertaiseksi tarvittaessa.
+     * Laskennallisesti aikavaativuus O(1).
      * @param lisattava lisättävä alkio
      */
 
@@ -85,6 +85,7 @@ public class VenyvaTaulukko implements IntSailio {
     /**
      * Katkaisee kapseloidun taulukon alkioiden lukumäärää vastaavaksi
      * ja pikajärjestää sen eli käyttää quicksortia.
+     * Aikavaativuus tavallisessa tapauksessa O(n log n)
      */
 
     public void jarjesta() {
@@ -129,22 +130,6 @@ public class VenyvaTaulukko implements IntSailio {
      * PUBLIC-METODIT ---------------------------------
      */
 
-//    /**
-//     * Poistaa taulukosta alkioitten ylimääräiset esiintymät niin että kaikkia
-//     * alkioita on tasan yksi esiintymä taulukossa. Alkioiden lukumäärä
-//     * pienenee vastaavasti.
-//     */
-//
-//    public void poistaLiiatEsiintymat() {
-//        jarjesta();
-//        for (int i=0; i<alkioita-1; i++) {
-//            if (taulukko[i] == taulukko[i+1]) {
-//                if (i+2 < alkioita) taulukko[i+1] = taulukko[i+2];
-//                alkioita--;
-//            }
-//        }
-//    }
-    
     /**
      * Poistaa alkion yhden esiintymän taulukosta. Taulukon koko ei muutu, mutta
      * alkioiden lukumäärä pienenee yhdellä.

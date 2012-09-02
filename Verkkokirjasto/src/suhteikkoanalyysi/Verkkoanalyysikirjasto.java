@@ -2,12 +2,8 @@
 package suhteikkoanalyysi;
 
 import java.awt.Color;
-import suhteikot.Suhteikko;
-import suhteikot.VaritettavaSuhteikko;
-import tietorakenteetLuvuille.IntSailio;
-import tietorakenteetLuvuille.Jono;
-import tietorakenteetLuvuille.VenyvaTaulukko;
-import tietorakenteetLuvuille.VenyvaTaulukkoVain1Esiintyma;
+import suhteikot.*;
+import tietorakenteetLuvuille.*;
 import tyokalut.Tyokalut;
 
 /**
@@ -40,19 +36,20 @@ public class Verkkoanalyysikirjasto {
     }
 
     /**
-     * TODO hallitseva
      * Onko annettu pistejoukko hallitseva annetussa verkossa:
      * onko jokainen verkon piste joko joukossa tai sitten joukossa
      * olevan naapuri. Joukon on oltava valmiiksi järjestetty.
+     * Aikavaativuus O(pisteidenLkm^2 * log pisteidenLkm),
+     * tilavaativuus O(1)
      * @param v analysoitava verkko
      * @param pistejoukko onko hallitseva annetussa verkossa
      * @return oliko pistejoukko hallitseva
      */
 
     public static boolean onHallitsevaPistejoukko(Suhteikko v, int[] pistejoukko) {
-        for (int i=1; i<=v.PISTEITA; i++) {
+        for (int i=1; i<=v.PISTEITA; i++) { //O(pisteidenLkm)
             if (Tyokalut.etsiBinaarihaulla(i, 0, pistejoukko.length-1, pistejoukko)) continue;
-            if (!onYhteysJoukkoon(v, i, pistejoukko)) return false;
+            if (!onYhteysJoukkoon(v, i, pistejoukko)) return false; //O(pisteidenLkm + yhteyksienLkm)
         }
         return true;
     }
@@ -63,7 +60,8 @@ public class Verkkoanalyysikirjasto {
      * Jos kaikkien n-pisteisen verkon pisteiden aste on k, niin
      * verkon kaarien lukumäärä on (1/2)nk.
      *
-     * Aikavaativuus O(pisteidenLkm)
+     * Aikavaativuus O(pisteidenLkm),
+     * tilavaativuus O(1)
      * @param v analysoitava verkko
      * @return oliko säännöllinen
      */
@@ -111,7 +109,8 @@ public class Verkkoanalyysikirjasto {
 
     /**
      * Sama kuin Taydellinen mutta toteutus eri.
-     * Aikavaativuus O(pisteidenLkm)
+     * Aikavaativuus O(pisteidenLkm),
+     * tilavaativuus O(1)
      * @param v analysoitava verkko
      * @return oliko täydellinen verkko
      */
@@ -123,7 +122,8 @@ public class Verkkoanalyysikirjasto {
 
     /**
      * Sama kuin Taydellinen mutta toteutus eri.
-     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
+     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm),
+     * tilavaativuus O(1)
      * @param v analysoitava verkko
      * @return oliko täydellinen verkko
      */
@@ -138,8 +138,9 @@ public class Verkkoanalyysikirjasto {
 
     /**
      * Selvittää onko annettu väritettävä verkko yhtenäinen käyttämällä tietoa
-     * että verkko on yhtenäinen täsmälleen silloin kun siinä
-     * on juuri.
+     * että verkko on yhtenäinen täsmälleen silloin kun siinä on juuri.
+     * Aikavaativuus O((pisteidenLkm + yhteyksienLkm) *pisteidenLkm),
+     * tilavaativuus O(pisteidenLkm)
      * @param v analysoitava verkko
      * @return oliko yhtenäinen
      */
@@ -160,7 +161,8 @@ public class Verkkoanalyysikirjasto {
      *
      * Huom verkoilla yhtenäisyys ja vahva yhtenäisyys ovat yhtäpitäviä.
      *
-     * Aikavaativuus todella surkea
+     * Aikavaativuus O(pisteidenLkm * (pisteidenLkm + yhteyksienLkm)),
+     * tilavaativuus O(pisteidenLkm)
      * @param v analysoitava verkko
      * @return oliko yhtenäinen
      */
@@ -178,9 +180,9 @@ public class Verkkoanalyysikirjasto {
          */
 
         private static boolean kaikistaPisteistaOnKulkuPisteeseen(VaritettavaSuhteikko v, int piste) {
-            for (int i=1; i<=v.PISTEITA; i++) {
+            for (int i=1; i<=v.PISTEITA; i++) { //O(pisteidenLkm)
                 if (!Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(v, piste, i)) {
-                    return false;
+                    return false; //O(pisteidenLkm + yhteyksienLkm)
                 }
             }
             return true;
@@ -188,12 +190,13 @@ public class Verkkoanalyysikirjasto {
 
     /**
      * Yhtenäisyyden tutkiminen väritettävälle suhteikolle.
-     * Aikavaativuus O(???)
-     * @param v
-     * @return
+     * Aikavaativuus O(pisteidenLkm + yhteyksienLkm),
+     * tilavaativuus O(pisteidenLkm)
+     * @param v analysoitava verkko
+     * @return oliko yhtenäinen
      */
 
-    public static boolean onYhtenainenVaritettavalle(VaritettavaSuhteikko v) {
+    public static boolean onYhtenainenLeveyssuunteisellaHaulla(VaritettavaSuhteikko v) {
         v.varitaKaikki(Color.WHITE);
         Jono jono = new Jono();
         jono.lisaa(1);
@@ -241,7 +244,8 @@ public class Verkkoanalyysikirjasto {
      * Onko annetusta pisteestä yhteys annettuun pistejoukkoon, eli johonkin
      * joukon pisteeseen.
      * Huomaa että metodi toimii ainoastaan järjestetylle taulukolle.
-     * Aikavaativuus ??
+     * Aikavaativuus O(pisteidenLkm + yhteyksienLkm),
+     * tilavaativuus O(1)
      * @param v analysoitava suhteikko
      * @param piste yhteyden lähtöpiste
      * @param jarjestettyPistejoukko joukko jonka pisteeseen yhteys olisi
@@ -253,13 +257,13 @@ public class Verkkoanalyysikirjasto {
         int joukonKoko = jarjestettyPistejoukko.length;
         if (joukonKoko == 0) return false;
 
-        if (v.seuraajienLkm(piste) == 0)
+        if (v.seuraajienLkm(piste) == 0) //O(log n)
             return Tyokalut.etsiBinaarihaulla
                     (piste, 0, joukonKoko-1, jarjestettyPistejoukko);
 
-        int[] seuraajat = v.getSeuraajat(piste).toIntArray();
+        int[] seuraajat = v.getSeuraajat(piste).toIntArray(); //O(1) koska järjestetty
         int s = 0, p = 0;
-        while (true) {
+        while (true) { //koko looppi O(seuraajienLkm + jarjestettyPistejoukkoLkm)
             if (seuraajat[s] < jarjestettyPistejoukko[p]) {
                 if (s == seuraajat.length - 1) return false;
                 s++;
@@ -273,7 +277,8 @@ public class Verkkoanalyysikirjasto {
     
     /**
      * Pisteen aste on pisteestä lähtevien yhteyksien lukumäärä.
-     * Aikavaativuus O(1)
+     * Aikavaativuus O(1),
+     * tilavaativuus O(1)
      * @param v analysoitava verkko
      * @param piste verkon piste
      * @return pisteen aste verkossa
@@ -293,7 +298,8 @@ public class Verkkoanalyysikirjasto {
      * epätyhjälle verkolle ovat seuraavat kaksi ehtoa yhtäpitävät:
      * (1) verkko on puu, (2) verkko on yhtenäinen ja sen viivojen lukumäärä
      * on korkeintaan pisteiden lukumäärä miinus yksi.
-     * Aikavaativuus O(???), tilavaativuus O(???)
+     * Aikavaativuus O(pisteidenLkm + yhteyksienLkm),
+     * tilavaativuus O(pisteidenLkm)
      * @param v analysoitava verkko
      * @return täyttääkö annettu verkko puuehdon
      */
@@ -301,7 +307,7 @@ public class Verkkoanalyysikirjasto {
     public static boolean tayttaaPuuehdon(VaritettavaSuhteikko v) {
         if (v.PISTEITA == 0) return true;
 
-        if (!onYhtenainenJuurienAvulla(v))
+        if (!onYhtenainenLeveyssuunteisellaHaulla(v)) //O(pisteidenLkm + yhteyksienLkm)
             return false;
         return viivojaMaxPisteitaMiinusYksi(v);
     }
@@ -310,6 +316,8 @@ public class Verkkoanalyysikirjasto {
          * Käytetty Verkkojen luentomateriaalin lausetta II 2.3
          * jonka mukaan verkon viivojen lukumäärä on puolet 
          * kaikkien pisteiden asteiden summasta.
+         * Aikavaativuus O(pisteidenLkm),
+         * tilavaativuus O(1)
          * @param v
          * @return
          */
@@ -323,13 +331,6 @@ public class Verkkoanalyysikirjasto {
             return viivojenLkm <= (v.PISTEITA - 1);
         }
 
-/*
- * Privaattimetodit -----------------------------
- */
-
-    
-
-
     /**
      * Annetun pisteen yhtenäinen komponentti annetussa väritettävässä verkossa:
      * suppein mahdollinen joukko verkon pisteitä siten, että annettu
@@ -338,6 +339,8 @@ public class Verkkoanalyysikirjasto {
      * ja joukkoon ei voida lisätä pisteitä menettämättä yhtenäisyyttä.
      * Toisin sanoen, pienimmän sellaisen yhtenäisen aliverkon pisteet,
      * johon annettu piste kuuluu.
+     * Aikavaativuus O(pisteidenLkm * yhteyksienLkm),
+     * tilavaativuus O(pisteidenLkm)
      * @param v analysoitava verkko
      * @param piste piste jonka yhtenäinen komponentti haetaan
      * @return pisteen yhtenäisen komponentin pisteet satunnaisessa järjestyksessä
@@ -356,6 +359,7 @@ public class Verkkoanalyysikirjasto {
         /**
          * Privaatti.
          * Palauttaa annetun pisteen yhtenäisen komponentin pisteet.
+         *
          */
 
         private static int[] yhtenainenKomponenttiIsommalle
@@ -369,7 +373,7 @@ public class Verkkoanalyysikirjasto {
             int vuorossa;
             int[] vuorossaOlevanSeuraajat;
 
-            while(jono.alkioita() > 0) {
+            while(jono.alkioita() > 0) { //O(pisteidenLkm * yhteyksienLkm)
                 vuorossa = jono.ota();
                 v.varita(vuorossa, Color.BLACK);
                 vuorossaOlevanSeuraajat = v.getSeuraajat(vuorossa).toIntArray();
@@ -384,6 +388,5 @@ public class Verkkoanalyysikirjasto {
             komponentti.lisaa(piste);
             return komponentti.toIntArray();
         }
-
 
 }

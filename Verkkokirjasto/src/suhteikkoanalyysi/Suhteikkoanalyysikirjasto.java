@@ -2,8 +2,7 @@
 package suhteikkoanalyysi;
 
 import java.awt.Color;
-import suhteikot.Suhteikko;
-import suhteikot.VaritettavaSuhteikko;
+import suhteikot.*;
 import tietorakenteetLuvuille.*;
 
 /**
@@ -54,7 +53,8 @@ public class Suhteikkoanalyysikirjasto {
     /**
      * Onko annettu piste väritettävän suhteikon juuri:
      * onko siitä kulku kaikkiin muihin pisteisiin.
-     * Aikavaativuus riippuu leveyshausta, jonka analyysi kesken
+     * Aikavaativuus O((pisteidenLkm + yhteyksienLkm) *pisteidenLkm),
+     * tilavaativuus O(pisteidenLkm).
      * @param c analysoitava suhteikko
      * @param piste onko juuri
      * @return oliko juuri
@@ -72,8 +72,10 @@ public class Suhteikkoanalyysikirjasto {
      * onko alkupisteestä reitti, mahdollisesti muiden pisteiden kautta,
      * yhteyksiä pitkin loppupisteeseen.
      * Aikavaativuus O(1) jos alkupiste ja loppupiste ovat samat,
-     * O(log n) jos alkupisteestä on suoraan yhteys loppupisteeseen,
-     * TODO O(???) muuten.
+     * O(log n) jos alkupisteestä on suoraan yhteys loppupisteeseen.
+     * Näissä tapauksissa tilavaativuus O(1).
+     * Muussa tapauksessa aikavaativuus O(pisteidenLkm + yhteyksienLkm),
+     * tilavaativuus O(pisteidenLkm).
      * @param c analysoitava suhteikko
      * @param alkupiste piste josta lähdetään
      * @param loppupiste piste johon yritetään kulkea
@@ -110,7 +112,7 @@ public class Suhteikkoanalyysikirjasto {
     /**
      * Onko suhteikko silmukaton:
      * mistään pisteestä ei ole itseensä yhteyttä.
-     * Aikavaativuus O(pisteidenLkm log pisteidenLkm)
+     * Aikavaativuus O(pisteidenLkm log pisteidenLkm),
      * Tilavaativuus O(1)
      * @param suhteikko analysoitava suhteikko
      * @return oliko silmukaton
@@ -125,11 +127,11 @@ public class Suhteikkoanalyysikirjasto {
     }
     
     /**
-     * MUUTETAAN TEHOKKAAMMAKSI
-     * Nykyisellään aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
      * Onko suhteikko symmetrinen:
      * suhteikon kahden pisteen välillä on joko yhteys molempiin suuntiin
      * tai sitten ei lainkaan yhteyttä.
+     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm),
+     * tilavaativuus O(1)
      * @param suhteikko analysoitava suhteikko
      * @return oliko symmetrinen
      */
@@ -148,7 +150,8 @@ public class Suhteikkoanalyysikirjasto {
      * Onko suhteikko täydellinen:
      * onko jokaisen kahden eri pisteen välillä yhteys ainakin toiseen suuntaan.
      * Pisteestä ei tarvitse olla itseensä yhteyttä.
-     * Aikavaativuus: O(pisteidenLkm^2 log pisteidenLkm)
+     * Aikavaativuus: O(pisteidenLkm^2 log pisteidenLkm),
+     * tilavaativuus O(1)
      * @param s analysoitava suhteikko
      * @return oliko täydellinen
      */
@@ -166,21 +169,22 @@ public class Suhteikkoanalyysikirjasto {
      * Palauttaa väritetyn suhteikon sen juuren nimen, joka on pienin luku.
      * Jos juuria ei ole, palauttaa -1.
      * Juuri on piste, josta on kulku suhteikon jokaiseen muuhun pisteeseen.
-     * Aikavaativuus riippuu leveyshaun analyysistä, joka kesken
+     * Aikavaativuus O(pisteidenLkm^2 * (pisteidenLkm + yhteyksienLkm)),
+     * tilavaativuus O(pisteidenLkm)
      * @param c analysoitava suhteikko
      * @return pienin juuri
      */
 
-    public static int pieninJuuriBruteForce(VaritettavaSuhteikko c) {
+    public static int pieninJuuri(VaritettavaSuhteikko c) {
         for (int i=1; i<=c.PISTEITA; i++) { // O(pisteidenLkm)
-            if (onJuuri(c, i)) return i;    // O-analyysi kesken
+            if (onJuuri(c, i)) return i;    // Aikavaativuus O((pisteidenLkm + yhteyksienLkm) *pisteidenLkm), tilavaativuus O(pisteidenLkm).
         }
         return -1;
     }
 
     /**
      * Lähtöaste on pisteestä lähtevien yhteyksien lukumäärä.
-     * Aikavaativuus O(1)
+     * Aikavaativuus O(1), tilavaativuus O(1)
      * @param s suhteikko
      * @param piste suhteikon piste
      * @return pisteen lähtöaste suhteikossa
@@ -211,7 +215,8 @@ public class Suhteikkoanalyysikirjasto {
 
     /**
      * Täyttääkö suhteikko verkkoehdon: onko se silmukaton ja symmetrinen
-     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
+     * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm),
+     * tilavaativuus O(1)
      * @param suhteikko analysoitava suhteikko
      * @return täyttääkö verkkoehdon
      */
