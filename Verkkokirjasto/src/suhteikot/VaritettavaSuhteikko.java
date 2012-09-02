@@ -50,6 +50,7 @@ public class VaritettavaSuhteikko extends TavallinenSuhteikko {
      * Alustaa kaikkien pisteiden väriksi annetun värin.
      * Vaativuus ainakin O(n) ???
      * @param relaatio tulevan suhteikon pisteiden välinen relaatio
+     * @param vari väri jolla pisteet alustetaan
      */
 
     public VaritettavaSuhteikko(Relaatio relaatio, Color vari) {

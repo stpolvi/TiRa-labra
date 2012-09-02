@@ -7,6 +7,9 @@ import tyokalut.Tyokalut;
  * Tietorakenne, johon voi tallettaa int-lukuja.
  * Alkiot lisätään aina jonon loppuun, ja
  * jonosta pois poimitaan pisimpään jonottanut alkio.
+ * Toteutus on taulukkopohjainen, jolloin lisättäessä
+ * saatetaan joutua kasvattamaan taulukkoa. Taulukon koko kuitenkin aina
+ * kaksinkertaistuu, jolloin aikavaativuus pysyy kohtuullisena.
  * @author silja
  */
 

@@ -24,6 +24,7 @@ public class Tyokalut {
      * Kolmen kokonaisluvun keskiarvo katkaistuna kokonaislukuna.
      * @param a ensimmäinen luku
      * @param b toinen luku
+     * @param c kolmas luku
      * @return keskiarvo joka on katkaistu kokonaisluvuksi pyöristämättä
      */
 
@@ -152,10 +153,15 @@ public class Tyokalut {
         taulukko[indeksi2] = talteen;
     }
 
+    /**
+     * Pikajärjestää taulukon, eli järjestää sen quicksort-algoritmia käyttäen.
+     * Aikavaativuus keskimäärin O(n log n)
+     * @param taulukko järjestettävä taulukko
+     */
+
     public static void pikajarjesta(int[] taulukko) {
         pikajarjesta(taulukko, 0, taulukko.length-1);
     }
-
 
         private static void pikajarjesta(int[] taulu, int alku, int loppu) {
             int vasen = alku, oikea = loppu;
@@ -186,7 +192,7 @@ public class Tyokalut {
      * Aikavaativuus O(log n)
      * @param etsittava luku jota etsitään
      * @param alku ensimmäinen paikka josta etsitään
-     * @param viimeinen paikka josta etsitään
+     * @param loppu viimeinen paikka josta etsitään
      * @param taulukko taulukko josta etsitään
      * @return löytyikö alkio taulukosta
      */
@@ -201,7 +207,8 @@ public class Tyokalut {
      * Aikavaativuus O(log n)
      * @param etsittava haettava
      * @param alku ensimmäinen paikka josta etsitään
-     * @param viimeinen paikka josta etsitään
+     * @param loppu viimeinen paikka josta etsitään
+     * @param taulukko taulukko josta etsitään
      * @return indeksi josta etsittävä löytyi, tai -1 mikäli sitä ei löytynyt
      */
 
@@ -229,7 +236,8 @@ public class Tyokalut {
      * Aikavaativuus O(n).
      * @param etsittava alkio jota etsitään
      * @param alku ensimmäinen paikka josta etsitään
-     * @param viimeinen paikka josta etsitään
+     * @param loppu viimeinen paikka josta etsitään
+     * @param taulukko taulukko josta etsitään
      * @return true jos löytyi, false muuten
      */
 
@@ -242,7 +250,8 @@ public class Tyokalut {
      * Aikavaativuus O(n).
      * @param haettava alkio jota haetaan
      * @param alku ensimmäinen paikka josta etsitään
-     * @param viimeinen paikka josta etsitään
+     * @param loppu viimeinen paikka josta etsitään
+     * @param taulukko taulukko josta etsitään
      * @return haettavan indeksi jos löytyi, muutoin -1
      */
 
@@ -253,6 +262,14 @@ public class Tyokalut {
         return -1;
     }
 
+    /**
+     * Ovatko taulukot samat, eli ne ovat saman pituiset ja lisäksi
+     * toisiaan vastaavissa indekseissä on samat alkiot.
+     * @param taulukko taulukko
+     * @param verrattava taulukko johon verrataan
+     * @return olivatko taulukot samat
+     */
+
     public static boolean onSamaTaulukko(int[] taulukko, int[] verrattava) {
         if (taulukko.length != verrattava.length) return false;
 
@@ -262,6 +279,13 @@ public class Tyokalut {
         return true;
     }
 
+    /**
+     * Luo taulukon, jossa on alkiot 1...pisteita. Myös taulukon pituus on
+     * pisteita.
+     * @param pisteita kuinka pitkä taulukko halutaan
+     * @return uusi taulukko
+     */
+
     public static int[] luoTaulukko1_N(int pisteita) {
         int[] vastaus = new int[pisteita];
 
@@ -270,7 +294,5 @@ public class Tyokalut {
         
         return vastaus;
     }
-        
-
 
 }

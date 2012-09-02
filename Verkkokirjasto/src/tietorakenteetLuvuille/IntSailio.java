@@ -3,9 +3,9 @@ package tietorakenteetLuvuille;
 
 /**
  * Int-säiliöt ovat tietorakenteita, joihin voi tallettaa int-lukuja.
- * 
  * @author silja
  */
+
 public interface IntSailio {
 
     /**

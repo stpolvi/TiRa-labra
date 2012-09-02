@@ -29,7 +29,7 @@ public class SuhteikkoanalyysikirjastoTest {
     public void tyhjaSuhteikkoTayttaaVerkkoehdon() {
         s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
         assertTrue("Ei ollut silmukaton.", Suhteikkoanalyysikirjasto.onSilmukaton(s));
-        assertTrue("Ei ollut symmetrinen.", Suhteikkoanalyysikirjasto.symmetrinen(s));
+        assertTrue("Ei ollut symmetrinen.", Suhteikkoanalyysikirjasto.onSymmetrinen(s));
         assertTrue(Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
     }
 
@@ -37,7 +37,7 @@ public class SuhteikkoanalyysikirjastoTest {
     public void taydellinenVerkkoTayttaaVerkkoehdon() {
         s = suhteikot.TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
         assertTrue("Ei ollut silmukaton.", Suhteikkoanalyysikirjasto.onSilmukaton(s));
-        assertTrue("Ei ollut symmetrinen.", Suhteikkoanalyysikirjasto.symmetrinen(s));
+        assertTrue("Ei ollut symmetrinen.", Suhteikkoanalyysikirjasto.onSymmetrinen(s));
         assertTrue(Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
     }
 
@@ -49,7 +49,7 @@ public class SuhteikkoanalyysikirjastoTest {
         assertFalse("Piti olla silmukka.",
                 Suhteikkoanalyysikirjasto.onSilmukaton(s));
         assertTrue("Piti olla symmetrinen.",
-                Suhteikkoanalyysikirjasto.symmetrinen(s));
+                Suhteikkoanalyysikirjasto.onSymmetrinen(s));
         assertFalse("Ei pidä täyttää verkkoehtoa.",
                 Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
     }
@@ -60,7 +60,7 @@ public class SuhteikkoanalyysikirjastoTest {
         assertTrue("Piti olla silmukaton.",
                 Suhteikkoanalyysikirjasto.onSilmukaton(s));
         assertFalse("Ei pidä olla symmetrinen.",
-                Suhteikkoanalyysikirjasto.symmetrinen(s));
+                Suhteikkoanalyysikirjasto.onSymmetrinen(s));
         assertFalse("Ei pidä täyttää verkkoehtoa.",
                 Suhteikkoanalyysikirjasto.tayttaaVerkkoehdon(s));
     }
@@ -74,9 +74,9 @@ public class SuhteikkoanalyysikirjastoTest {
         s = suhteikot.TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
         for (int i=1; i<=5; i++) {
             assertTrue("Tuloaste väärin.",
-                    Suhteikkoanalyysikirjasto.tuloaste(s, i) == 4);
+                    Suhteikkoanalyysikirjasto.pisteenTuloaste(s, i) == 4);
             assertTrue("Lähtöaste väärin.",
-                    Suhteikkoanalyysikirjasto.lahtoaste(s, i) == 4);
+                    Suhteikkoanalyysikirjasto.pisteenLahtoaste(s, i) == 4);
         }
     }
 
@@ -84,22 +84,22 @@ public class SuhteikkoanalyysikirjastoTest {
     public void asteetOikein1PisteisessaJossaSilmukka() {
         s = suhteikot.TavallinenSuhteikkoTest.pisteita1Yhteys1_1();
         assertTrue("Lähtöaste väärin.",
-                Suhteikkoanalyysikirjasto.lahtoaste(s, 1) == 1);
+                Suhteikkoanalyysikirjasto.pisteenLahtoaste(s, 1) == 1);
         assertTrue("Tuloaste väärin.",
-                Suhteikkoanalyysikirjasto.tuloaste(s, 1) == 1);
+                Suhteikkoanalyysikirjasto.pisteenTuloaste(s, 1) == 1);
     }
 
     @Test
     public void asteetOikein2PisteisessaJossaYhteys1_2() {
         s = suhteikot.TavallinenSuhteikkoTest.pisteita2Yhteys1_2();
         assertTrue("Lähtöaste väärin pisteellä 1.",
-                Suhteikkoanalyysikirjasto.lahtoaste(s, 1) == 1);
+                Suhteikkoanalyysikirjasto.pisteenLahtoaste(s, 1) == 1);
         assertTrue("Tuloaste väärin pisteellä 1.",
-                Suhteikkoanalyysikirjasto.tuloaste(s, 1) == 0);
+                Suhteikkoanalyysikirjasto.pisteenTuloaste(s, 1) == 0);
         assertTrue("Lähtöaste väärin pisteellä 2.",
-                Suhteikkoanalyysikirjasto.lahtoaste(s, 2) == 0);
+                Suhteikkoanalyysikirjasto.pisteenLahtoaste(s, 2) == 0);
         assertTrue("Tuloaste väärin pisteellä 2.",
-                Suhteikkoanalyysikirjasto.tuloaste(s, 2) == 1);
+                Suhteikkoanalyysikirjasto.pisteenTuloaste(s, 2) == 1);
     }
 
     /*
@@ -109,40 +109,40 @@ public class SuhteikkoanalyysikirjastoTest {
     @Test
     public void tyhjaOnTaydellinen() {
         s = suhteikot.TavallinenSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertTrue(Suhteikkoanalyysikirjasto.taydellinen(s));
+        assertTrue(Suhteikkoanalyysikirjasto.onTaydellinen(s));
     }
 
     @Test
     public void taydellinenVerkkoOnTaydellinen() {
         s = suhteikot.TavallinenSuhteikkoTest.taydellinen5PisteinenVerkko();
-        assertTrue(Suhteikkoanalyysikirjasto.taydellinen(s));
+        assertTrue(Suhteikkoanalyysikirjasto.onTaydellinen(s));
     }
 
     @Test
     public void taydellinenSilmukallinenOnTaydellinen() {
         s = suhteikot.TavallinenSuhteikkoTest.taydellinen4PisteinenJossaSilmukka();
-        assertTrue(Suhteikkoanalyysikirjasto.taydellinen(s));
+        assertTrue(Suhteikkoanalyysikirjasto.onTaydellinen(s));
     }
 
     @Test
     public void kaksipisteinenEpasymmetrinenTaydellinenOnTaydellinen() {
         s = suhteikot.TavallinenSuhteikkoTest.pisteita2Yhteys1_2();
-        assertTrue(Suhteikkoanalyysikirjasto.taydellinen(s));
+        assertTrue(Suhteikkoanalyysikirjasto.onTaydellinen(s));
     }
 
     @Test
     public void yhteydetonUseampipisteinenEiTaydellinen() {
         s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(2);
-        assertFalse(Suhteikkoanalyysikirjasto.taydellinen(s));
+        assertFalse(Suhteikkoanalyysikirjasto.onTaydellinen(s));
 
         s = suhteikot.TavallinenSuhteikkoTest.pisteitaNEiYhteyksia(9);
-        assertFalse(Suhteikkoanalyysikirjasto.taydellinen(s));
+        assertFalse(Suhteikkoanalyysikirjasto.onTaydellinen(s));
     }
 
     @Test
     public void kolmepisteinenJossaEiKaikkiaYhteyksiaEiTaydellinen() {
         s = TavallinenSuhteikkoTest.pisteita3Yhteys2_1ja3_3();
-        assertFalse(Suhteikkoanalyysikirjasto.taydellinen(s));
+        assertFalse(Suhteikkoanalyysikirjasto.onTaydellinen(s));
     }
 
     /*
@@ -179,49 +179,49 @@ public class SuhteikkoanalyysikirjastoTest {
     /*
      * LöytyyJuuri-testit väritettävälle suhteikolle/verkolle:
      */
-
-    @Test
-    public void yksipisteisellaOnJuuriVaritettavalle() {
-        s = suhteikot.VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
-        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
-    }
-
-    @Test
-    public void kaksipisteisellaJossaYhteys1_2OnJuuriVaritettavalle() {
-        s = suhteikot.VaritettavaSuhteikkoTest.pisteita2Yhteys1_2();
-        assertTrue("Yhteys väliltä 1-2 puuttuu.", s.onYhteys(1, 2));
-
-        assertTrue("Leveyshaulla ei löytynyt kulkua 1-2.",
-                Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(s, 1, 2));
-        assertTrue("Pisteen 1 piti olla juuri.",
-                Suhteikkoanalyysikirjasto.onJuuri(s, 1));
-        assertTrue("Pienin juuri piti olla 1.",
-                Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 1);
-        
-        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
-    }
-
-    @Test
-    public void tyhjallaEiJuuriaVaritettavalle() {
-        s = suhteikot.VaritettavaSuhteikkoTest.uusiTyhjaSuhteikko();
-        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
-    }
-
-    @Test
-    public void useampipisteisellaJossaEiYhteyksiaEiJuuriaVaritettavalle() {
-        s = suhteikot.VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(2);
-        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
-
-        s = suhteikot.VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(9);
-        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
-    }
-
-    @Test
-    public void taydellisellaOnJuuri() {
-        s = suhteikot.VaritettavaSuhteikkoTest.uusiSuhteikkoTaydellinenN(6);
-        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
-    }
-
+//
+//    @Test
+//    public void yksipisteisellaOnJuuriVaritettavalle() {
+//        s = suhteikot.VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(1);
+//        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+//    }
+//
+//    @Test
+//    public void kaksipisteisellaJossaYhteys1_2OnJuuriVaritettavalle() {
+//        s = suhteikot.VaritettavaSuhteikkoTest.pisteita2Yhteys1_2();
+//        assertTrue("Yhteys väliltä 1-2 puuttuu.", s.onYhteys(1, 2));
+//
+//        assertTrue("Leveyshaulla ei löytynyt kulkua 1-2.",
+//                Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(s, 1, 2));
+//        assertTrue("Pisteen 1 piti olla juuri.",
+//                Suhteikkoanalyysikirjasto.onJuuri(s, 1));
+//        assertTrue("Pienin juuri piti olla 1.",
+//                Suhteikkoanalyysikirjasto.pieninJuuriBruteForce(s) == 1);
+//
+//        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+//    }
+//
+//    @Test
+//    public void tyhjallaEiJuuriaVaritettavalle() {
+//        s = suhteikot.VaritettavaSuhteikkoTest.uusiTyhjaSuhteikko();
+//        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+//    }
+//
+//    @Test
+//    public void useampipisteisellaJossaEiYhteyksiaEiJuuriaVaritettavalle() {
+//        s = suhteikot.VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(2);
+//        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+//
+//        s = suhteikot.VaritettavaSuhteikkoTest.pisteitaNEiYhteyksia(9);
+//        assertFalse(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+//    }
+//
+//    @Test
+//    public void taydellisellaOnJuuri() {
+//        s = suhteikot.VaritettavaSuhteikkoTest.uusiSuhteikkoTaydellinenN(6);
+//        assertTrue(Suhteikkoanalyysikirjasto.loytyyJuuriBruteForce(s));
+//    }
+//
 
     /*
      * JokinJuuri-testit tavalliselle suhteikolle/verkolle:

@@ -151,7 +151,7 @@ public class VerkkoanalyysikirjastoTest {
         int[] pistejoukko = new int[koko];
         for (int i=0; i<pistejoukko.length; i++) 
             pistejoukko[i] = i; //huom taulukko on nyt järjestyksessä
-        assertTrue(Verkkoanalyysikirjasto.hallitseva(v, pistejoukko));
+        assertTrue(Verkkoanalyysikirjasto.onHallitsevaPistejoukko(v, pistejoukko));
     }
 
     @Test
@@ -159,7 +159,7 @@ public class VerkkoanalyysikirjastoTest {
         int koko = 8;
         v = TavallinenSuhteikkoTest.uusiSuhteikkoTaydellinenN(koko);
         int[] pistejoukko = new int[0];
-        assertFalse(Verkkoanalyysikirjasto.hallitseva(v, pistejoukko));
+        assertFalse(Verkkoanalyysikirjasto.onHallitsevaPistejoukko(v, pistejoukko));
     }
 
     @Test
@@ -168,7 +168,7 @@ public class VerkkoanalyysikirjastoTest {
         int[] pistejoukko = new int[4];
         for (int i=0; i<pistejoukko.length; i++)
             pistejoukko[i] = i+2; //huom valmiiksi järjestyksessä
-        assertFalse(Verkkoanalyysikirjasto.hallitseva(v, pistejoukko));
+        assertFalse(Verkkoanalyysikirjasto.onHallitsevaPistejoukko(v, pistejoukko));
     }
 
     /*

@@ -63,7 +63,7 @@ public abstract class Suhteikko {
     
     /**
      * Annetun pisteen seuraajat int-säiliössä.
-     * @param alkupiste piste jonka seuraajat halutaan
+     * @param piste piste jonka seuraajat halutaan
      * @return seuraajat jossakin int-säiliössä
      */
 

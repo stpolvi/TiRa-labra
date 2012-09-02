@@ -19,28 +19,52 @@ import tyokalut.Tyokalut;
 
 public class Verkkoanalyysikirjasto {
 
+    private Verkkoanalyysikirjasto() {}
+
     /**
-     * Pisteen aste on pisteestä lähtevien yhteyksien lukumäärä.
-     * Aikavaativuus O(1)
-     * @param v analysoitava verkko
-     * @param piste verkon piste
-     * @return pisteen aste verkossa
+     * Eristetty piste on piste, josta ei ole yhteyksiä muihin pisteisiin.
+     * Aikavaativuus O(pisteidenLkm) kun analysoitavana on TavallinenSuhteikko.
+     * Tilavaativuus O(1)
+     * @param v
+     * @return
      */
 
-    public static int pisteenAste(Suhteikko v, int piste) {
-        IntSailio seuraajat = v.getSeuraajat(piste);    // O(1)
-        if (seuraajat == null) return 0;
-        return seuraajat.alkioita();                    // O(1)
+    public static int[] eristetytPisteet(Suhteikko v) {
+        VenyvaTaulukko eristetyt = new VenyvaTaulukko();
+        for (int i=1; i<=v.PISTEITA; i++) {
+            if (v.seuraajienLkm(i) == 0) //tavallisessa suhteikossa O(1)
+                eristetyt.lisaa(i);
+        }
+        return eristetyt.toIntArray();
+    }
+
+    /**
+     * TODO hallitseva
+     * Onko annettu pistejoukko hallitseva annetussa verkossa:
+     * onko jokainen verkon piste joko joukossa tai sitten joukossa
+     * olevan naapuri. Joukon on oltava valmiiksi järjestetty.
+     * @param v analysoitava verkko
+     * @param pistejoukko onko hallitseva annetussa verkossa
+     * @return oliko pistejoukko hallitseva
+     */
+
+    public static boolean onHallitsevaPistejoukko(Suhteikko v, int[] pistejoukko) {
+        for (int i=1; i<=v.PISTEITA; i++) {
+            if (Tyokalut.etsiBinaarihaulla(i, 0, pistejoukko.length-1, pistejoukko)) continue;
+            if (!onYhteysJoukkoon(v, i, pistejoukko)) return false;
+        }
+        return true;
     }
 
     /**
      * Onko verkko säännöllinen:
      * onko kaikkien pisteiden aste sama.
-     * Jos kaikkien n-pisteisen verkon pisteiden aste on k, niin 
+     * Jos kaikkien n-pisteisen verkon pisteiden aste on k, niin
      * verkon kaarien lukumäärä on (1/2)nk.
      *
      * Aikavaativuus O(pisteidenLkm)
      * @param v analysoitava verkko
+     * @return oliko säännöllinen
      */
 
     public static boolean onSaannollinen(Suhteikko v) {
@@ -74,6 +98,18 @@ public class Verkkoanalyysikirjasto {
 
     /**
      * Sama kuin Taydellinen mutta toteutus eri.
+     * Aikavaativuus O(pisteidenLkm)
+     * @param v analysoitava verkko
+     * @return oliko täydellinen verkko
+     */
+
+    public static boolean onTaydellinenSaannollisyydenAvulla(Suhteikko v) {
+        if (v.PISTEITA == 0 || v.PISTEITA == 1) return true;
+        return pisteenAste(v, 1) == v.PISTEITA-1 && onSaannollinen(v);
+    }
+
+    /**
+     * Sama kuin Taydellinen mutta toteutus eri.
      * Aikavaativuus O(pisteidenLkm^2 log pisteidenLkm)
      * @param v analysoitava verkko
      * @return oliko täydellinen verkko
@@ -88,16 +124,12 @@ public class Verkkoanalyysikirjasto {
     }
 
     /**
-     * Sama kuin Taydellinen mutta toteutus eri.
-     * Aikavaativuus O(pisteidenLkm)
+     * Selvittää onko annettu verkko yhtenäinen käyttämällä tietoa
+     * että verkko on yhtenäinen täsmälleen silloin kun siinä
+     * on juuri.
      * @param v analysoitava verkko
-     * @return oliko täydellinen verkko
+     * @return oliko yhtenäinen
      */
-
-    public static boolean onTaydellinenSaannollisyydenAvulla(Suhteikko v) {
-        if (v.PISTEITA == 0 || v.PISTEITA == 1) return true;
-        return pisteenAste(v, 1) == v.PISTEITA-1 && onSaannollinen(v);
-    }
 
     public static boolean onYhtenainenJuurienAvulla(Suhteikko v) {
         if (v.PISTEITA == 0) return true;
@@ -127,6 +159,27 @@ public class Verkkoanalyysikirjasto {
         return kaikistaPisteistaOnKulkuPisteeseen(v, 1);
     }
 
+        /**
+         * Privaatti.
+         * Selvittää onko kaikista muista verkon pisteistä kulku annettuun pisteeseen.
+         */
+
+        private static boolean kaikistaPisteistaOnKulkuPisteeseen(Suhteikko v, int piste) {
+            for (int i=1; i<=v.PISTEITA; i++) {
+                if (!Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(v, piste, i)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+    /**
+     * Yhtenäisyyden tutkiminen väritettävälle suhteikolle.
+     * Aikavaativuus O(???)
+     * @param v
+     * @return
+     */
+
     public static boolean onYhtenainenVaritettavalle(VaritettavaSuhteikko v) {
         v.varitaKaikki(Color.WHITE);
         Jono jono = new Jono();
@@ -138,51 +191,39 @@ public class Verkkoanalyysikirjasto {
             vuorossa = jono.ota();
             v.varita(vuorossa, Color.BLACK);
             vuorossaOlevanSeuraajat = v.getSeuraajat(vuorossa);
-            if (vuorossaOlevanSeuraajat == null) continue;
+            if (vuorossaOlevanSeuraajat != null)
+                lisaaSeuraajatJonoonJosEivatVaria
+                        (v, vuorossaOlevanSeuraajat.toIntArray(), jono, Color.BLACK);
+        }
 
-            for (int seuraaja : vuorossaOlevanSeuraajat.toIntArray()) {
-                if (v.getVari(seuraaja).equals(Color.BLACK)) continue;
-                jono.lisaa(seuraaja);
+        return kaikkiPisteetOvatVaria(v, Color.BLACK);
+    }
+
+        /**
+         * Privaatti.
+         * Aikavaativuus O(seuraajienLkm) eli O(yhteyksienLkm)
+         */
+
+        private static void lisaaSeuraajatJonoonJosEivatVaria
+                (VaritettavaSuhteikko v, int[] seuraajat, Jono j, Color vari) {
+            for (int seur : seuraajat) {
+                if (!v.getVari(seur).equals(vari))
+                    j.lisaa(seur);
             }
         }
-        for (int i=1; i<=v.PISTEITA; i++)
-            if (!v.getVari(i).equals(Color.BLACK))
-                return false;
-        return true;
-    }
 
-    /**
-     * TODO hallitseva
-     * Onko annettu pistejoukko hallitseva annetussa verkossa:
-     * onko jokainen verkon piste joko joukossa tai sitten joukossa
-     * olevan naapuri. Joukon on oltava valmiiksi järjestetty.
-     */
+        /**
+         * Privaatti.
+         * Aikavaativuus O(pisteidenLkm)
+         */
 
-    public static boolean hallitseva(Suhteikko v, int[] pistejoukko) {
-        for (int i=1; i<=v.PISTEITA; i++) {
-            if (Tyokalut.etsiBinaarihaulla(i, 0, pistejoukko.length-1, pistejoukko)) continue;
-            if (!onYhteysJoukkoon(v, i, pistejoukko)) return false;
+        private static boolean kaikkiPisteetOvatVaria(VaritettavaSuhteikko v, Color vari) {
+            for (int i=1; i<=v.PISTEITA; i++)
+                if (!v.getVari(i).equals(vari))
+                    return false;
+            return true;
         }
-        return true;
-    }
 
-    /**
-     * Eristetty piste on piste, josta ei ole yhteyksiä muihin pisteisiin.
-     * Aikavaativuus O(pisteidenLkm) kun analysoitavana on TavallinenSuhteikko.
-     * Tilavaativuus O(1)
-     * @param v
-     * @return
-     */
-
-    public static int[] eristetytPisteet(Suhteikko v) {
-        VenyvaTaulukko eristetyt = new VenyvaTaulukko();
-        for (int i=1; i<=v.PISTEITA; i++) {
-            if (v.seuraajienLkm(i) == 0) //tavallisessa suhteikossa O(1)
-                eristetyt.lisaa(i);
-        }
-        return eristetyt.toIntArray();
-    }
-    
     /**
      * Onko annetusta pisteestä yhteys annettuun pistejoukkoon, eli johonkin
      * joukon pisteeseen.
@@ -190,7 +231,7 @@ public class Verkkoanalyysikirjasto {
      * Aikavaativuus ??
      * @param v analysoitava suhteikko
      * @param piste yhteyden lähtöpiste
-     * @param pistejoukko joukko, jonka pisteeseen yhteys olisi
+     * @param jarjestettyPistejoukko joukko jonka pisteeseen yhteys olisi
      * @return oliko yhteyttä
      */
 
@@ -215,6 +256,20 @@ public class Verkkoanalyysikirjasto {
             } else
                 return true;
         }
+    }
+    
+    /**
+     * Pisteen aste on pisteestä lähtevien yhteyksien lukumäärä.
+     * Aikavaativuus O(1)
+     * @param v analysoitava verkko
+     * @param piste verkon piste
+     * @return pisteen aste verkossa
+     */
+
+    public static int pisteenAste(Suhteikko v, int piste) {
+        IntSailio seuraajat = v.getSeuraajat(piste);    // O(1)
+        if (seuraajat == null) return 0;
+        return seuraajat.alkioita();                    // O(1)
     }
     
     /**
@@ -259,14 +314,6 @@ public class Verkkoanalyysikirjasto {
  * Privaattimetodit -----------------------------
  */
 
-    private static boolean kaikistaPisteistaOnKulkuPisteeseen(Suhteikko v, int piste) {
-        for (int i=1; i<=v.PISTEITA; i++) {
-            if (!Suhteikkoanalyysikirjasto.onKulkuLeveyshaulla(v, piste, i)) {
-                return false;
-            }
-        }
-        return true;
-    }
     
     /**
      * Privaatti. Aikavaativuus O(pisteidenLkm)
@@ -280,6 +327,67 @@ public class Verkkoanalyysikirjasto {
         return true;
     }
 
+
+    /**
+     * TODO komponentit 
+     * Annetun pisteen yhtenäinen komponentti annetussa verkossa:
+     * suppein mahdollinen joukko verkon pisteitä siten, että annettu
+     * piste kuuluu joukkoon,
+     * joukon virittämä aliverkko on yhtenäinen,
+     * ja joukkoon ei voida lisätä pisteitä menettämättä yhtenäisyyttä.
+     * Toisin sanoen, pienimmän sellaisen yhtenäisen aliverkon pisteet,
+     * johon annettu piste kuuluu.
+     * @param v analysoitava verkko
+     * @param piste piste jonka yhtenäinen komponentti haetaan
+     * @return pisteen yhtenäisen komponentin pisteet satunnaisessa järjestyksessä
+     */
+
+    public static int[] yhtenainenKomponentti(Suhteikko v, int piste) {
+        IntSailio seur = v.getSeuraajat(piste);
+        if (seur == null || seur.toIntArray().length == 0) {
+            int[] vastaus = new int[1];
+            vastaus[0] = piste;
+            return vastaus;
+        }
+        VaritettavaSuhteikko variv;
+        try {
+            variv = (VaritettavaSuhteikko) v;
+            return yhtenainenKomponenttiVaritettavalle(variv, piste);
+        } catch (ClassCastException e) {
+            throw new Error("yhtenainen komponentti varittamattomalle kesken");
+        }
+    }
+
+        /**
+         * Privaatti.
+         * Palauttaa annetun pisteen yhtenäisen komponentin pisteet.
+         */
+
+        private static int[] yhtenainenKomponenttiVaritettavalle
+                (VaritettavaSuhteikko v, int piste) {
+
+            VenyvaTaulukko komponentti = new VenyvaTaulukko();
+
+            v.varitaKaikki(Color.WHITE);
+            Jono jono = new Jono();
+            jono.lisaa(piste);
+            int vuorossa;
+            int[] vuorossaOlevanSeuraajat;
+
+            while(jono.alkioita() > 0) {
+                vuorossa = jono.ota();
+                v.varita(vuorossa, Color.BLACK);
+                vuorossaOlevanSeuraajat = v.getSeuraajat(vuorossa).toIntArray();
+                if (vuorossaOlevanSeuraajat == null) continue;
+
+                for (int seuraaja : vuorossaOlevanSeuraajat) {
+                    if (! v.getVari(seuraaja).equals(Color.BLACK))
+                        komponentti.lisaa(seuraaja);
+                }
+            }
+
+            return komponentti.toIntArray();
+        }
 
 
 }

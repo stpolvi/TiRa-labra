@@ -7,6 +7,7 @@ import tietorakenteetLuvuille.IntSailio;
  * Abstrakti relaatio.
  * @author silja
  */
+
 public abstract class Relaatio {
 
     /**

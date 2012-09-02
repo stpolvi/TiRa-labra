@@ -55,7 +55,7 @@ public class TavallinenSuhteikko extends Suhteikko {
     /**
      * Annetun pisteen seuraajat int-säiliössä.
      * Aikavaativuus O(1), tilavaativuus O(1)
-     * @param alkupiste piste jonka seuraajat halutaan
+     * @param piste piste jonka seuraajat halutaan
      * @return seuraajat jossakin int-säiliössä
      */
 
@@ -71,6 +71,7 @@ public class TavallinenSuhteikko extends Suhteikko {
      * @return seuraajien lukumäärä
      */
 
+    @Override
     public int seuraajienLkm(int piste) {
         IntSailio seuraajat = getSeuraajat(piste);
         if (seuraajat == null) return 0;

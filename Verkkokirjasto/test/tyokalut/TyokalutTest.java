@@ -5,7 +5,7 @@
 
 package tyokalut;
 
-import tietorakenteetOlioille.Kaari;
+import kaaritietorakenteet.Kaari;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
