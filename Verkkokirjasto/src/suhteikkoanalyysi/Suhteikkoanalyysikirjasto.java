@@ -206,12 +206,22 @@ public class Suhteikkoanalyysikirjasto {
     /**
      * Eristetty piste on piste, josta ei ole yhteyksiä muihin pisteisiin
      * kumpaankaan suuntaan.
+     * Aikavaativuus O(pisteidenLkm * yhteyksienLkm),
+     * tilavaativuus O(pisteidenLkm)
      * @param s
      * @return
      */
 
     public static int[] eristetytPisteet(Suhteikko s) {
-
+        VenyvaTaulukkoVain1Esiintyma eristetyt = new VenyvaTaulukkoVain1Esiintyma();
+        for (int i=1; i<=s.PISTEITA; i++) {
+            if (s.seuraajienLkm(i) == 0)
+                eristetyt.lisaa(i);
+            else
+                for (int j : s.getSeuraajat(i).toIntArray())
+                    eristetyt.poistaYksiEsiintyma(j);
+        }
+        return eristetyt.toIntArray();
     }
 
     /**
@@ -230,7 +240,7 @@ public class Suhteikkoanalyysikirjasto {
             t = (VaritettavaSuhteikko) s;
             return onYhtenainenVaritettavalle(t);
         } catch (ClassCastException e) {
-            return false;
+            throw new Error("kesken");
         }
     }
 

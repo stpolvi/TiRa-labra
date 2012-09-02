@@ -1,8 +1,12 @@
 
 package suhteikkoanalyysi;
 
+import java.awt.Color;
 import suhteikot.Suhteikko;
+import suhteikot.VaritettavaSuhteikko;
 import tietorakenteetLuvuille.IntSailio;
+import tietorakenteetLuvuille.Jono;
+import tietorakenteetLuvuille.VenyvaTaulukko;
 import tyokalut.Tyokalut;
 
 /**
@@ -95,34 +99,6 @@ public class Verkkoanalyysikirjasto {
         return pisteenAste(v, 1) == v.PISTEITA-1 && onSaannollinen(v);
     }
 
-    /**
-     * TODO: renkaat
-     * Rengas verkossa on vähintään kahden muun pisteen kautta kulkeva
-     * kulku jostakin pisteestä itseensä.
-     * Huom. kulun täytyy kulkea vähintään kolmen pisteen kautta.
-     * @param s analysoitava suhteikko
-     * @return onko suhteikossa rengas
-     */
-
-    public static boolean sisaltaaRenkaan(Suhteikko s) {
-
-
-        throw new Error("kesken");
-    }
-
-    /**
-     * Täyttääkö verkko puuehdon:
-     * TODO määritelmä
-     * @param v analysoitava verkko
-     * @return oliko puu
-     */
-
-    public static boolean tayttaaPuuehdon(Suhteikko v) {
-        if (sisaltaaRenkaan(v)) return false;
-        if (!onYhtenainenKulkujenAvulla(v)) return false;
-        return true;
-    }
-
     public static boolean onYhtenainenJuurienAvulla(Suhteikko v) {
         if (v.PISTEITA == 0) return true;
         return Suhteikkoanalyysikirjasto.onJuuri(v, 1);
@@ -151,6 +127,30 @@ public class Verkkoanalyysikirjasto {
         return kaikistaPisteistaOnKulkuPisteeseen(v, 1);
     }
 
+    public static boolean onYhtenainenVaritettavalle(VaritettavaSuhteikko v) {
+        v.varitaKaikki(Color.WHITE);
+        Jono jono = new Jono();
+        jono.lisaa(1);
+        int vuorossa;
+        IntSailio vuorossaOlevanSeuraajat;
+
+        while (jono.alkioita() > 0) {
+            vuorossa = jono.ota();
+            v.varita(vuorossa, Color.BLACK);
+            vuorossaOlevanSeuraajat = v.getSeuraajat(vuorossa);
+            if (vuorossaOlevanSeuraajat == null) continue;
+
+            for (int seuraaja : vuorossaOlevanSeuraajat.toIntArray()) {
+                if (v.getVari(seuraaja).equals(Color.BLACK)) continue;
+                jono.lisaa(seuraaja);
+            }
+        }
+        for (int i=1; i<=v.PISTEITA; i++)
+            if (!v.getVari(i).equals(Color.BLACK))
+                return false;
+        return true;
+    }
+
     /**
      * TODO hallitseva
      * Onko annettu pistejoukko hallitseva annetussa verkossa:
@@ -164,6 +164,23 @@ public class Verkkoanalyysikirjasto {
             if (!onYhteysJoukkoon(v, i, pistejoukko)) return false;
         }
         return true;
+    }
+
+    /**
+     * Eristetty piste on piste, josta ei ole yhteyksiä muihin pisteisiin.
+     * Aikavaativuus O(pisteidenLkm) kun analysoitavana on TavallinenSuhteikko.
+     * Tilavaativuus O(1)
+     * @param v
+     * @return
+     */
+
+    public static int[] eristetytPisteet(Suhteikko v) {
+        VenyvaTaulukko eristetyt = new VenyvaTaulukko();
+        for (int i=1; i<=v.PISTEITA; i++) {
+            if (v.seuraajienLkm(i) == 0) //tavallisessa suhteikossa O(1)
+                eristetyt.lisaa(i);
+        }
+        return eristetyt.toIntArray();
     }
     
     /**
@@ -199,6 +216,44 @@ public class Verkkoanalyysikirjasto {
                 return true;
         }
     }
+    
+    /**
+     * Onko annettu verkko puu:
+     * onko se yhtenäinen eikä siinä ole yhtään rengasta.
+     * Ehdon tutkimisessa on käytetty Heikki Junnilan Verkot-kurssin
+     * luentomateriaalin (mainittu lähteissä) lausetta IV 1.8, jonka mukaan
+     * epätyhjälle verkolle ovat seuraavat kaksi ehtoa yhtäpitävät:
+     * (1) verkko on puu, (2) verkko on yhtenäinen ja sen viivojen lukumäärä
+     * on korkeintaan pisteiden lukumäärä miinus yksi.
+     * Aikavaativuus O(???), tilavaativuus O(???)
+     * @param v analysoitava verkko
+     * @return täyttääkö annettu verkko puuehdon
+     */
+
+    public static boolean tayttaaPuuehdon(Suhteikko v) {
+        if (v.PISTEITA == 0) return true;
+
+        if (!onYhtenainenKulkujenAvulla(v))
+            return false;
+        return viivojaMaxPisteitaMiinusYksi(v);
+    }
+    
+        /**
+         * Käytetty Verkkojen luentomateriaalin lausetta II 2.3
+         * jonka mukaan verkon viivojen lukumäärä on puolet 
+         * kaikkien pisteiden asteiden summasta.
+         * @param v
+         * @return
+         */
+
+        private static boolean viivojaMaxPisteitaMiinusYksi(Suhteikko v) {
+            int asteidenSumma = 0;
+            for (int i=1; i<=v.PISTEITA; i++) 
+                asteidenSumma += pisteenAste(v, i);
+            
+            double viivojenLkm = 0.5 * asteidenSumma;
+            return viivojenLkm <= (v.PISTEITA - 1);
+        }
 
 /*
  * Privaattimetodit -----------------------------
@@ -224,5 +279,7 @@ public class Verkkoanalyysikirjasto {
         }
         return true;
     }
+
+
 
 }

@@ -61,7 +61,7 @@ public class VenyvaTaulukko implements IntSailio {
      */
 
     /**
-     * Alkioiden lukumäärä.
+     * Alkioiden lukumäärä. Aikavaativuus O(1), tilavaativuus O(1)
      * @return taulukossa olevien lukujen määrä
      */
 

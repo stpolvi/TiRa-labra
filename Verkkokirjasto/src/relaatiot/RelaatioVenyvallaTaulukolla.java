@@ -59,11 +59,11 @@ public class RelaatioVenyvallaTaulukolla extends Relaatio {
     }
 
     /**
-     * Pisteen seuraajat taulukossa.
+     * Pisteen seuraajat int-säiliössä.
      * Aikavaativuus O(1)
      * Tilavaativuus O(1)
      * @param piste piste jonka seuraajat halutaan
-     * @return seuraajat taulukossa
+     * @return seuraajat jossakin int-säiliössä
      */
 
     public IntSailio getSeuraajat(int piste) {
